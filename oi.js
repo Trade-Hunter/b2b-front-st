@@ -1,0 +1,16 @@
+const selectedIOptions = {
+  symbol: "",
+  type: "",
+  TradgEndDt: "",
+  oper: "",
+  qty: 0,
+  ExrcPric: 0,
+  close: 0,
+  total: 0,
+  volImp: 0,
+  delta: 0,
+  gamma: 0,
+  theta: 0,
+  theta_perc: 0,
+  vega: 0,
+};
