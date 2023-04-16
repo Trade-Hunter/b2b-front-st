@@ -1,7 +1,7 @@
 <template>
   <HxcMenu>
     <div class="grid grid-cols-3 h-full p-4 gap-8">
-      <div v-for="component in components" :key="component.name" class="qdrinho">
+      <div v-for="component in components" :key="component.name" class="qdrinho overflow-hidden">
         <div class="p-3 flex">
           <h2 class="text-qdrinho uppercase">
             {{ component.name }}
@@ -21,26 +21,28 @@
             />
           </svg>
         </div>
-        <table class="mx-auto overflow-hidden max-w-full w-full">
-          <thead class="bg-[#74747429]">
-            <tr class="text-center">
-              <th class="px-4 py-1">ATIVO</th>
-              <th class="px-4 py-1">ULT</th>
-              <th class="px-4 py-1">VAR</th>
-              <th class="px-4 py-1">PROJ/MÉDIA</th>
-              <th class="px-4 py-1">VOL PROJETADO</th>
-            </tr>
-          </thead>
-          <tbody class="">
-            <tr class="text-center" v-for="i in 20" :key="i">
-              <td class="px-4 py-2">VALE3</td>
-              <td class="px-4 py-2">80.51</td>
-              <td class="px-4 py-2">1.44%</td>
-              <td class="px-4 py-2">0.83</td>
-              <td class="px-4 py-2">1.389.621.540</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="overflow-y-scroll h-full">
+          <table class="mx-auto overflow-x-visible h-full max-w-full w-full">
+            <thead class="bg-[#74747429] sticky top-0">
+              <tr class="text-center">
+                <th class="px-4 py-1">ATIVO</th>
+                <th class="px-4 py-1">ULT</th>
+                <th class="px-4 py-1">VAR</th>
+                <th class="px-4 py-1">PROJ/MÉDIA</th>
+                <th class="px-4 py-1">VOL PROJETADO</th>
+              </tr>
+            </thead>
+            <tbody class="">
+              <tr class="text-center" v-for="i in 11" :key="i">
+                <td class="px-4 py-1">VALE3</td>
+                <td class="px-4 py-1">80.51</td>
+                <td class="px-4 py-1">1.44%</td>
+                <td class="px-4 py-1">0.83</td>
+                <td class="px-4 py-1">1.389.621.540</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </HxcMenu>
