@@ -21,6 +21,26 @@
             />
           </svg>
         </div>
+        <table class="mx-auto overflow-hidden max-w-full w-full">
+          <thead class="bg-[#74747429]">
+            <tr class="text-center">
+              <th class="px-4 py-1">ATIVO</th>
+              <th class="px-4 py-1">ULT</th>
+              <th class="px-4 py-1">VAR</th>
+              <th class="px-4 py-1">PROJ/MÉDIA</th>
+              <th class="px-4 py-1">VOL PROJETADO</th>
+            </tr>
+          </thead>
+          <tbody class="">
+            <tr class="text-center" v-for="i in 20" :key="i">
+              <td class="px-4 py-2">VALE3</td>
+              <td class="px-4 py-2">80.51</td>
+              <td class="px-4 py-2">1.44%</td>
+              <td class="px-4 py-2">0.83</td>
+              <td class="px-4 py-2">1.389.621.540</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </HxcMenu>
@@ -35,7 +55,16 @@ export default {
   data() {
     return {
       components: [
-        { name: "Avat" },
+        {
+          name: "Avat",
+          columns: [
+            { label: "Ativo" },
+            { label: "Ult" },
+            { label: "VAR" },
+            { label: "PROJ/MÉDIA" },
+            { label: "VOL PROJETADO" },
+          ],
+        },
         { name: "Iceberg" },
         { name: "Players" },
         { name: "Amplitude" },
@@ -52,6 +81,7 @@ export default {
   background: #191e24;
   border: 1px solid rgba(42, 91, 112, 0.5);
   border-radius: 4px;
+  font-size: 14px;
 }
 
 .text-qdrinho {

@@ -13,7 +13,7 @@ import directives from "./directives";
 //import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 import notify from "@kyvg/vue3-notification";
 import api from "./services/api";
-
+import "@fontsource/roboto";
 const app = createApp(App);
 
 app.component(CustomScrollbar.name, CustomScrollbar);

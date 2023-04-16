@@ -3,7 +3,7 @@
     :collapsed="collapsed"
     v-bind:style="{
       display: isOnMobile ? (hideMenu ? 'none' : 'flex') : 'flex',
-      'margin-top': isOnMobile ? (hideMenu ? 'none' : '0px') : '50px',
+      'margin-top': isOnMobile ? (hideMenu ? 'none' : '0px') : '0px',
     }"
     :menu="menu"
     :theme="selectedTheme"
