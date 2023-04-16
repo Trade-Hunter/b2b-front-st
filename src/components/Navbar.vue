@@ -1,15 +1,28 @@
 <template>
-  <div class="bg-white dark:bg-dark-1 w-full flex flex-auto sticky" style="z-index: 999; height: 50px">
+  <div class="bg-[#191e24] nav1 w-full flex flex-auto sticky" style="z-index: 999; height: 50px">
     <div class="flex pl-5">
       <a href="/" class="m-auto flex justify-center items-center font-bold text-gray-700 dark:text-white">
-        <img alt="Logo" class="w-auto h-6 mr-1.5" src="https://cdn-th.s3.sa-east-1.amazonaws.com/assets/icon.png" />
-        <span class="text-sm font-bold uppercase">Trade Hunter</span>
+        <img alt="Logo" class="w-auto h-8 mr-1.5" src="/stBranca.png" />
+        <img alt="Logo" class="w-auto h-6 ml-1.5" src="https://cdn-th.s3.sa-east-1.amazonaws.com/assets/icon.png" />
       </a>
     </div>
-    <div class="flex grow">
+    <div class="flex grow items-center pr-2">
       <button class="ml-auto text-white bg-blue-500 px-2 m-2 text-sm rounded-md" @click="chgTheme">
-        {{ theme.toUpperCase() }} THEME
-      </button>
+        {{ theme.toUpperCase() }} THEME</button
+      ><svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6 flex"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+        />
+      </svg>
     </div>
   </div>
 </template>
@@ -34,37 +47,7 @@ export default {
 </script>
 
 <style>
-.nav1:before {
-  background-size: contain;
-  content: "";
-
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: -1;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 100%;
-}
 .nav1 {
-  height: 40px;
-  background: linear-gradient(13deg, #f69d3c, #2885cb);
-  background-size: cover;
-  content: "";
-}
-
-.nav1:after {
-  background: rgba(0, 0, 0, 0.6);
-  content: "";
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  overflow: hidden;
+  height: 60px;
 }
 </style>

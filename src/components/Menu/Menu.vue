@@ -21,7 +21,7 @@
     }"
     id="demo"
     style="height: calc(100% - 50px)"
-    class="bg-hxc-1 dark:bg-dark-2 dark:text-white"
+    class="bg-hxc-1 bg-[#21272e]"
     :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]"
   >
     <slot></slot>
@@ -53,108 +53,41 @@ export default defineComponent({
     return {
       menu: [
         {
-          header: "Estratégias",
-          hiddenOnCollapse: true,
-        },
-        {
-          component: markRaw(separator),
-          hiddenOnCollapse: true,
-        },
-        {
-          title: "Simulador de Estratégia",
-          href: "/options/strategy/simulator",
+          title: "Dashboard",
+          href: "/dashboard",
           icon: { element: markRaw(Beaker) },
-          // badge: {
-          //   text: "NOVO",
-          //   class: "vsm--badge_default",
-          // },
         },
         {
-          title: "Screener de Estratégias",
-          href: "/options/strategy/screener",
+          title: "Avat",
+          href: "/avat",
           icon: { element: markRaw(LightBulb) },
-          // badge: {
-          //   text: "NOVO",
-          //   class: "vsm--badge_default",
-          // },
         },
         {
-          title: "Hunter Distortions",
-          href: "/options/distortions",
-          icon: { element: markRaw(ExclamationTriangle) },
-          // badge: {
-          //   text: "NOVO",
-          //   class: "vsm--badge_default",
-          // },
+          title: "Iceberg",
+          href: "/iceberg",
+          icon: { element: markRaw(LightBulb) },
         },
         {
-          header: "Open Interest",
-          hiddenOnCollapse: true,
-          // badge: {
-          //   text: "NOVO",
-          //   class: "vsm--badge_default",
-          // },
+          title: "Players",
+          href: "/players",
+          icon: { element: markRaw(LightBulb) },
         },
         {
-          component: markRaw(separator),
-          hiddenOnCollapse: true,
+          title: "Amplitude",
+          href: "/amplitude",
+          icon: { element: markRaw(LightBulb) },
+        },
+        {
+          title: "Distortions",
+          href: "/distortions",
+          icon: { element: markRaw(LightBulb) },
+        },
+        {
+          title: "Arbitragem",
+          href: "/arbitragem",
+          icon: { element: markRaw(LightBulb) },
         },
 
-        {
-          title: "Ativo",
-          href: "/open-interest/options/equities",
-          icon: { element: markRaw(PresentationChartBar) },
-        },
-
-        {
-          title: "Família",
-          href: "/open-interest/options/family",
-          icon: { element: markRaw(ListBullet) },
-        },
-        {
-          title: "Vencimento",
-          href: "/open-interest/options/mature",
-          icon: { element: markRaw(PresentationChartBar) },
-        },
-        {
-          title: "Gamma Exposure",
-          href: "/options/gamma-exposure",
-          icon: { element: markRaw(ListBullet) },
-        },
-        {
-          header: "Realtime",
-          hiddenOnCollapse: true,
-        },
-        {
-          component: markRaw(separator),
-          hiddenOnCollapse: true,
-        },
-
-        {
-          title: "Principais Destaques",
-          href: "/options/destaques",
-          icon: { element: markRaw(ArrowTrendingUp) },
-        },
-        {
-          title: "Screener de Opções",
-          href: "/options/screener",
-          icon: { element: markRaw(GlobeAlt) },
-        },
-        {
-          title: "Ativo",
-          href: "/options/equities",
-          icon: { element: markRaw(PresentationChartBar) },
-        },
-        {
-          title: "Família",
-          href: "/options/family",
-          icon: { element: markRaw(ListBullet) },
-        },
-        {
-          title: "PCR",
-          href: "/options/pcr",
-          icon: { element: markRaw(PresentationChartBar) },
-        },
         {
           header: "Outros",
           hiddenOnCollapse: true,
@@ -164,8 +97,8 @@ export default defineComponent({
           hiddenOnCollapse: true,
         },
         {
-          title: "Retornar ao Dashboard",
-          href: "/dashboard",
+          title: "Meu Perfil",
+          href: "/ss",
           icon: { element: markRaw(Home) },
         },
       ],

@@ -1,5 +1,5 @@
 import InformationCircle from "./information-circle.vue";
-import Beaker from "./Beaker.vue";
+import Beaker from "./beaker.vue";
 import ExclamationCircle from "./exclamation-circle.vue";
 import ExclamationTriangle from "./exclamation-triangle.vue";
 import GlobeAlt from "./globe-alt.vue";

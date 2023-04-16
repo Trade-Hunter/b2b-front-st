@@ -15,41 +15,12 @@
   transition: max-width 0.3s ease;
   width: 100%;
   z-index: 999;
-  margin-top: 50px;
-  background-color: #191a1b;
+  margin-top: 60px;
+  background-color: #191e24;
   box-shadow: 0 0 1em 0 rgba(22, 22, 22, 0.55);
 
   position: absolute;
   width: 100%;
-}
-
-.v-sidebar-menu:before {
-  background: linear-gradient(#f69d3c, #2885cb);
-  background-size: cover;
-  content: "";
-
-  height: 100%;
-  position: absolute;
-  top: 50%;
-
-  z-index: -1;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -51%);
-  width: 200%;
-  overflow: hidden;
-}
-.v-sidebar-menu:after {
-  background: rgba(0, 0, 0, 0.6);
-  content: "";
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  width: 100%;
-  overflow: hidden;
 }
 
 .v-sidebar-menu,
@@ -383,13 +354,16 @@
 
 .v-sidebar-menu .vsm--link {
   color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
 }
 .v-sidebar-menu .vsm--link_level-1.vsm--link_active {
-  -webkit-box-shadow: inset 3px 0 0 0 #01c38d;
-  box-shadow: inset 3px 0 0 0 #01c38d;
+  box-shadow: inset -4px 0px 0px 0px rgba(0, 209, 255, 0.06);
 }
+
 .v-sidebar-menu .vsm--link_level-1 .vsm--icon {
-  background-color: #1e1e21;
+  background-color: #21272e;
   color: #64ffda;
 }
 .v-sidebar-menu .vsm--link_hover {

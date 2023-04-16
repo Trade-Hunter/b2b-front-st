@@ -3,102 +3,45 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 
 const routes = [
-  { path: "/", component: Home },
-  { path: "/table", component: () => import("@/views/Table.vue") },
-
   {
-    path: "/multifiltros",
-    component: () => import("@/components/Multifiltros.vue"),
-  },
-  {
-    path: "/3",
-    component: () => import("@/components/ChartLine.vue"),
-  },
-  {
-    path: "/options/strategy/simulator",
-    component: () => import("@/components/Options/Strategy/Simulator/Simulator2.vue"),
-  },
-  {
-    path: "/2",
-    component: () => import("@/components/Multi2.vue"),
-  },
-  {
-    path: "/open-interest/options/equities",
-    component: () => import("@/components/OI/Equities/EquitiesIndex.vue"),
-  },
-  {
-    path: "/open-interest/options/equities/:id",
-    component: () => import("@/components/OI/Equities/EquitiesDetail.vue"),
-  },
-  {
-    path: "/open-interest/options/family",
-    component: () => import("@/components/OI/Family/FamilyIndex.vue"),
-  },
-  {
-    path: "/open-interest/options/family/:id",
-    component: () => import("@/components/OI/Family/FamilyDetail.vue"),
-  },
-  {
-    path: "/open-interest/options/mature",
-    component: () => import("@/components/OI/Mature/MatureIndex.vue"),
-  },
-  {
-    path: "/open-interest/options/mature/:id",
-    component: () => import("@/components/OI/Mature/MatureDetail.vue"),
+    path: "/",
+    component: () => import("@/views/Home.vue"),
   },
   // {
-  //   path: "/open-interest/options/volatility",
-  //   component: () => import("@/components/OI/Volatility/VolatilityIndex.vue"),
+  //   path: "/login",
+  //   component: () => import("@/components/Authentication/Login.vue"),
   // },
   // {
-  //   path: "/open-interest/options/volatility/:id",
-  //   component: () =>
-  //     import("@/components/OI/VolatilityIndex/VolatilityDetail.vue"),
+  //   path: "/register",
+  //   component: () => import("@/components/Authentication/Login.vue"),
   // },
   {
-    path: "/options/distortions",
-    component: () => import("@/components/Options/Distortions/Distortions.vue"),
+    path: "/dashboard",
+    component: () => import("@/components/Dashboard/Dashboard.vue"),
   },
   {
-    path: "/options/pcr",
-    component: () => import("@/components/Options/Pcr/PcrIndex.vue"),
+    path: "/avat",
+    component: () => import("@/components/Avat/Avat.vue"),
   },
   {
-    path: "/options/equities",
-    component: () => import("@/components/Options/Equities/Equities.vue"),
+    path: "/iceberg",
+    component: () => import("@/components/Iceberg/Iceberg.vue"),
   },
   {
-    path: "/options/equities/:id",
-    component: () => import("@/components/Options/Equities/EquitiesDetail.vue"),
+    path: "/players",
+    component: () => import("@/components/Players/Players.vue"),
   },
   {
-    path: "/options/family",
-    component: () => import("@/components/Options/Family/Family.vue"),
+    path: "/amplitude",
+    component: () => import("@/components/Amplitude/Amplitude.vue"),
   },
   {
-    path: "/options/family/:id",
-    component: () => import("@/components/Options/Family/FamilyDetail.vue"),
+    path: "/distortions",
+    component: () => import("@/components/Distortions/Distortions.vue"),
   },
   {
-    path: "/options/screener",
-    component: () => import("@/components/Options/Screener/Screener.vue"),
-  },
-  {
-    path: "/options/gamma-exposure",
-    component: () => import("@/components/Options/GammaExposure/Index.vue"),
-  },
-  // {
-  //   path: "/options/strategy/simulator",
-  //   component: () =>
-  //     import("@/components/Options/Strategy/Simulator/Simulator.vue"),
-  // },
-  {
-    path: "/options/strategy/screener/estrategias",
-    component: () => import("@/components/Options/Strategy/Screener/Screener.vue"),
-  },
-  {
-    path: "/options/strategy/screener",
-    component: () => import("@/components/Options/Strategy/Screener/ScreenerIndex.vue"),
+    path: "/arbitragem",
+    component: () => import("@/components/Arbitragem/Arbitragem.vue"),
   },
 ];
 

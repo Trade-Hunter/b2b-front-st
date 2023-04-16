@@ -1,0 +1,2 @@
+- Quais sao as colunas que vamos ter em no dashboard e detalhe para Avat, Iceberg, Players, Amplitudoe, Distortions, Arbitragem
+- Quais colunas terao alguma formatacao de cor

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full bg-white dark:bg-dark-1 overflow-auto">
+  <div class="h-full bg-[#21272e] overflow-auto">
     <router-view :key="$route.name"> </router-view>
     <notifications position="bottom right" :duration="5000" />
   </div>
@@ -32,6 +32,14 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text&display=swap");
+</style>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+</style>
 
 <style scoped></style>
 <style>

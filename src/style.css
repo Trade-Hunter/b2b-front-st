@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  font-family: system-ui;
-  font-size: medium;
-  line-height: normal;
-  font-weight: 300;
-
+  font-family: "Red Hat Text", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
 
