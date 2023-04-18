@@ -2,27 +2,20 @@
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   bottom: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+
   -ms-flex-direction: column;
   flex-direction: column;
   left: 0;
   position: fixed;
+  z-index: 0;
   text-align: left;
   top: 0;
   -webkit-transition: max-width 0.3s ease;
   transition: max-width 0.3s ease;
   width: 100%;
   z-index: 999;
-  margin-top: 60px;
-  background-color: #191e24;
-  box-shadow: 0 0 1em 0 rgba(22, 22, 22, 0.55);
-
-  position: absolute;
-  width: 100%;
+  margin-top: 56px;
 }
-
 .v-sidebar-menu,
 .v-sidebar-menu * {
   -webkit-box-sizing: border-box;
@@ -115,10 +108,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 30px;
-  padding: 5px 15px;
+  padding: 10px 15px;
   position: static !important;
   text-decoration: none;
   -webkit-transition: all 0.3s ease;
@@ -130,8 +123,6 @@
 }
 .v-sidebar-menu .vsm--link_active {
   font-weight: 600;
-  z-index: 1000;
-  position: absolute;
 }
 .v-sidebar-menu .vsm--link_disabled {
   opacity: 0.4;
@@ -226,7 +217,7 @@
   transform: rotate(90deg);
 }
 .v-sidebar-menu .vsm--header {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   padding: 10px 15px;
   text-transform: uppercase;
@@ -252,7 +243,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-size: 12px;
+  font-size: 18px;
   height: 65px;
   justify-content: center;
   text-align: center;
@@ -351,19 +342,18 @@
 .v-sidebar-menu .slide-animation-leave-to {
   width: 0 !important;
 }
-
+.v-sidebar-menu {
+  background-color: #0a192f;
+}
 .v-sidebar-menu .vsm--link {
   color: #fff;
-  text-transform: uppercase;
-  font-size: 12px;
-  letter-spacing: 3px;
 }
 .v-sidebar-menu .vsm--link_level-1.vsm--link_active {
-  box-shadow: inset -4px 0px 0px 0px rgba(0, 209, 255, 0.06);
+  -webkit-box-shadow: inset 3px 0 0 0 #01c38d;
+  box-shadow: inset 3px 0 0 0 #01c38d;
 }
-
 .v-sidebar-menu .vsm--link_level-1 .vsm--icon {
-  background-color: #21272e;
+  background-color: #1e1e21;
   color: #64ffda;
 }
 .v-sidebar-menu .vsm--link_hover {
@@ -394,7 +384,7 @@
   box-shadow: inset -3px 0 0 0 #01c38d;
 }
 .v-sidebar-menu .vsm--header {
-  color: #fff;
+  color: hsla(0, 0%, 100%, 0.7);
 }
 .v-sidebar-menu .vsm--badge_default,
 .v-sidebar-menu .vsm--toggle-btn {
@@ -403,18 +393,9 @@
 }
 .v-sidebar-menu.vsm_white-theme {
   background-color: #fff;
-  box-shadow: 0 0 1em 0 rgba(46, 45, 45, 0.25);
 }
-
-.v-sidebar-menu.vsm_white-theme:before {
-}
-.v-sidebar-menu.vsm_white-theme:after {
-  background-color: #fff;
-}
-
 .v-sidebar-menu.vsm_white-theme .vsm--link {
-  color: #000000;
-  font-weight: 400;
+  color: #262626;
 }
 .v-sidebar-menu.vsm_white-theme .vsm--link_level-1.vsm--link_active {
   -webkit-box-shadow: inset 3px 0 0 0 #01c38d;
@@ -456,8 +437,7 @@
   box-shadow: inset -3px 0 0 0 #01c38d;
 }
 .v-sidebar-menu.vsm_white-theme .vsm--header {
-  color: rgb(6, 6, 6);
-  font-weight: 400;
+  color: rgba(38, 38, 38, 0.7);
 }
 .v-sidebar-menu.vsm_white-theme .vsm--badge_default,
 .v-sidebar-menu.vsm_white-theme .vsm--toggle-btn {

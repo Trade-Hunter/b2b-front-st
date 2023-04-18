@@ -13,7 +13,7 @@ import "@fontsource/roboto";
 
 import "./style.css";
 import "./assets/sidebar-menu.css";
-import "./styles/main.scss";
+//import "./styles/main.scss";
 import "./dark-mode.css";
 
 const app = createApp(App);

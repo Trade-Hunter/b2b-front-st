@@ -1,27 +1,20 @@
 <template>
   <sidebar-menu
     :collapsed="collapsed"
-    v-bind:style="{
-      display: isOnMobile ? (hideMenu ? 'none' : 'flex') : 'flex',
-      'margin-top': isOnMobile ? (hideMenu ? 'none' : '0px') : '0px',
-    }"
+    v-bind:style="{ display: isOnMobile ? (hideMenu ? 'none' : 'flex') : 'flex' }"
     :menu="menu"
     :theme="selectedTheme"
     :show-one-child="true"
     @update:collapsed="onToggleCollapse"
     @item-click="onItemClick"
   />
-
   <Navbar />
-  <div v-if="isOnMobile && !collapsed" class="sidebar-overlay dark:bg-dark-2" @click="setCollapsed(true)" />
-
+  <div v-if="isOnMobile && !collapsed" class="sidebar-overlay" @click="setCollapsed(true)" />
   <div
-    v-bind:style="{
-      'padding-left': collapsed ? (hideMenu ? '0px' : '65px') : '290px',
-    }"
+    v-bind:style="{ 'padding-left': collapsed ? (hideMenu ? '0px' : '65px') : '290px' }"
     id="demo"
-    style="height: calc(100% - 50px)"
-    class="bg-hxc-1 bg-[#21272e]"
+    style="height: calc(100% - 56px)"
+    class="bg-hxc-1 dark:bg-th-dark-secondary"
     :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]"
   >
     <slot></slot>
@@ -29,77 +22,42 @@
 </template>
 
 <script>
-import bugIcon from "@/assets/icons/Bubble.vue";
-import chatBubbleVue from "../../assets/icons/chat-bubble.vue";
-import { defineComponent, ref, markRaw } from "vue";
-import { useStore } from "vuex";
-import {
-  InformationCircle,
-  Beaker,
-  ExclamationCircle,
-  ExclamationTriangle,
-  GlobeAlt,
-  LightBulb,
-  PresentationChartBar,
-  Home,
-  ListBullet,
-  ArrowTrendingUp,
-} from "@/assets/icons/heroicons";
-import Navbar from "@/components/Navbar.vue";
+import { markRaw } from "vue";
 
-import separator from "@/components/separator.vue";
+import Navbar from "@/components/Navbar.vue";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Popover,
+  PopoverButton,
+  PopoverGroup,
+  PopoverPanel,
+} from "@headlessui/vue";
+
+const separator = {
+  template: '<hr style="border-color: rgba(0, 0, 0, 0.1); margin: 20px;">',
+};
+
+import { defineComponent, ref, toRef } from "vue";
+import { useStore } from "vuex";
+
 export default defineComponent({
   data() {
     return {
       menu: [
         {
-          title: "Dashboard",
-          href: "/dashboard",
-          icon: { element: markRaw(Beaker) },
-        },
-        {
-          title: "Avat",
-          href: "/avat",
-          icon: { element: markRaw(LightBulb) },
-        },
-        {
-          title: "Iceberg",
-          href: "/iceberg",
-          icon: { element: markRaw(LightBulb) },
-        },
-        {
-          title: "Players",
-          href: "/players",
-          icon: { element: markRaw(LightBulb) },
-        },
-        {
-          title: "Amplitude",
-          href: "/amplitude",
-          icon: { element: markRaw(LightBulb) },
-        },
-        {
-          title: "Distortions",
-          href: "/distortions",
-          icon: { element: markRaw(LightBulb) },
-        },
-        {
-          title: "Arbitragem",
-          href: "/arbitragem",
-          icon: { element: markRaw(LightBulb) },
-        },
-
-        {
-          header: "Outros",
+          header: "Início",
           hiddenOnCollapse: true,
         },
         {
-          component: markRaw(separator),
-          hiddenOnCollapse: true,
-        },
-        {
-          title: "Meu Perfil",
-          href: "/ss",
-          icon: { element: markRaw(Home) },
+          href: "/home",
+          title: "Home",
+          icon: "fa fa-home",
         },
       ],
 
@@ -122,7 +80,6 @@ export default defineComponent({
     const isOnMobile = ref(store.state.theme.isOnMobile);
 
     console.log("collapsed", collapsed.value, "isOnMobile", isOnMobile.value);
-
     return { collapsed, isOnMobile };
   },
   beforeMount() {
@@ -138,15 +95,15 @@ export default defineComponent({
     console.log(this.loggedIn);
   },
 
-  components: {
-    Navbar,
-  },
+  components: { Navbar },
   computed: {
     theme() {
       const theme = this.$store.getters["theme/getTheme"];
       return theme;
     },
-
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
     selectedTheme() {
       return this.theme === "light" ? "white-theme" : "";
     },
@@ -194,7 +151,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 /* Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -203,5 +160,23 @@ export default defineComponent({
 .no-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+</style>
+<style scoped>
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.content {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
 }
 </style>

@@ -1,6 +1,11 @@
 <template>
   <HxcMenu>
-    <FilterModal ref="filterModal" :all-columns="selectedComponent.filter" @filter-by-column-values="applyFilters" />
+    <FilterModal
+      class=""
+      ref="filterModal"
+      :all-columns="selectedComponent.filter"
+      @filter-by-column-values="applyFilters"
+    />
     <div class="grid grid-cols-3 h-full p-4 gap-8">
       <div v-for="component in components" :key="component.name" class="qdrinho overflow-hidden">
         <div class="p-3 flex">
@@ -181,7 +186,7 @@ export default {
     };
 
     createStruct();
-    const connection = createWebSocket();
+    const connection = null;
 
     onUnmounted(() => {
       if (connection) {
