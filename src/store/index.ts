@@ -1,6 +1,6 @@
 import { createStore, Store } from "vuex";
 
-import { auth, theme, user } from "./modules";
+import { auth, theme, user, speed } from "./modules";
 
 import createPersistedState from "vuex-persistedstate";
 import { InjectionKey } from "vue";
@@ -40,6 +40,7 @@ export const store = createStore<State>({
     createPersistedState({ key: "vuex", paths: ["theme"] }),
     createPersistedState({ key: "auth", paths: ["auth"] }),
     createPersistedState({ key: "user", paths: ["user"] }),
+    createPersistedState({ key: "speed", paths: ["speed"] }),
   ],
 
   mutations: {},
@@ -48,6 +49,7 @@ export const store = createStore<State>({
     theme,
     auth,
     user,
+    speed,
   },
 });
 
