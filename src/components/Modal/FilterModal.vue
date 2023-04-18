@@ -1,12 +1,12 @@
 <template>
   <Modal
     ref="modal"
-    title="Filter Data"
-    description="Filter the table data here."
+    title="Filtrar Dados"
+    description="Filtre os dados exibidos aqui."
     @submit="onSubmit"
     @close="onClose"
-    cancelLabel="Exit"
-    submitLabel="Apply Filters"
+    :cancelLabel="'Fechar'"
+    :confirmLabel="'Aplicar Filtros'"
   >
     <div class="grid gap-3 grid-cols-1 lg:grid-cols-2 w-full">
       <div v-for="column in allColumns" :key="column.value" class="flex flex-col gap-y-2">
@@ -213,7 +213,8 @@ export default {
         }
       }
       this.$emit("filter-by-column-values", filters);
-      this.$refs.modal.close();
+      console.log("thios2", this.$refs, "sd", this.$refs.modal);
+      //this.$refs.modal.submit();
     },
     onClose() {
       this.columnFilters = {};

@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div v-if="isVisible" class="fixed inset-0 flex items-end justify-center">
+    <div v-if="isVisible" class="fixed inset-0 flex items-end justify-center" style="z-index: 9999">
       <div class="fixed inset-0 bg-black opacity-50 z-40" @click="handleClose"></div>
       <div
         ref="modalRef"
@@ -8,8 +8,8 @@
         :class="[wrapperClasses]"
       >
         <div class="sticky top-0 z-50 p-6 pb-0" :class="[headerClasses]">
-          <div class="text-lg font-medium text-gray-900">{{ title }}</div>
-          <div class="text-gray-700">{{ description }}</div>
+          <div class="text-lg font-medium text-gray-900 dark:text-white">{{ title }}</div>
+          <div class="text-gray-700 dark:text-gray-200">{{ description }}</div>
         </div>
         <div class="p-6 pt-0 mt-2 overflow-y-auto" :class="{ scrollable: scrollable }">
           <slot />

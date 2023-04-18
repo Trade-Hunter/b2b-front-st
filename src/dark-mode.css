@@ -26,9 +26,25 @@
 }
 
 .dark .bg-white {
-  background-color: #1f2937;
+  background-color: #191e24;
+}
+.dark .text-gray-900 {
+  color: rgba(243, 246, 249, 0.812);
+}
+
+.dark .ring-gray-300 {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgba(22, 108, 194, 0.812);
 }
 
 .dark .bg-black {
   background-color: #d1d5db;
+}
+
+.dark .bg-gray-50 {
+  background-color: #1f252d;
+}
+
+.dark .text-white {
+  color: #191e24;
 }

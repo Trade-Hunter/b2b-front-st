@@ -47,6 +47,10 @@ const routes = [
     path: "/arbitragem",
     component: () => import("@/components/Arbitragem/Arbitragem.vue"),
   },
+  {
+    path: "/user/profile",
+    component: () => import("@/components/User/Profile.vue"),
+  },
 ];
 
 // 3. Create the router instance and pass the `routes` option
