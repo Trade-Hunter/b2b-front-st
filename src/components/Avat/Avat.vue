@@ -125,42 +125,41 @@ export default {
           name: "Ativo",
           value: "cod",
         },
-        { name: "Fechamento", value: "close", format: "float" },
-        { name: "Média / Volume", value: "mediaVolume", format: "int" },
-
-        { name: "Dist Ima", value: "distanciaCallDesc", format: "percent", color: true },
-        //{ name: 'DI Total Call', value: 'distanciaCallTotal', format: 'percent', color: true },
-        { name: "Dist Barreira", value: "distanciaPutDesc", format: "percent", color: true },
-        //{ name: 'DI Total Call', value: 'distanciaPutTotal', format: 'percent', color: true },
-        { name: "Points Ima", value: "maxYDesc", format: "int" },
-        //{ name: 'PI Total', value: 'maxYTotal', format: 'int' },
-        { name: "Points Barreira", value: "minYDesc", format: "int" },
-        //{ name: 'PB Total', value: 'minYTotal', format: 'int' },
-        { name: "Strike Ima", value: "pexMaxYDesc", format: "float" },
-        //{ name: 'PxEx I Total', value: 'pexMaxYTotal', format: 'float' },
-        { name: "Strike Barreira", value: "pexMinYDesc", format: "float" },
-        //{ name: 'PxEx B Total', value: 'pexMinYTotal', format: 'float' },
         {
-          name: "Força Ima",
-          value: "pointsMaxDesc_mediaVolume",
-          format: "percent",
-          custom_format: function (obj, value, colIndex, rowIndex) {
-            if (value >= 0.1) return `<p class="font-semibold text-green-500">${(value * 100)?.toFixed(2)}%</p>`;
-            return (value * 100)?.toFixed(2) + "%";
-          },
+          name: "Hora",
+          value: "",
+          format: "",
         },
         {
-          name: "Força Barreira",
-          value: "pointsMinDesc_mediaVolume",
-          format: "percent",
-          custom_format: function (obj, value, colIndex, rowIndex) {
-            if (value >= 0.1) return `<p class="font-semibold text-green-500">${(value * 100)?.toFixed(2)}%</p>`;
-            return (value * 100)?.toFixed(2) + "%";
-          },
+          name: "Últ.",
+          value: "",
+          format: "",
         },
-        { name: "Score", value: "score", format: "float" },
-        { name: "Var Ima", value: "varMaxY", format: "int", color: true },
-        { name: "Var Barreira", value: "varMinY", format: "int", color: true },
+        {
+          name: "Var. %",
+          value: "",
+          format: "",
+        },
+        {
+          name: "Intervalo",
+          value: "",
+          format: "",
+        },
+        {
+          name: "Projetado",
+          value: "",
+          format: "",
+        },
+        {
+          name: "AVAT",
+          value: "",
+          format: "",
+        },
+        {
+          name: "Ult / MM60",
+          value: "",
+          format: "",
+        },
       ],
       connection: null,
     };

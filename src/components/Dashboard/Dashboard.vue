@@ -67,6 +67,7 @@ import HxcMenu from "@/components/Menu/Menu.vue";
 import LoadingSpinner from "@/components/LoadingSpinner.vue"; // Import the LoadingSpinner component
 import FilterModal from "@/components/Modal/FilterModal.vue"; // import the FilterModal component
 import { reactive, computed, ref, onUnmounted } from "vue";
+import { useStore } from "vuex";
 export default {
   components: {
     HxcMenu,
@@ -77,6 +78,7 @@ export default {
     return { selectedComponent: { filter: undefined } };
   },
   setup() {
+    const store = useStore();
     const cellChanged = ref({});
     const data = ref({});
     const loading = ref(true);
@@ -85,17 +87,47 @@ export default {
       {
         name: "Avat",
         value: "avat",
-        columns: [{ label: "Ativo" }],
+        columns: [
+          { label: "Ativo", value: "", index: 0 },
+          { label: "Hora", value: "", index: 0 },
+          { label: "Últ.", value: "", index: 0 },
+          { label: "Var. %", value: "", index: 0 },
+          { label: "AVAT", value: "", index: 0 },
+        ],
+        filter: [
+          { label: "Liquidez Mínima", value: "liqmin" },
+          { label: "Intervalo Mínimo", value: "minInterval" },
+          { label: "AVAT Min", value: "avatMin" },
+        ],
       },
       {
         name: "Iceberg",
         value: "iceberg",
-        columns: [{ label: "Ativo" }],
+        columns: [
+          { label: "Ativo", value: "", index: 0 },
+          { label: "Hora", value: "", index: 0 },
+          { label: "Últ.", value: "", index: 0 },
+          { label: "Var. %", value: "", index: 0 },
+          { label: "Ativo", value: "", index: 0 },
+          { label: "Ativo", value: "", index: 0 },
+        ],
+        filter: [{ label: "a", value: "a" }],
       },
       {
         name: "Players",
         value: "players",
-        columns: [{ label: "Ativo" }],
+        columns: [
+          { label: "Ativo", value: "", index: 0 },
+          { label: "Hora", value: "", index: 0 },
+          { label: "Últ.", value: "", index: 0 },
+          { label: "Var. %", value: "", index: 0 },
+          { label: "Score", value: "", index: 0 },
+          //{ label: "Ativo", value: "", index: 0 },
+        ],
+        filter: [
+          { label: "Player", value: "player" },
+          { label: "Liquidez Minima", value: "liqMin" },
+        ],
       },
       {
         name: "Amplitude",
@@ -103,21 +135,50 @@ export default {
         columns: [
           { label: "Ativo", value: "ativo", index: 0 },
           { label: "Hora", index: 1 },
-          { label: "Últ", index: 2, format: { type: "float" } },
+          { label: "Últ.", index: 2, format: { type: "float" } },
           { label: "Var. %", index: 3, format: { type: "float", color: true } },
           { label: "Amp.", index: 4, format: { type: "float", color: true } },
         ],
-        filter: [{ label: "Liquidez", value: "liq", colIndex: 3 }],
+        filter: [
+          { label: "Liquidez", value: "liq", colIndex: 3 },
+          { label: "Amplitude", value: "amp" },
+        ],
       },
-      { name: "Distortions", value: "distortions", columns: [{ label: "Ativo" }] },
-      { name: "Arbitragem", value: "arbitragem", columns: [{ label: "Ativo" }] },
+      {
+        name: "Distortions",
+        value: "distortions",
+        columns: [
+          { label: "Ativo", value: "", index: 0 },
+          { label: "Hora", value: "", index: 0 },
+          { label: "Últ.", value: "", index: 0 },
+          { label: "Var. %", value: "", index: 0 },
+          { label: "Quantidade", value: "", index: 0 },
+          { label: "Financeiro", value: "", index: 0 },
+        ],
+        filter: [
+          { label: "Player", value: "players" },
+          { label: "Financeiro Mínimo", value: "financeiroMin" },
+        ],
+      },
+      {
+        name: "Arbitragem",
+        value: "arbitragem",
+        columns: [
+          { label: "Ativo", value: "", index: 0 },
+          { label: "Hora", value: "", index: 0 },
+          { label: "Últ.", value: "", index: 0 },
+          { label: "Var. %", value: "", index: 0 },
+          { label: "Proj.", value: "", index: 0 },
+          //{ label: "Ativo", value: "", index: 0 },
+        ],
+        filter: [
+          { label: "Liquidez Mínima", value: "liqMin" },
+          { label: "Setor", value: "sec" },
+        ],
+      },
     ];
 
-    const webSocketUrl = ref(
-      `${
-        import.meta.env.VITE_WEBSOCKET_HOST
-      }/?token=eyJfaWQiOiI2MjY4YzcwZDU0OTAzN2Y2MzIxMTAwN2EiLCJpYXQiOjE2ODIwOTMyMDI4NTd9.eyJhbGciOiJFUzUxMiIsImtpZCI6ImdHS2J2UHphSEFGcDBGMmtCT2pJeUw3TkFPSklvM2t6Tl9ucWlXUW91WTgifQ.ASBJ02SHYWxFhM0nze2x47YH5E6nJezVhZp69_PB3YwVoRIsQn8aq7nrZwO3oTG9fcI3per5rD7pe1nDbZucjvFsAFqkLwn8w-VN2_JSPe0Wzwx8Raxz3nrN-MTX3UMgWcqbMdgBz6qSX-NLaE1epo7M5aizJ0u6AY9_aKrENk-88_Sb`
-    );
+    const webSocketUrl = ref(`${import.meta.env.VITE_WEBSOCKET_HOST}/?token=${store.state.auth.token}`);
 
     const createStruct = () => {
       for (var cp of components) {
@@ -186,7 +247,7 @@ export default {
     };
 
     createStruct();
-    const connection = null;
+    const connection = createWebSocket();
 
     onUnmounted(() => {
       if (connection) {
@@ -230,7 +291,8 @@ export default {
     openFilterModal(component) {
       // Call the open method on the FilterModal component and pass the component as a parameter
       console.log(this.$refs);
-      this.selectedComponent = { filter: [{ value: "bomdia", label: "oi" }] };
+      //this.selectedComponent = { filter: [{ value: "bomdia", label: "oi" }] };
+      this.selectedComponent = { filter: component.filter };
 
       console.log("oo", this.selectedComponent);
       this.$refs.filterModal.openModal();
