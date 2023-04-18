@@ -187,63 +187,67 @@ export default {
     };
 
     const createWebSocket = () => {
-      const connection = new WebSocket(webSocketUrl.value);
-      connection.onopen = (event) => {
-        connection.send(`C=S;I=iceberg;O=3212\r\nC=S;I=amplitude;O=3212\r\nC=S;I=players;O=2134`);
-        // this.$notify({
-        //   type: "success",
-        //   title: `Conexão com o servidor realizada com sucesso`,
-        // });
-        loading.value = false;
-      };
-      connection.onerror = (event) => {
-        console.log("Connection error", event);
-      };
-      connection.onclose = (event) => {
-        console.log("desconectou");
-        //this.loading = true;
-        //this.connection = null;
-        if (event.code == 3000) {
-          //this.$store.dispatch("auth/refresh");
-        } else {
-          const randomDelay = Math.floor(Math.random() * 5000) + 1000; // Random delay between 1 and 6 seconds
-          setTimeout(() => {
-            console.log("Reconnecting...");
-            createWebSocket();
-          }, randomDelay);
-        }
-        loading.value = true;
-      };
-      connection.onmessage = (event) => {
-        const dataEv = JSON.parse(event.data);
-
-        //console.log(data.value);
-        if (dataEv.type == "E") console.log("erro websocket message");
-
-        // Update the cellChanged object
-        for (let rowIndex in dataEv.data) {
-          // Initialize the data structure if it doesn't exist
-          if (data.value[dataEv.ch][rowIndex] === undefined) {
-            data.value[dataEv.ch][rowIndex] = [];
+      try {
+        const connection = new WebSocket(webSocketUrl.value);
+        connection.onopen = (event) => {
+          connection.send(`C=S;I=iceberg;O=3212\r\nC=S;I=amplitude;O=3212\r\nC=S;I=players;O=2134`);
+          // this.$notify({
+          //   type: "success",
+          //   title: `Conexão com o servidor realizada com sucesso`,
+          // });
+          loading.value = false;
+        };
+        connection.onerror = (event) => {
+          console.log("Connection error", event);
+        };
+        connection.onclose = (event) => {
+          console.log("desconectou");
+          //this.loading = true;
+          //this.connection = null;
+          if (event.code == 3000) {
+            //this.$store.dispatch("auth/refresh");
+          } else {
+            const randomDelay = Math.floor(Math.random() * 5000) + 1000; // Random delay between 1 and 6 seconds
+            setTimeout(() => {
+              console.log("Reconnecting...");
+              createWebSocket();
+            }, randomDelay);
           }
+          loading.value = true;
+        };
+        connection.onmessage = (event) => {
+          const dataEv = JSON.parse(event.data);
 
-          for (let cellIndex in dataEv.data[rowIndex]) {
-            const cellKey = `${dataEv.ch}-${rowIndex}-${cellIndex}`;
-            if (cellChanged.value[cellKey] === undefined) {
-              cellChanged.value[cellKey] = false;
-            } else if (data.value[dataEv.ch][rowIndex][cellIndex] !== dataEv.data[rowIndex][cellIndex]) {
-              cellChanged.value[cellKey] = true;
-              setTimeout(() => {
-                cellChanged.value[cellKey] = false;
-              }, 1000);
+          //console.log(data.value);
+          if (dataEv.type == "E") console.log("erro websocket message");
+
+          // Update the cellChanged object
+          for (let rowIndex in dataEv.data) {
+            // Initialize the data structure if it doesn't exist
+            if (data.value[dataEv.ch][rowIndex] === undefined) {
+              data.value[dataEv.ch][rowIndex] = [];
             }
 
-            // Update the data
-            data.value[dataEv.ch][rowIndex][cellIndex] = dataEv.data[rowIndex][cellIndex];
+            for (let cellIndex in dataEv.data[rowIndex]) {
+              const cellKey = `${dataEv.ch}-${rowIndex}-${cellIndex}`;
+              if (cellChanged.value[cellKey] === undefined) {
+                cellChanged.value[cellKey] = false;
+              } else if (data.value[dataEv.ch][rowIndex][cellIndex] !== dataEv.data[rowIndex][cellIndex]) {
+                cellChanged.value[cellKey] = true;
+                setTimeout(() => {
+                  cellChanged.value[cellKey] = false;
+                }, 1000);
+              }
+
+              // Update the data
+              data.value[dataEv.ch][rowIndex][cellIndex] = dataEv.data[rowIndex][cellIndex];
+            }
           }
-        }
-      };
-      return connection;
+        };
+        return connection;
+      } catch (error) {
+        console.log("error", error);
+      }
     };
 
     createStruct();
