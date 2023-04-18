@@ -1,7 +1,3 @@
-import "./style.css";
-import "./assets/sidebar-menu.css";
-import "./styles/main.scss";
-
 import App from "./App.vue";
 import { createApp } from "vue";
 import router from "./router";
@@ -14,6 +10,12 @@ import directives from "./directives";
 import notify from "@kyvg/vue3-notification";
 import api from "./services/api";
 import "@fontsource/roboto";
+
+import "./style.css";
+import "./assets/sidebar-menu.css";
+import "./styles/main.scss";
+import "./dark-mode.css";
+
 const app = createApp(App);
 
 app.component(CustomScrollbar.name, CustomScrollbar);

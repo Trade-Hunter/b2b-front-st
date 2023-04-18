@@ -1,11 +1,12 @@
 <template>
-  <div class="h-full bg-[#21272e] overflow-auto">
+  <div :class="{ dark: isDarkMode }" class="h-full">
     <router-view :key="$route.name"> </router-view>
     <notifications position="bottom right" :duration="5000" />
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({
@@ -19,16 +20,7 @@ export default defineComponent({
     return { scroll, handleClickScrollToTop };
   },
   computed: {
-    theme() {
-      return this.$store.getters["theme/getTheme"];
-    },
-  },
-  watch: {
-    theme(newTheme, oldTheme) {
-      const html = document.querySelector("html");
-      if (!html) return;
-      newTheme === "light" ? html.classList.remove("dark") : html.classList.add("dark");
-    },
+    ...mapGetters("theme", ["isDarkMode"]),
   },
 });
 </script>

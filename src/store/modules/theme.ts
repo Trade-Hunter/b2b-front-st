@@ -1,6 +1,7 @@
-const theme = {
+export default {
   namespaced: true,
   state: {
+    isDarkMode: false,
     theme: "",
     collapsed: false,
     isOnMobile: false,
@@ -55,6 +56,16 @@ const theme = {
     toggleWarning: (state: any) => {
       state.accessWarning = !state.accessWarning;
     },
+    toggleDarkMode(state: any, isDarkMode: any) {
+      state.isDarkMode = isDarkMode;
+      if (state.isDarkMode) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("darkMode", "true");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("darkMode", "false");
+      }
+    },
   },
   actions: {
     toggleSidebar({ commit }: any, theme: any) {
@@ -106,22 +117,13 @@ const theme = {
     },
   },
   getters: {
+    isDarkMode(state: any) {
+      return state.isDarkMode;
+    },
     getTheme: (state: any) => {
       return state.theme;
     },
     getPaddingLeft: (state: any) => state.paddingLeft,
     getSideDisplay: (state: any) => state.side_display,
   },
-
-  /**
-     * getPaddingLeft: (state: any) => {
-        
-        if (state.device == 'computer') return '290px';
-        if (state.device == 'tablet') return '60px';
-        if (state.device == 'mobile') return '0px';
-        state.paddingLeft;
-      },
-     */
 };
-
-export { theme };

@@ -1,0 +1,241 @@
+<template>
+  <Modal
+    ref="modal"
+    title="Filter Data"
+    description="Filter the table data here."
+    @submit="onSubmit"
+    @close="onClose"
+    cancelLabel="Exit"
+    submitLabel="Apply Filters"
+  >
+    <div class="grid gap-3 grid-cols-1 lg:grid-cols-2 w-full">
+      <div v-for="column in allColumns" :key="column.value" class="flex flex-col gap-y-2">
+        <label :for="column">{{ column.label }}</label>
+        <div class="flex gap-x-2">
+          <select
+            :id="column"
+            v-model="columnFilters[column.value].value"
+            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+          >
+            <option value="" disabled selected>Selecione</option>
+            <option v-for="(option, index) in filterOptions" :key="index" :value="option.value">
+              {{ option.label }}
+            </option>
+          </select>
+          <input
+            v-if="
+              columnFilters[column.value].value &&
+              ['equals', 'notEquals', 'contains', 'notContains', 'startsWith', 'endsWith'].includes(
+                columnFilters[column.value].value
+              )
+            "
+            type="text"
+            v-model="columnFilters[column.value].text"
+            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+          />
+          <input
+            v-if="columnFilters[column.value].value === 'regex'"
+            type="text"
+            v-model="columnFilters[column.value].regex"
+            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+          />
+          <input
+            v-if="
+              columnFilters[column.value].value &&
+              ['greaterThan', 'lessThan'].includes(columnFilters[column.value].value)
+            "
+            type="number"
+            v-model="columnFilters[column.value].number"
+            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+          />
+          <input
+            v-if="columnFilters[column.value].value === 'range'"
+            type="range"
+            v-model="columnFilters[column.value].range"
+            :min="columnFilters[column.value].rangeMin"
+            :max="columnFilters[column.value].rangeMax"
+            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+          />
+
+          <DatePicker
+            v-if="['beforeThan', 'afterThan', 'dateRange', 'dateSelect'].includes(columnFilters[column.value].value)"
+            :id="column"
+            :modelValue="columnFilters[column.value][columncolumn.valueFilters[column.value].value]"
+            @update:modelValue="(date) => (columnFilters[column.value][columnFilters[column.value].value] = date)"
+            :range="columnFilters[column.value].value === 'dateRange'"
+            :datepicker-options="
+              filterOptions.find((option) => option.value === columnFilters[column.value].value)?.config.options ||
+              datePickerOptions
+            "
+          />
+        </div>
+      </div>
+    </div>
+  </Modal>
+</template>
+<script>
+import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+import { ChevronUpDownIcon } from "@heroicons/vue/24/solid";
+import Modal from "@/components/Modal/Modal.vue";
+import DatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
+
+export default {
+  components: {
+    Menu,
+    MenuButton,
+    MenuItems,
+    MenuItem,
+    ChevronUpDownIcon,
+    Modal,
+    DatePicker,
+  },
+  props: {
+    allColumns: Array,
+  },
+
+  data() {
+    return {
+      columnFilters: {},
+
+      typeFilters: {
+        string: ["equals", "notEquals", "contains", "notContains", "startsWith", "endsWith", "regex"],
+        date: ["dateSelect", "afterThan", "beforeThan", "dateRange"],
+        number: ["equals", "notEquals", "greaterThan", "lessThan", "range"],
+      },
+      filterOptions: [
+        { value: "equals", label: "Igual a" },
+        { value: "notEquals", label: "Diferente de" },
+        { value: "contains", label: "Contém" },
+        { value: "notContains", label: "Não contém" },
+        { value: "startsWith", label: "Começa com" },
+        { value: "endsWith", label: "Termina com" },
+        { value: "regex", label: "Expressão regular" },
+        { value: "greaterThan", label: "Maior que" },
+        { value: "lessThan", label: "Menor que" },
+        { value: "range", label: "Faixa de valores" },
+        {
+          value: "dateSelect",
+          label: "Data igual",
+          config: {
+            type: "datepicker",
+            options: {
+              mode: "single",
+              format: "dd/MM/yyyy",
+              placeholder: "Selecione uma data",
+              inputFormat: "dd/MM/yyyy",
+              locale: "pt-BR",
+            },
+          },
+        },
+        {
+          value: "afterThan",
+          label: "Depois de",
+          config: {
+            type: "datepicker",
+            options: {
+              mode: "single",
+              format: "dd/MM/yyyy",
+              placeholder: "Selecione uma data",
+              inputFormat: "dd/MM/yyyy",
+              locale: "pt-BR",
+            },
+          },
+        },
+        {
+          value: "beforeThan",
+          label: "Antes de",
+          config: {
+            type: "datepicker",
+            options: {
+              mode: "single",
+              format: "dd/MM/yyyy",
+              placeholder: "Selecione uma data",
+              inputFormat: "dd/MM/yyyy",
+              locale: "pt-BR",
+            },
+          },
+        },
+        {
+          value: "dateRange",
+          label: "Intervalo de datas",
+          config: {
+            type: "datepicker-range",
+            options: {
+              mode: "range",
+              format: "dd/MM/yyyy",
+              placeholder: ["Data inicial", "Data final"],
+              inputFormat: "dd/MM/yyyy",
+              locale: "pt-BR",
+            },
+          },
+        },
+      ],
+      datePickerValue: [],
+    };
+  },
+  mounted() {
+    console.log("sdosdosd", this.allColumns);
+    this.setFilterColumns();
+  },
+  methods: {
+    setFilterColumns() {
+      this.columnFilters = this.allColumns?.reduce((filters, column) => {
+        console.log("column", column);
+        filters[column.value] = {
+          value: "",
+          text: "",
+          number: null,
+          regex: "",
+          date: null,
+        };
+        if (column.type === "number" && column.filter?.filterOptions?.range) {
+          filters[column.value].range = "";
+          filters[column.value].rangeMin = column.filter.filterOptions.range.min;
+          filters[column.value].rangeMax = column.filter.filterOptions.range.max;
+        }
+        return filters;
+      }, {});
+    },
+    toggleColumn(column) {
+      this.$emit("column-toggled", column);
+    },
+    openModal() {
+      console.log("thios", this.$refs.modal);
+      this.$refs.modal.open();
+    },
+    onSubmit() {
+      const filters = {};
+      for (const column of this.allColumns) {
+        const filter = this.columnFilters[column.value];
+        if (filter?.value) {
+          filters[column.value] = filter;
+        }
+      }
+      this.$emit("filter-by-column-values", filters);
+      this.$refs.modal.close();
+    },
+    onClose() {
+      this.columnFilters = {};
+    },
+
+    updateFilterOption(column, option) {
+      if (option === "range") {
+        this.$set(this.columnFilters, column, { value: option, range: "", rangeMin: 0, rangeMax: 100 });
+      } else if (option === "dateRange") {
+        this.$set(this.columnFilters, column, { value: option, dateRange: [] });
+      } else {
+        this.$set(this.columnFilters, column, { value: option, text: "" });
+      }
+    },
+    formatDate(date) {
+      return new Date(date).toLocaleDateString();
+    },
+  },
+  watch: {
+    allColumns(newV, oldV) {
+      this.setFilterColumns();
+    },
+  },
+};
+</script>
