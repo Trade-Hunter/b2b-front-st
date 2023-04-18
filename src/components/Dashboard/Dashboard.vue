@@ -25,20 +25,17 @@
           <table class="mx-auto overflow-x-visible h-full max-w-full w-full">
             <thead class="bg-[#74747429] sticky top-0">
               <tr class="text-center">
-                <th class="px-4 py-1">ATIVO</th>
-                <th class="px-4 py-1">ULT</th>
-                <th class="px-4 py-1">VAR</th>
-                <th class="px-4 py-1">PROJ/MÉDIA</th>
-                <th class="px-4 py-1">VOL PROJETADO</th>
+                <th v-for="cl of component.columns" :key="cl.value" class="px-4 py-1">{{ cl.label }}</th>
               </tr>
             </thead>
             <tbody class="">
-              <tr class="text-center" v-for="i in 11" :key="i">
-                <td class="px-4 py-1">VALE3</td>
-                <td class="px-4 py-1">80.51</td>
-                <td class="px-4 py-1">1.44%</td>
-                <td class="px-4 py-1">0.83</td>
-                <td class="px-4 py-1">1.389.621.540</td>
+              <tr class="text-center" v-for="(row, rowIdx) in data[component.value]" :key="`row-${rowIdx}`">
+                <td
+                  v-for="cl of component.columns"
+                  :key="cl.value"
+                  v-html="format(cl.format, row[cl.index])"
+                  class="px-4 py-1"
+                ></td>
               </tr>
             </tbody>
           </table>
@@ -59,6 +56,7 @@ export default {
       components: [
         {
           name: "Avat",
+          value: "avat",
           columns: [
             { label: "Ativo" },
             { label: "Ult" },
@@ -67,17 +65,145 @@ export default {
             { label: "VOL PROJETADO" },
           ],
         },
-        { name: "Iceberg" },
-        { name: "Players" },
-        { name: "Amplitude" },
-        { name: "Distortions" },
-        { name: "Arbitragem" },
+        { name: "Iceberg", value: "iceberg" },
+        { name: "Players", value: "players" },
+        {
+          name: "Amplitude",
+          value: "amplitude",
+          columns: [
+            { label: "Ativo", index: 0 },
+            { label: "Hora", index: 1 },
+            { label: "Últ", index: 2 },
+            { label: "Var. %", index: 3, format: { type: "float", color: true } },
+            { label: "Amp.", index: 4, format: { type: "float", color: true } },
+          ],
+        },
+        { name: "Distortions", value: "distortions" },
+        { name: "Arbitragem", value: "arbitragem" },
       ],
+
+      data: {},
+      loading: true,
+      connection: null,
     };
+  },
+  computed: {
+    webSocketUrl() {
+      return `${
+        import.meta.env.VITE_WEBSOCKET_HOST
+      }/?token=eyJfaWQiOiI2MjY4YzcwZDU0OTAzN2Y2MzIxMTAwN2EiLCJpYXQiOjE2ODIwOTMyMDI4NTd9.eyJhbGciOiJFUzUxMiIsImtpZCI6ImdHS2J2UHphSEFGcDBGMmtCT2pJeUw3TkFPSklvM2t6Tl9ucWlXUW91WTgifQ.ASBJ02SHYWxFhM0nze2x47YH5E6nJezVhZp69_PB3YwVoRIsQn8aq7nrZwO3oTG9fcI3per5rD7pe1nDbZucjvFsAFqkLwn8w-VN2_JSPe0Wzwx8Raxz3nrN-MTX3UMgWcqbMdgBz6qSX-NLaE1epo7M5aizJ0u6AY9_aKrENk-88_Sb`;
+    },
+  },
+  mounted() {
+    this.createStruct();
+    this.createWebSocket();
+  },
+  beforeUnmount() {
+    if (this.connection) {
+      this.connection.close();
+    }
+  },
+  methods: {
+    format(format, value) {
+      if (!value) return "";
+      if (!format) return value;
+
+      if (format.custom_format) return columnObj.custom_format(value);
+      switch (format.type) {
+        case "int": {
+          if (format.color) {
+            var color = value >= 0 ? "font-bold text-green-500" : "font-bold text-red-500";
+
+            var el =
+              `<span class="${color}">` + value?.toLocaleString("pt-BR", { maximumFractionDigits: 0 }) + "</span>";
+            return el;
+          }
+          return value?.toLocaleString("pt-BR", { maximumFractionDigits: 0 });
+        }
+        case "float": {
+          if (format.color) {
+            let color;
+            if (value > 0) color = "text-green-500";
+            if (value < 0) "text-red-500";
+            var el =
+              `<span class="${color}">` + Number(Number(value)?.toFixed(2) || 0)?.toLocaleString("en-US") + "</span>";
+            return el;
+          }
+          return Number(value?.toFixed(2) || 0)?.toLocaleString("en-US");
+        }
+        case "string": {
+          return value;
+        }
+        case "percent": {
+          if (format.color) {
+            var color = value >= 0 ? "text-green-500" : "text-red-500";
+
+            var el = `<span class="${color}">` + (value * 100 || 0)?.toFixed(2) + "%" + "</span>";
+            return el;
+          }
+          return (value * 100 || 0)?.toFixed(2) + "%";
+        }
+        case "percentM": {
+          if (format.color) {
+            var color = value >= 0 ? "text-green-500" : "text-red-500";
+
+            var el = `<span class="${color}">` + value.toFixed(2) + "%" + "</span>";
+            return el;
+          }
+          return value?.toFixed(2) + "%";
+        }
+      }
+    },
+    createStruct() {
+      for (var cp of this.components) {
+        this.data[cp.value] = [];
+      }
+    },
+    createWebSocket() {
+      this.connection = new WebSocket(this.webSocketUrl);
+      this.connection.onopen = (event) => {
+        this.connection.send(`C=S;I=iceberg;O=3212\r\nC=S;I=amplitude;O=3212\r\nC=S;I=players;O=2134`);
+        this.$notify({
+          type: "success",
+          title: `Conexão com o servidor realizada com sucesso`,
+        });
+      };
+      this.connection.onerror = (event) => {
+        console.log("Connection error", event);
+      };
+      this.connection.onclose = (event) => {
+        console.log("desconectou");
+        this.loading = true;
+        this.connection = null;
+        if (event.code == 3000) {
+          this.$store.dispatch("auth/refresh");
+        } else {
+          const randomDelay = Math.floor(Math.random() * 5000) + 1000; // Random delay between 1 and 6 seconds
+          setTimeout(() => {
+            console.log("Reconnecting...");
+            this.createWebSocket();
+          }, randomDelay);
+        }
+      };
+      this.connection.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+
+        if (data.type == "E") console.log("erro websocket message");
+        console.log(data);
+        this.data[data.ch] = data.data;
+      };
+    },
+  },
+  watch: {
+    "$store.state.auth.token"(newValue) {
+      if (this.connection) {
+        this.connection.close();
+      }
+      this.createWebSocket();
+    },
   },
 };
 </script>
-
 <style>
 .qdrinho {
   background: #191e24;
