@@ -122,6 +122,10 @@ router.afterEach((to) => {
 });
 
 router.beforeEach((to, from, next) => {
+  const toDepth = to.path.split("/").length;
+  const fromDepth = from.path.split("/").length;
+  to.meta.transition = toDepth < fromDepth ? "slide-right" : "slide-left";
+
   const verifyAuth = to.matched.some((record) => record.meta.verifyAuth);
   const permission: any = to.meta?.permission;
 

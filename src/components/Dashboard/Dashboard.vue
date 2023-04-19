@@ -9,9 +9,7 @@
     <div class="grid grid-cols-3 h-full p-4 gap-8">
       <div v-for="component in components" :key="component.name" class="qdrinho bg-white overflow-hidden">
         <div class="p-3 flex">
-          <a class="text-qdrinho text-black uppercase" :href="component.href">
-            {{ component.name }}
-          </a>
+          <router-link class="text-qdrinho text-black uppercase" :to="component.href">{{ component.name }}</router-link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
