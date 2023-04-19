@@ -28,18 +28,18 @@
         </div>
         <div class="overflow-y-auto custom-scrollbar h-full">
           <table class="mx-auto max-w-full w-full" :class="{ 'h-full': loading }">
-            <thead class="bg-[#74747429] leading-6 text-gray-700 font-thin sticky top-0">
+            <thead class="bg-[#2A2D33] z-10 leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
                 <th v-for="cl of component.columns" :key="cl.value" class="px-4 py-1">{{ cl.label }}</th>
               </tr>
             </thead>
-            <tbody class="h-full overflow-y-auto">
+            <tbody class="z-0 h-full overflow-y-auto relative">
               <tr v-if="loading" class="text-center">
                 <td :colspan="component?.columns?.length" class="px-4 py-1"><LoadingSpinner /></td>
               </tr>
               <tr
                 v-else
-                class="text-center text-black"
+                class="text-center text-black z-0"
                 v-for="(row, rowIdx) in filteredData[component.value]"
                 :key="`row-${rowIdx}`"
               >
