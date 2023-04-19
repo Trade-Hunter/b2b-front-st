@@ -27,19 +27,19 @@
           </svg>
         </div>
         <div class="overflow-y-auto custom-scrollbar h-full">
-          <table class="mx-auto h-full max-w-full w-full">
+          <table class="mx-auto max-w-full w-full" :class="{ 'h-full': loading }">
             <thead class="bg-[#74747429] leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
                 <th v-for="cl of component.columns" :key="cl.value" class="px-4 py-1">{{ cl.label }}</th>
               </tr>
             </thead>
-            <tbody class="h-full overflow-x-visible">
+            <tbody class="h-full overflow-y-auto">
               <tr v-if="loading" class="text-center">
                 <td :colspan="component?.columns?.length" class="px-4 py-1"><LoadingSpinner /></td>
               </tr>
               <tr
                 v-else
-                class="text-center"
+                class="text-center text-black"
                 v-for="(row, rowIdx) in filteredData[component.value]"
                 :key="`row-${rowIdx}`"
               >
@@ -138,8 +138,8 @@ export default {
           { label: "Ativo", value: "ativo", index: 0 },
           { label: "Hora", index: 1 },
           { label: "Últ.", index: 2, format: { type: "float" } },
-          { label: "Var. %", index: 3, format: { type: "float", color: true } },
-          { label: "Amp.", index: 4, format: { type: "float", color: true } },
+          { label: "Var. %", index: 7, format: { type: "float", color: true } },
+          { label: "Amp.", index: 3, format: { type: "float", color: true } },
         ],
         filter: [
           { label: "Liquidez", value: "liq", colIndex: 3 },
