@@ -9,9 +9,9 @@
     <div class="grid grid-cols-3 h-full p-4 gap-8">
       <div v-for="component in components" :key="component.name" class="qdrinho bg-white overflow-hidden">
         <div class="p-3 flex">
-          <h2 class="text-qdrinho text-black uppercase">
+          <a class="text-qdrinho text-black uppercase" :href="component.href">
             {{ component.name }}
-          </h2>
+          </a>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -87,6 +87,7 @@ export default {
       {
         name: "Avat",
         value: "avat",
+        href: "/avat",
         columns: [
           { label: "Ativo", value: "", index: 0 },
           { label: "Hora", value: "", index: 0 },
@@ -103,6 +104,7 @@ export default {
       {
         name: "Iceberg",
         value: "iceberg",
+        href: "/iceberg",
         columns: [
           { label: "Ativo", value: "", index: 0 },
           { label: "Hora", value: "", index: 0 },
@@ -116,6 +118,7 @@ export default {
       {
         name: "Players",
         value: "players",
+        href: "/players",
         columns: [
           { label: "Ativo", value: "", index: 0 },
           { label: "Hora", value: "", index: 0 },
@@ -132,6 +135,7 @@ export default {
       {
         name: "Amplitude",
         value: "amplitude",
+        href: "/amplitude",
         columns: [
           { label: "Ativo", value: "ativo", index: 0 },
           { label: "Hora", index: 1 },
@@ -147,6 +151,7 @@ export default {
       {
         name: "Distortions",
         value: "distortions",
+        href: "/distortions",
         columns: [
           { label: "Ativo", value: "", index: 0 },
           { label: "Hora", value: "", index: 0 },
@@ -163,6 +168,7 @@ export default {
       {
         name: "Arbitragem",
         value: "arbitragem",
+        href: "/arbitragem",
         columns: [
           { label: "Ativo", value: "", index: 0 },
           { label: "Hora", value: "", index: 0 },
