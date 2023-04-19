@@ -85,3 +85,7 @@
 .dark .bg-gray-200 {
   background: #74747429;
 }
+
+.dark .ring-gray-300 {
+  --tw-ring-color: rgba(51, 54, 60, 0.65);
+}

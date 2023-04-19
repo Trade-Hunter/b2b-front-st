@@ -41,7 +41,7 @@ export default {
     footerClasses: { type: String, default: "bg-white" },
     confirmButtonClasses: {
       type: String,
-      default: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 mr-2",
+      default: "px-4 py-2 bg-green-500 text-white  rounded hover:bg-green-600 mr-2",
     },
     cancelButtonClasses: { type: String, default: "px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500" },
   },

@@ -8,14 +8,14 @@
     :cancelLabel="'Fechar'"
     :confirmLabel="'Aplicar Filtros'"
   >
-    <div class="grid gap-3 grid-cols-1 lg:grid-cols-2 w-full">
+    <div class="grid gap-3 grid-cols-1 text-black lg:grid-cols-2 w-full">
       <div v-for="column in allColumns" :key="column.value" class="flex flex-col gap-y-2">
         <label :for="column">{{ column.label }}</label>
         <div class="flex gap-x-2">
           <select
             :id="column"
             v-model="columnFilters[column.value].value"
-            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+            class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           >
             <option value="" disabled selected>Selecione</option>
             <option v-for="(option, index) in filterOptions" :key="index" :value="option.value">
@@ -31,13 +31,13 @@
             "
             type="text"
             v-model="columnFilters[column.value].text"
-            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+            class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           />
           <input
             v-if="columnFilters[column.value].value === 'regex'"
             type="text"
             v-model="columnFilters[column.value].regex"
-            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+            class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           />
           <input
             v-if="
@@ -46,7 +46,7 @@
             "
             type="number"
             v-model="columnFilters[column.value].number"
-            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+            class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           />
           <input
             v-if="columnFilters[column.value].value === 'range'"
@@ -54,7 +54,7 @@
             v-model="columnFilters[column.value].range"
             :min="columnFilters[column.value].rangeMin"
             :max="columnFilters[column.value].rangeMax"
-            class="border-gray-400 border rounded-lg w-full py-2 px-3 text-gray-900"
+            class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           />
 
           <DatePicker

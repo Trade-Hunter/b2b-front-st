@@ -11,7 +11,7 @@
               :href="item.href"
               :class="[
                 item.current
-                  ? 'bg-gray-50 text-indigo-700 hover:bg-white dark:bg-zinc-700 dark:hover:bg-slate-700 hover:text-indigo-700'
+                  ? 'bg-gray-50 text-blue-700 hover:bg-white dark:bg-zinc-700 dark:hover:bg-slate-700 hover:text-blue-700'
                   : 'text-gray-900 hover:bg-gray-50 dark:hover:bg-slate-700 hover:text-gray-900',
                 'group flex items-center rounded-md px-3 py-2 text-sm font-medium',
               ]"
@@ -20,9 +20,7 @@
               <component
                 :is="item.icon"
                 :class="[
-                  item.current
-                    ? 'text-indigo-500 group-hover:text-indigo-500'
-                    : 'text-gray-400 group-hover:text-gray-500',
+                  item.current ? 'text-blue-500 group-hover:text-blue-500' : 'text-gray-400 group-hover:text-gray-500',
                   '-ml-1 mr-3 h-6 w-6 flex-shrink-0',
                 ]"
                 aria-hidden="true"
@@ -51,7 +49,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 focus:outline-inset focus:outline-blue-600"
                     />
                   </div>
 
@@ -62,7 +60,7 @@
                       name="last-name"
                       id="last-name"
                       autocomplete="family-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -73,7 +71,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -86,7 +84,7 @@
                       name="last-name"
                       id="last-name"
                       autocomplete="family-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -99,7 +97,7 @@
                       name="email-address"
                       id="email-address"
                       autocomplete="email"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -109,7 +107,7 @@
                       id="country"
                       name="country"
                       autocomplete="country-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full px-4 bg-transparent rounded-md border-0 bg-white py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     >
                       <option>Brasil</option>
                       <option>Canada</option>
@@ -126,7 +124,7 @@
                       name="street-address"
                       id="street-address"
                       autocomplete="street-address"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -137,7 +135,7 @@
                       name="city"
                       id="city"
                       autocomplete="address-level2"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -150,7 +148,7 @@
                       name="region"
                       id="region"
                       autocomplete="address-level1"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -163,7 +161,7 @@
                       name="postal-code"
                       id="postal-code"
                       autocomplete="postal-code"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -171,7 +169,7 @@
               <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                 <button
                   type="submit"
-                  class="inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  class="inline-flex justify-center rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-gray-50 shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 >
                   Salvar
                 </button>
@@ -199,7 +197,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <div class="">
@@ -209,7 +207,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                   <div class="col-span-6 sm:col-span-3">
@@ -221,7 +219,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
                     <p class="mt-2">
                       Certifique-se de ter pelo menos 15 caracteres OU pelo menos 8 caracteres, incluindo um número e
@@ -233,9 +231,9 @@
               <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                 <button
                   type="submit"
-                  class="inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  class="inline-flex justify-center rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-gray-50 shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                 >
-                  Save
+                  Salvar
                 </button>
               </div>
             </div>
@@ -255,21 +253,21 @@
                   <div class="text-right">
                     <button
                       type="submit"
-                      class="inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      class="inline-flex justify-center rounded-md bg-blue-600 py-2 px-3 text-sm font-semibold text-gray-50 shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                     >
                       Habilitada
                     </button>
                   </div>
                 </div>
 
-                <div class="rounded-md bg-yellow-50 dark:bg-yellow-200/60 p-4">
+                <div class="rounded-md bg-yellow-50 dark:bg-[#74747429] p-4">
                   <div class="flex">
                     <div class="flex-shrink-0">
-                      <ExclamationTriangleIcon class="h-5 w-5 text-yellow-400" aria-hidden="true" />
+                      <ExclamationTriangleIcon class="h-5 w-5 text-yellow-400/80" aria-hidden="true" />
                     </div>
                     <div class="ml-3">
-                      <h3 class="text-sm font-medium text-yellow-800 dark:text-gray-700">Atenção necessária</h3>
-                      <div class="mt-2 text-sm text-yellow-700 dark:text-yellow-800">
+                      <h3 class="text-sm font-medium text-yellow-800 dark:text-gray-200">Atenção necessária</h3>
+                      <div class="mt-2 text-sm text-yellow-700 dark:text-gray-100">
                         <p>
                           A Habilitação da autenticação em dois fatores (2FA) é obrigatória para usuários que pretendem
                           utilizar o recurso de roteamento de ordens.
@@ -303,11 +301,11 @@
                 <div class="mt-2">
                   <ul class="list-style-none">
                     <li>
-                      <a class="text-indigo-600" href="">Histórico de cobranças</a>
+                      <a class="text-blue-600" href="">Histórico de cobranças</a>
                     </li>
 
                     <li>
-                      <a class="text-indigo-600" href="">Mudar para cobrança anual</a>
+                      <a class="text-blue-600" href="">Mudar para cobrança anual</a>
                     </li>
                   </ul>
                 </div>
@@ -341,13 +339,13 @@
                     <div class="justify-end flex gap-x-2">
                       <button
                         type="button"
-                        class="inline-flex items-center rounded-md text-blue-600 px-3 py-2 text-sm font-bold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                        class="inline-flex items-center rounded-md text-blue-600 px-3 py-2 text-sm font-bold shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                       >
                         Comparar todos os planos
                       </button>
                       <button
                         type="button"
-                        class="inline-flex items-center rounded-md bg-blue-600 px-6 py-3 text-sm font-bold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                        class="inline-flex items-center rounded-md bg-blue-600 px-6 py-3 text-sm font-bold text-gray-50 shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                       >
                         Upgrade
                       </button>
@@ -363,7 +361,7 @@
                         </h3>
                         <p
                           v-if="current_plan.mostPopular"
-                          class="rounded-full bg-indigo-600/10 py-1 px-2.5 text-xs font-semibold leading-5 text-indigo-600"
+                          class="rounded-full bg-blue-600/10 py-1 px-2.5 text-xs font-semibold leading-5 text-blue-600"
                         >
                           Mais popular
                         </p>
@@ -376,7 +374,7 @@
                         <div>
                           <ul role="list" class="mt-4 space-y-3 text-sm leading-6 text-gray-600">
                             <li v-for="feature in current_plan.features" :key="feature" class="flex gap-x-3">
-                              <CheckIcon class="h-6 w-5 flex-none text-indigo-600" aria-hidden="true" />
+                              <CheckIcon class="h-6 w-5 flex-none text-blue-600" aria-hidden="true" />
                               {{ feature }}
                             </li>
                           </ul>
@@ -398,7 +396,7 @@
                               {{ feature }}
                             </li>
                           </ul>
-                          <p class="text-indigo-600 mt-2">Veja todas as ferramentas e compare os planos</p>
+                          <p class="text-blue-600 mt-2">Veja todas as ferramentas e compare os planos</p>
                         </div>
                       </div>
                     </div>
@@ -431,7 +429,7 @@
                       <div class="justify-end gap-x-2">
                         <button
                           type="button"
-                          class="items-center rounded-md text-blue-600 px-3 text-sm font-bold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                          class="items-center rounded-md text-blue-600 px-3 text-sm font-bold shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                         >
                           Ler mais
                         </button>
@@ -462,8 +460,8 @@
                   <Switch
                     v-model="enabled"
                     :class="[
-                      enabled ? 'bg-indigo-600' : 'bg-gray-200',
-                      'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2',
+                      enabled ? 'bg-blue-600' : 'bg-gray-200',
+                      'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2',
                     ]"
                   >
                     <span
@@ -500,7 +498,7 @@
                     <div class="flex">
                       <button
                         type="button"
-                        class="justify-end text-end rounded-md text-indigo-600 px-3 py-2 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                        class="justify-end text-end rounded-md text-blue-600 px-3 py-2 text-sm font-semibold shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                       >
                         Editar
                       </button>
@@ -528,7 +526,7 @@
                     <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex sm:flex-shrink-0 sm:items-center">
                       <button
                         type="button"
-                        class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                        class="inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-gray-50 shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                       >
                         Alterar plano
                       </button>
@@ -585,7 +583,7 @@
                     <div class="flex">
                       <button
                         type="button"
-                        class="justify-end text-end rounded-md text-indigo-600 px-3 py-2 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                        class="justify-end text-end rounded-md text-blue-600 px-3 py-2 text-sm font-semibold shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                       >
                         Resgatar um cupom
                       </button>
