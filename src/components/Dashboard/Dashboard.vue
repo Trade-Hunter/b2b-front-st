@@ -84,14 +84,14 @@ export default {
     const components = [
       {
         name: "Avat",
-        value: "avat",
+        value: "amplitude",
         href: "/avat",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 0 },
-          { label: "Últ.", value: "", index: 0 },
-          { label: "Var. %", value: "", index: 0 },
-          { label: "AVAT", value: "", index: 0 },
+          { label: "Hora", value: "", index: 1 },
+          { label: "Últ.", index: 2, format: { type: "float" } },
+          { label: "Var. %", value: "", index: undefined },
+          { label: "AVAT", value: "", index: undefined },
         ],
         filter: [
           { label: "Liquidez Mínima", value: "liqmin" },
