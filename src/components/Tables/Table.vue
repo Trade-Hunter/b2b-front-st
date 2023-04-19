@@ -61,7 +61,7 @@
         </div>
       </div>
       <table class="table w-full h-full table-auto">
-        <thead class="z-10 text-white sticky tracking-tighter text-xs table-header-group">
+        <thead class="z-10 text-gray-300 sticky tracking-tighter text-xs table-header-group">
           <tr class="bg-blue-500 w-full sticky top-0">
             <th
               v-for="(column, index) in columns"
@@ -79,7 +79,7 @@
                 {{ column.name }}
                 <div
                   v-if="currentSort == column.value"
-                  class="inline-flex transform hover:text-white text-white hover:scale-110"
+                  class="inline-flex transform hover:text-white text-gray-300 hover:scale-110"
                 >
                   <svg
                     v-if="currentSortDir == -1"
@@ -168,7 +168,7 @@
   </div>
   <div
     v-if="tableLength / pageSize > 1"
-    class="bg-blue-500 rounded-b-lg flex flex-row xs:flex-row items-end justify-end xs:justify-between drop-shadow-xl"
+    class="bg-[#74747429] rounded-b-lg flex flex-row xs:flex-row items-end justify-end xs:justify-between drop-shadow-xl"
   >
     <!-- <div class="inline-flex xs:mt-0 mb-0.5">
       <span class="text-xs self-end">Exibir</span>

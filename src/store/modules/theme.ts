@@ -61,9 +61,11 @@ export default {
       if (state.isDarkMode) {
         document.documentElement.classList.add("dark");
         localStorage.setItem("darkMode", "true");
+        state.theme = "dark";
       } else {
         document.documentElement.classList.remove("dark");
         localStorage.setItem("darkMode", "false");
+        state.theme = "light";
       }
     },
   },
