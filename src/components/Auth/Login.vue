@@ -6,10 +6,10 @@
         <div class="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
           <div>
             <a href="#" class="flex items-center mr-6 font-bold text-gray-700">
-              <img class="w-auto h-6 mr-1.5" src="https://cdn-th.s3.sa-east-1.amazonaws.com/assets/HunterLogo2.png" />
+              <img class="w-auto h-20 mr-1.5" src="/stBranca.png" />
             </a>
 
-            <p class="max-w-xl mt-3 text-white">
+            <p class="max-w-xl mt-3 text-gray-100">
               Você sempre um passo à frente. Encontre diversas oportunidades de investimentos e distorções de mercado
               que te transformarão em um Trader de Alta Performance.
             </p>
@@ -20,7 +20,8 @@
       <div class="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
         <div class="flex-1">
           <div class="text-center">
-            <img class="m-auto h-20 mb-5" src="https://cdn-th.s3.sa-east-1.amazonaws.com/assets/icon.png" />
+            <img v-if="isDarkMode" class="m-auto h-20 mb-5" src="/stLogoBranca.png" />
+            <img v-else class="m-auto h-20 mb-5" src="/stLogoPreta.png" />
             <h2 class="text-4xl font-bold text-center text-gray-700 dark:text-white">Sociedade dos Traders</h2>
 
             <p class="mt-3 text-lg text-gray-500 dark:text-gray-300">Estamos contentes em vê-lo novamente.</p>
@@ -92,6 +93,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "sadsds",
   data() {
@@ -99,6 +102,9 @@ export default {
       email: "",
       password: "",
     };
+  },
+  computed: {
+    ...mapGetters("theme", ["isDarkMode"]),
   },
   mounted() {},
 

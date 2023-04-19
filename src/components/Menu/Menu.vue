@@ -13,7 +13,7 @@
     @item-click="onItemClick"
   />
 
-  <div v-if="isOnMobile && !collapsed" class="sidebar-overlay dark:bg-dark-2" @click="setCollapsed(true)" />
+  <div v-if="isOnMobile && !collapsed" class="sidebar-overlay" @click="setCollapsed(true)" />
 
   <div
     v-bind:style="{
@@ -21,7 +21,7 @@
     }"
     id="demo"
     style="height: calc(100% - 50px)"
-    class="bg-hxc-1 bg-[#21272e]"
+    class="bg-hxc-1 bg-gray-50"
     :class="[{ collapsed: collapsed }, { onmobile: isOnMobile }]"
   >
     <slot></slot>
@@ -135,7 +135,7 @@ export default defineComponent({
     return { collapsed, isOnMobile };
   },
   beforeMount() {
-    this.$store.dispatch("theme/initTheme");
+    //this.$store.dispatch("theme/initTheme");
   },
   mounted() {
     // const html = document.querySelector("html");

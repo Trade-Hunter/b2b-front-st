@@ -7,9 +7,9 @@
       @filter-by-column-values="applyFilters"
     />
     <div class="grid grid-cols-3 h-full p-4 gap-8">
-      <div v-for="component in components" :key="component.name" class="qdrinho overflow-hidden">
+      <div v-for="component in components" :key="component.name" class="qdrinho bg-white overflow-hidden">
         <div class="p-3 flex">
-          <h2 class="text-qdrinho uppercase">
+          <h2 class="text-qdrinho text-black uppercase">
             {{ component.name }}
           </h2>
           <svg
@@ -30,7 +30,7 @@
         </div>
         <div class="overflow-y-scroll h-full">
           <table class="mx-auto h-full max-w-full w-full">
-            <thead class="bg-[#74747429] sticky top-0">
+            <thead class="bg-[#74747429] leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
                 <th v-for="cl of component.columns" :key="cl.value" class="px-4 py-1">{{ cl.label }}</th>
               </tr>
@@ -373,8 +373,6 @@ export default {
 
 <style>
 .qdrinho {
-  background: #191e24;
-  border: 1px solid rgba(42, 91, 112, 0.5);
   border-radius: 4px;
   font-size: 14px;
 }
@@ -388,8 +386,6 @@ export default {
   display: flex;
   align-items: center;
   letter-spacing: 0.3em;
-
-  color: #eaeaea;
 
   border-bottom: 1px solid #2a5b70;
 }

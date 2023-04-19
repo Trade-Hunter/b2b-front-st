@@ -67,6 +67,7 @@ const routes: any = [
   {
     path: "/register",
     name: "auth-register",
+    component: () => import("@/components/Auth/Register.vue"),
   },
   {
     path: "/password-reset",
