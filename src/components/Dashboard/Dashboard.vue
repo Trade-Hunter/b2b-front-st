@@ -28,7 +28,7 @@
             />
           </svg>
         </div>
-        <div class="overflow-y-scroll h-full">
+        <div class="overflow-y-auto custom-scrollbar h-full">
           <table class="mx-auto h-full max-w-full w-full">
             <thead class="bg-[#74747429] leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">

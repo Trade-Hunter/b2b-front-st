@@ -1,7 +1,7 @@
 <template>
   <HxcMenu>
-    <div class="p-8 h-full overflow-scroll antialiased font-sans">
-      <div class="w-full lg:grid lg:grid-cols-12 lg:gap-x-5">
+    <div class="p-8 relative h-full overflow-hidden font-sans">
+      <div class="w-full overflow-auto h-full lg:grid lg:grid-cols-12 lg:gap-x-5">
         <aside class="py-6 px-2 sm:px-6 lg:col-span-3 lg:py-0 lg:px-0">
           <nav class="space-y-1">
             <a
@@ -30,7 +30,10 @@
           </nav>
         </aside>
 
-        <div v-if="this.selectedI == 0" class="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
+        <div
+          v-if="this.selectedI == 0"
+          class="overflow-y-auto custom-scrollbar space-y-6 sm:px-6 lg:col-span-9 lg:px-0"
+        >
           <form action="#" method="POST">
             <div class="shadow sm:overflow-hidden sm:rounded-md">
               <div class="space-y-6 bg-white py-6 px-4 sm:p-6">
@@ -178,7 +181,10 @@
           </form>
         </div>
 
-        <div v-if="this.selectedI == 1" class="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
+        <div
+          v-if="this.selectedI == 1"
+          class="overflow-y-auto custom-scrollbar space-y-6 sm:px-6 lg:col-span-9 lg:px-0"
+        >
           <form action="#" method="POST">
             <div class="shadow sm:overflow-hidden sm:rounded-md">
               <div class="space-y-6 bg-white dark:bg-[#000000] py-6 px-4 sm:p-6">
@@ -221,7 +227,7 @@
                       autocomplete="given-name"
                       class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                     />
-                    <p class="mt-2">
+                    <p class="mt-2 text-black">
                       Certifique-se de ter pelo menos 15 caracteres OU pelo menos 8 caracteres, incluindo um número e
                       uma letra minúscula. Ver mais.
                     </p>
@@ -281,7 +287,10 @@
           </form>
         </div>
 
-        <div v-if="this.selectedI == 2" class="space-y-6 sm:px-6 lg:col-span-9 lg:px-0">
+        <div
+          v-if="this.selectedI == 2"
+          class="overflow-y-auto custom-scrollbar space-y-6 sm:px-6 lg:col-span-9 lg:px-0"
+        >
           <div class="flex w-full">
             <div class="flex w-full flex-row space-x-2 divide-x rounded-sm bg-white py-6 px-4 sm:p-6">
               <div class="w-1/2 pr-4">
@@ -673,4 +682,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Hide scrollbar on a specific element with class "my-element" */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+</style>
