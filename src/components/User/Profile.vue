@@ -294,9 +294,9 @@
           <div class="flex w-full">
             <div class="flex w-full flex-row space-x-2 divide-x rounded-sm bg-white py-6 px-4 sm:p-6">
               <div class="w-1/2 pr-4">
-                <p class="font-semibold mb-2 text-xl">Próxima cobrança</p>
+                <p class="font-semibold mb-2 text-black text-xl">Próxima cobrança</p>
                 <p>
-                  <span class="font-semibold text-2xl">$0.00</span>
+                  <span class="font-semibold text-black text-2xl">$0.00</span>
                 </p>
                 <div class="mt-2 text-sm text-gray-500">
                   <p>
@@ -306,7 +306,7 @@
                 </div>
               </div>
               <div class="pl-4">
-                <p class="text-xl font-semibold mb-2">Informação de Pagamento</p>
+                <p class="text-xl font-semibold mb-2 text-black">Informação de Pagamento</p>
                 <div class="mt-2">
                   <ul class="list-style-none">
                     <li>
