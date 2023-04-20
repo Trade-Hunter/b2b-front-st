@@ -80,7 +80,7 @@ export default {
     const cellChanged = ref({});
     const data = ref({});
     const loading = ref(true);
-
+    const selComponent = ref("");
     const components = [
       {
         name: "Avat",
@@ -94,9 +94,9 @@ export default {
           { label: "AVAT", value: "", index: undefined },
         ],
         filter: [
-          { label: "Liquidez Mínima", value: "liqmin" },
-          { label: "Intervalo Mínimo", value: "minInterval" },
-          { label: "AVAT Min", value: "avatMin" },
+          { label: "Liquidez Mínima", value: "liqmin", index: 0 },
+          { label: "Intervalo Mínimo", value: "minInterval", index: 1 },
+          { label: "AVAT Min", value: "avatMin", index: 5 },
         ],
       },
       {
@@ -190,6 +190,10 @@ export default {
       }
     };
 
+    const toggleSelCp = (sel) => {
+      selComponent.value = sel;
+    };
+
     const createWebSocket = () => {
       try {
         const connection = new WebSocket(webSocketUrl.value);
@@ -265,8 +269,10 @@ export default {
 
     const filters = ref({});
 
-    const applyFilters = (component, selectedFilters) => {
-      filters.value[component.value] = selectedFilters;
+    const applyFilters = (selectedFilters) => {
+      console.log("[applyFilters]", selComponent.value, selectedFilters);
+
+      filters.value[selComponent.value] = selectedFilters;
     };
 
     const filteredData = computed(() => {
@@ -283,7 +289,7 @@ export default {
       return result;
     });
 
-    return { cellChanged, connection, components, data, loading, applyFilters, filteredData };
+    return { cellChanged, connection, components, data, loading, applyFilters, toggleSelCp, filteredData };
   },
   computed: {},
   mounted() {
@@ -299,8 +305,9 @@ export default {
     openFilterModal(component) {
       // Call the open method on the FilterModal component and pass the component as a parameter
       console.log(this.$refs);
+      this.toggleSelCp(component.value);
       //this.selectedComponent = { filter: [{ value: "bomdia", label: "oi" }] };
-      this.selectedComponent = { filter: component.filter };
+      this.selectedComponent = { value: component.value, filter: component.filter };
 
       console.log("oo", this.selectedComponent);
       this.$refs.filterModal.openModal();

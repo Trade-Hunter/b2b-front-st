@@ -105,71 +105,72 @@ export default {
       },
       filterOptions: [
         { value: "equals", label: "Igual a" },
-        { value: "notEquals", label: "Diferente de" },
-        { value: "contains", label: "Contém" },
-        { value: "notContains", label: "Não contém" },
-        { value: "startsWith", label: "Começa com" },
-        { value: "endsWith", label: "Termina com" },
+        //{ value: "notEquals", label: "Diferente de" },
+        //{ value: "contains", label: "Contém" },
+        //{ value: "notContains", label: "Não contém" },
+        //{ value: "startsWith", label: "Começa com" },
+        //{ value: "endsWith", label: "Termina com" },
         { value: "regex", label: "Expressão regular" },
         { value: "greaterThan", label: "Maior que" },
         { value: "lessThan", label: "Menor que" },
-        { value: "range", label: "Faixa de valores" },
-        {
-          value: "dateSelect",
-          label: "Data igual",
-          config: {
-            type: "datepicker",
-            options: {
-              mode: "single",
-              format: "dd/MM/yyyy",
-              placeholder: "Selecione uma data",
-              inputFormat: "dd/MM/yyyy",
-              locale: "pt-BR",
-            },
-          },
-        },
-        {
-          value: "afterThan",
-          label: "Depois de",
-          config: {
-            type: "datepicker",
-            options: {
-              mode: "single",
-              format: "dd/MM/yyyy",
-              placeholder: "Selecione uma data",
-              inputFormat: "dd/MM/yyyy",
-              locale: "pt-BR",
-            },
-          },
-        },
-        {
-          value: "beforeThan",
-          label: "Antes de",
-          config: {
-            type: "datepicker",
-            options: {
-              mode: "single",
-              format: "dd/MM/yyyy",
-              placeholder: "Selecione uma data",
-              inputFormat: "dd/MM/yyyy",
-              locale: "pt-BR",
-            },
-          },
-        },
-        {
-          value: "dateRange",
-          label: "Intervalo de datas",
-          config: {
-            type: "datepicker-range",
-            options: {
-              mode: "range",
-              format: "dd/MM/yyyy",
-              placeholder: ["Data inicial", "Data final"],
-              inputFormat: "dd/MM/yyyy",
-              locale: "pt-BR",
-            },
-          },
-        },
+        { value: "basket", label: "basket" },
+        //{ value: "range", label: "Faixa de valores" },
+        // {
+        //   value: "dateSelect",
+        //   label: "Data igual",
+        //   config: {
+        //     type: "datepicker",
+        //     options: {
+        //       mode: "single",
+        //       format: "dd/MM/yyyy",
+        //       placeholder: "Selecione uma data",
+        //       inputFormat: "dd/MM/yyyy",
+        //       locale: "pt-BR",
+        //     },
+        //   },
+        // },
+        // {
+        //   value: "afterThan",
+        //   label: "Depois de",
+        //   config: {
+        //     type: "datepicker",
+        //     options: {
+        //       mode: "single",
+        //       format: "dd/MM/yyyy",
+        //       placeholder: "Selecione uma data",
+        //       inputFormat: "dd/MM/yyyy",
+        //       locale: "pt-BR",
+        //     },
+        //   },
+        // },
+        // {
+        //   value: "beforeThan",
+        //   label: "Antes de",
+        //   config: {
+        //     type: "datepicker",
+        //     options: {
+        //       mode: "single",
+        //       format: "dd/MM/yyyy",
+        //       placeholder: "Selecione uma data",
+        //       inputFormat: "dd/MM/yyyy",
+        //       locale: "pt-BR",
+        //     },
+        //   },
+        // },
+        // {
+        //   value: "dateRange",
+        //   label: "Intervalo de datas",
+        //   config: {
+        //     type: "datepicker-range",
+        //     options: {
+        //       mode: "range",
+        //       format: "dd/MM/yyyy",
+        //       placeholder: ["Data inicial", "Data final"],
+        //       inputFormat: "dd/MM/yyyy",
+        //       locale: "pt-BR",
+        //     },
+        //   },
+        // },
       ],
       datePickerValue: [],
     };
@@ -183,6 +184,7 @@ export default {
       this.columnFilters = this.allColumns?.reduce((filters, column) => {
         console.log("column", column);
         filters[column.value] = {
+          idx: column.index,
           value: "",
           text: "",
           number: null,
