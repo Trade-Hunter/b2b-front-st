@@ -39,7 +39,7 @@
               <div class="space-y-6 bg-white py-6 px-4 sm:p-6">
                 <div>
                   <h3 class="text-base font-semibold leading-6 text-gray-900">Informação pessoal</h3>
-                  <p class="mt-1 text-sm text-gray-500">Use a permanent address where you can recieve mail.</p>
+                  <p class="mt-1 text-sm text-gray-500">Use um endereço permanente onde você possa receber e-mail.</p>
                 </div>
 
                 <div class="grid grid-cols-6 gap-6">
@@ -52,7 +52,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6 focus:outline-inset focus:outline-blue-600"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -63,7 +63,7 @@
                       name="last-name"
                       id="last-name"
                       autocomplete="family-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -74,7 +74,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -87,7 +87,7 @@
                       name="last-name"
                       id="last-name"
                       autocomplete="family-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -100,7 +100,7 @@
                       name="email-address"
                       id="email-address"
                       autocomplete="email"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -127,7 +127,7 @@
                       name="street-address"
                       id="street-address"
                       autocomplete="street-address"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -138,7 +138,7 @@
                       name="city"
                       id="city"
                       autocomplete="address-level2"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -151,7 +151,7 @@
                       name="region"
                       id="region"
                       autocomplete="address-level1"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
 
@@ -164,7 +164,7 @@
                       name="postal-code"
                       id="postal-code"
                       autocomplete="postal-code"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
@@ -203,7 +203,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
                   <div class="">
@@ -213,7 +213,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                   </div>
                   <div class="col-span-6 sm:col-span-3">
@@ -225,7 +225,7 @@
                       name="first-name"
                       id="first-name"
                       autocomplete="given-name"
-                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                      class="mt-2 block w-full bg-transparent rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:outline-none sm:text-sm sm:leading-6"
                     />
                     <p class="mt-2 text-black">
                       Certifique-se de ter pelo menos 15 caracteres OU pelo menos 8 caracteres, incluindo um número e
@@ -340,9 +340,7 @@
                 <div class="flex flex-row">
                   <div>
                     <h3 class="text-base font-semibold leading-6 text-gray-900">Plano Atual</h3>
-                    <p class="mt-1 text-sm text-gray-500">
-                      Provide basic information about the job. Be specific with the job title.
-                    </p>
+                    <p class="mt-1 text-sm text-gray-500">Confira as informações sobre seu plano atual.</p>
                   </div>
                   <div class="grow">
                     <div class="justify-end flex gap-x-2">
@@ -438,11 +436,14 @@
                       <div class="justify-end gap-x-2">
                         <button
                           type="button"
-                          class="items-center rounded-md text-blue-600 px-3 text-sm font-bold shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                          class="items-center rounded-md text-blue-600 px-3 text-sm font-bold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                         >
                           Ler mais
                         </button>
-                        <button type="button" class="bg-blue-500 text-white px-3 text-sm py-2 rounded-md font-semibold">
+                        <button
+                          type="button"
+                          class="bg-blue-500 text-gray-200 px-3 text-sm py-2 rounded-md font-semibold"
+                        >
                           Adquirir
                         </button>
                       </div>
@@ -578,7 +579,7 @@
                   <h3 class="text-base font-semibold leading-6 text-gray-900">Último pagamento</h3>
                   <div class="mt-2 sm:flex sm:items-start sm:justify-between">
                     <div class="max-w-xl text-sm text-gray-500">
-                      <p>You have not made any payments.</p>
+                      <p>Você não fez nenhum pagamento.</p>
                     </div>
                   </div>
                 </div>
@@ -592,7 +593,7 @@
                     <div class="flex">
                       <button
                         type="button"
-                        class="justify-end text-end rounded-md text-blue-600 px-3 py-2 text-sm font-semibold shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                        class="inline-flex items-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-gray-50 shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                       >
                         Resgatar um cupom
                       </button>
@@ -600,7 +601,7 @@
                   </div>
                   <div class="mt-2 sm:flex sm:items-start sm:justify-between">
                     <div class="max-w-xl text-sm text-gray-500">
-                      <p>You don’t have an active coupon.</p>
+                      <p>Você não tem um cupom ativo.</p>
                     </div>
                   </div>
                 </div>

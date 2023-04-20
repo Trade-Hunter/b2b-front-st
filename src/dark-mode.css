@@ -100,3 +100,25 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+.focus\:ring-blue-500:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+}
+
+.dark .text-gray-500 {
+  color: rgb(219, 212, 219);
+}
+
+.dark .text-gray-600 {
+  color: rgb(238, 229, 238);
+}
+
+.dark .text-blue-600 {
+  color: rgb(7, 123, 240);
+}
+
+.dark .hover\:text-white:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}

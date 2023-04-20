@@ -16,6 +16,11 @@ const routes: any = [
   //   component: () => import("@/components/Authentication/Login.vue"),
   // },
   {
+    path: "/listbox",
+    component: () => import("@/components/ListBox/ListBox.vue"),
+    meta: { verifyAuth: true, permission: "", title: "ListBox" },
+  },
+  {
     path: "/dashboard",
     component: () => import("@/components/Dashboard/Dashboard.vue"),
     meta: { verifyAuth: true, permission: "", title: "Dashboard" },

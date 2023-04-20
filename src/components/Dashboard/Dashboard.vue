@@ -28,9 +28,9 @@
         </div>
         <div class="overflow-y-auto custom-scrollbar h-full">
           <table class="mx-auto max-w-full w-full" :class="{ 'h-full': loading }">
-            <thead class="bg-[#2A2D33] z-10 leading-6 text-gray-700 font-thin sticky top-0">
+            <thead class="bg-[#E7E7E7] dark:bg-[#2A2D33] leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
-                <th v-for="cl of component.columns" :key="cl.value" class="px-4 py-1">{{ cl.label }}</th>
+                <th v-for="cl of component.columns" :key="cl.value" class="px-4 py-1 font-normal">{{ cl.label }}</th>
               </tr>
             </thead>
             <tbody class="z-0 h-full overflow-y-auto relative">
@@ -379,6 +379,7 @@ export default {
 .qdrinho {
   border-radius: 4px;
   font-size: 14px;
+  border: 1px solid rgba(42, 91, 112, 0.5);
 }
 
 .text-qdrinho {

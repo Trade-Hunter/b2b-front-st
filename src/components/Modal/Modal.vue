@@ -55,6 +55,7 @@ export default {
     open() {
       this.isVisible = true;
       this.$nextTick(() => {
+        console.log("[modal] refs", this.$refs);
         this.$refs.modalRef.classList.add("animated", "fadeIn", "faster");
       });
     },
@@ -62,6 +63,7 @@ export default {
       this.$refs.modalRef.classList.add("animated", "fadeOut");
       this.$refs.modalRef.classList.remove("fadeIn");
       this.$nextTick(() => {
+        console.log("[modal] refs", this.$refs);
         this.$refs.modalRef.classList.remove("animated", "fadeOut", "faster");
         this.isVisible = false;
         this.$emit("close");

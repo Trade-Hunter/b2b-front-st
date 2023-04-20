@@ -17,8 +17,8 @@
             v-model="columnFilters[column.value].value"
             class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           >
-            <option value="" disabled selected>Selecione</option>
-            <option v-for="(option, index) in filterOptions" :key="index" :value="option.value">
+            <option class="bg-gray-200" value="" disabled selected>Selecione</option>
+            <option class="bg-gray-200" v-for="(option, index) in filterOptions" :key="index" :value="option.value">
               {{ option.label }}
             </option>
           </select>
@@ -201,7 +201,7 @@ export default {
       this.$emit("column-toggled", column);
     },
     openModal() {
-      console.log("thios", this.$refs.modal);
+      this.setFilterColumns();
       this.$refs.modal.open();
     },
     onSubmit() {
@@ -235,6 +235,7 @@ export default {
   },
   watch: {
     allColumns(newV, oldV) {
+      console.log("[FilterModal] allColumns", this.allColumns);
       this.setFilterColumns();
     },
   },

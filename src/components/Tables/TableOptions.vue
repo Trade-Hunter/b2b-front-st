@@ -61,7 +61,7 @@
         </div>
       </div>
       <table class="table w-full h-full table-auto">
-        <thead class="z-10 text-gray-50 sticky tracking-tighter text-xs table-header-group">
+        <thead class="text-gray-50 sticky tracking-tighter text-xs table-header-group">
           <tr class="bg-blue-500 w-full sticky top-0">
             <th
               v-for="(column, index) in columns"
@@ -74,7 +74,7 @@
               @click="sort(index)"
               class="table-cell py-1"
             >
-              <div class="flex justify-center select-none">
+              <div class="flex justify-center select-none font-normal">
                 {{ column.name }}
                 <div
                   v-if="currentSort == column.value"
