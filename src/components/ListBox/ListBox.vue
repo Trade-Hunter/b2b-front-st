@@ -11,9 +11,11 @@
         <option v-for="item in fromList" :key="item" :value="item">{{ item }}</option>
       </select>
     </div>
-    <div class="flex flex-col items-center mx-4">
+    <div class="flex flex-col items-center my-auto mx-4 my-auto">
       <button class="my-4" @click="moveItem(fromList, selectedFrom, toList)">&gt;</button>
       <button class="my-4" @click="moveItem(toList, selectedTo, fromList)">&lt;</button>
+      <button class="my-4" @click="moveAll(fromList, toList)">&gt;&gt;</button>
+      <button class="my-4" @click="moveAll(toList, fromList)">&lt;&lt;</button>
     </div>
     <div class="flex flex-col items-center">
       <h2 class="text-2xl font-bold mb-2">Selected Items</h2>
@@ -47,6 +49,10 @@ export default {
         toList.push(selectedItem);
       }
     },
+    moveAll(fromList, toList) {
+      toList.push(...fromList);
+      fromList.splice(0, fromList.length);
+    },
   },
 };
 </script>
@@ -55,5 +61,21 @@ export default {
 select:focus {
   outline: none;
   box-shadow: none;
+}
+button {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0.5rem;
+  border: 1px solid #e2e8f0;
+  background-color: #edf2f7;
+  border-radius: 0.375rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+button:hover {
+  background-color: #e2e8f0;
 }
 </style>
