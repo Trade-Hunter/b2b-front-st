@@ -14,7 +14,7 @@
         <div class="flex gap-x-2">
           <select
             :id="column"
-            v-model="columnFilters[column.value].value"
+            v-model="columnFilters[column.value].query"
             class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           >
             <option class="bg-gray-200" value="" disabled selected>Selecione</option>
@@ -24,41 +24,41 @@
           </select>
           <input
             v-if="
-              columnFilters[column.value].value &&
+              columnFilters[column.value].query &&
               ['equals', 'notEquals', 'contains', 'notContains', 'startsWith', 'endsWith'].includes(
-                columnFilters[column.value].value
+                columnFilters[column.value].query
               )
             "
             type="text"
-            v-model="columnFilters[column.value].text"
+            v-model="columnFilters[column.value].value"
             class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           />
           <input
-            v-if="columnFilters[column.value].value === 'regex'"
+            v-if="columnFilters[column.value].query === 'regex'"
             type="text"
-            v-model="columnFilters[column.value].regex"
+            v-model="columnFilters[column.value].value"
             class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           />
           <input
             v-if="
-              columnFilters[column.value].value &&
-              ['greaterThan', 'lessThan'].includes(columnFilters[column.value].value)
+              columnFilters[column.value].query &&
+              ['greaterThan', 'lessThan'].includes(columnFilters[column.value].query)
             "
             type="number"
-            v-model="columnFilters[column.value].number"
+            v-model="columnFilters[column.value].value"
             class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           />
           <input
-            v-if="columnFilters[column.value].value === 'range'"
+            v-if="columnFilters[column.value].query === 'range'"
             type="range"
-            v-model="columnFilters[column.value].range"
+            v-model="columnFilters[column.value].value"
             :min="columnFilters[column.value].rangeMin"
             :max="columnFilters[column.value].rangeMax"
             class="ring-gray-300 ring-1 ring-inset bg-transparent rounded-lg w-full py-2 px-3 text-gray-900"
           />
 
           <DatePicker
-            v-if="['beforeThan', 'afterThan', 'dateRange', 'dateSelect'].includes(columnFilters[column.value].value)"
+            v-if="['beforeThan', 'afterThan', 'dateRange', 'dateSelect'].includes(columnFilters[column.value].query)"
             :id="column"
             :modelValue="columnFilters[column.value][columncolumn.valueFilters[column.value].value]"
             @update:modelValue="(date) => (columnFilters[column.value][columnFilters[column.value].value] = date)"
@@ -123,7 +123,7 @@ export default {
         //     options: {
         //       mode: "single",
         //       format: "dd/MM/yyyy",
-        //       placeholder: "Selecione uma data",
+        //       placeholder: "Selecione uma data",key
         //       inputFormat: "dd/MM/yyyy",
         //       locale: "pt-BR",
         //     },
@@ -192,7 +192,7 @@ export default {
           date: null,
         };
         if (column.type === "number" && column.filter?.filterOptions?.range) {
-          filters[column.value].range = "";
+          filters[column.value].value = "";
           filters[column.value].rangeMin = column.filter.filterOptions.range.min;
           filters[column.value].rangeMax = column.filter.filterOptions.range.max;
         }
@@ -214,7 +214,17 @@ export default {
           filters[column.value] = filter;
         }
       }
-      this.$emit("filter-by-column-values", filters);
+      const queryOpts = [];
+      for (var key of Object.keys(filters)) {
+        queryOpts.push({
+          queryName: filters[key].query,
+          queryIdx: filters[key].idx,
+          queryType: filters[key].type,
+          queryValue: filters[key].value,
+        });
+      }
+
+      this.$emit("filter-by-column-values", queryOpts);
       console.log("thios2", this.$refs, "sd", this.$refs.modal);
       //this.$refs.modal.submit();
     },

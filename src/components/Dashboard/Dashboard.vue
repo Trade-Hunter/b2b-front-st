@@ -183,11 +183,26 @@ export default {
     ];
 
     const webSocketUrl = ref(`${import.meta.env.VITE_WEBSOCKET_HOST}/?token=${store.state.auth.token}`);
+    const filters = ref({});
 
     const createStruct = () => {
       for (var cp of components) {
         data.value[cp.value] = [];
+        filters.value[cp.value] = { query: "", sortIdx: 0, order: "", limit: 10 };
       }
+    };
+
+    const getMessage = () => {
+      const queryOpts = [];
+      for (var key of Object.keys(filters.value)) {
+        queryOpts.push(
+          `C=S;I=${key};Q=${btoa(filters.value[key].query)};S=${filters.value[key].sortIdx};O=${
+            filters.value[key].order
+          };L=${filters.value[key].limit}`
+        );
+      }
+      console.log("aaaa", queryOpts);
+      return queryOpts.join("\r\n");
     };
 
     const toggleSelCp = (sel) => {
@@ -267,12 +282,12 @@ export default {
       }
     });
 
-    const filters = ref({});
-
     const applyFilters = (selectedFilters) => {
       console.log("[applyFilters]", selComponent.value, selectedFilters);
 
-      filters.value[selComponent.value] = selectedFilters;
+      filters.value[selComponent.value].query = selectedFilters;
+
+      console.log("teste", getMessage());
     };
 
     const filteredData = computed(() => {
