@@ -61,7 +61,7 @@
         </div>
       </div>
       <table class="table w-full h-full table-auto">
-        <thead class="text-gray-50 sticky tracking-tighter text-xs table-header-group">
+        <thead class="z-10 text-gray-50 sticky tracking-tighter text-xs table-header-group">
           <tr class="bg-blue-500 w-full sticky top-0">
             <th
               v-for="(column, index) in columns"
@@ -138,7 +138,7 @@
                 'dark:bg-dark-1': colIndex == 0 && rowIndex % 2 !== 0,
               }"
               class="py-1 px-2"
-              v-html="format(item[column.value], colIndex, rowIndex)"
+              v-html="format(item[column.index !== undefined ? column.index : column.value], colIndex, rowIndex)"
             ></td>
           </tr>
         </tbody>

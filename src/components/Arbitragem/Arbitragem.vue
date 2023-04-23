@@ -73,6 +73,8 @@ import Modal from "@/components/Modal/Modal.vue";
 import HxcTable from "@/components/Tables/TableOptions.vue";
 
 import { InformationCircle } from "@/assets/icons/heroicons";
+import { useStore } from "vuex";
+import { ref, onUnmounted } from "vue";
 
 export default {
   components: {
@@ -80,7 +82,92 @@ export default {
     Modal,
     HxcTable,
   },
-  setup() {},
+  setup() {
+    const store = useStore();
+    const cellChanged = ref({});
+    const data = ref([]);
+    const loading = ref(true);
+
+    const webSocketUrl = ref(`${import.meta.env.VITE_WEBSOCKET_HOST}/?token=${store.state.auth.token}`);
+
+    const createWebSocket = () => {
+      try {
+        const connection = new WebSocket(webSocketUrl.value);
+        connection.onopen = (event) => {
+          connection.send(`C=S;I=arbitragem;Q=;S=;L;=500`);
+          // this.$notify({
+          //   type: "success",
+          //   title: `Conexão com o servidor realizada com sucesso`,
+          // });
+          loading.value = false;
+        };
+        connection.onerror = (event) => {
+          console.log("Connection error", event);
+        };
+        connection.onclose = (event) => {
+          console.log("desconectou");
+          //this.loading = true;
+          //this.connection = null;
+          if (event.code == 3000) {
+            //this.$store.dispatch("auth/refresh");
+          } else {
+            const randomDelay = Math.floor(Math.random() * 5000) + 1000; // Random delay between 1 and 6 seconds
+            setTimeout(() => {
+              console.log("Reconnecting...");
+              createWebSocket();
+            }, randomDelay);
+          }
+          loading.value = true;
+        };
+        connection.onmessage = (event) => {
+          const dataEv = JSON.parse(event.data);
+
+          //console.log(data.value);
+          if (dataEv.type == "E") console.log("erro websocket message");
+
+          // Update the cellChanged object
+          for (let rowIndex in dataEv.data) {
+            // Initialize the data structure if it doesn't exist
+            if (data.value[rowIndex] === undefined) {
+              data.value[rowIndex] = [];
+            }
+
+            for (let cellIndex in dataEv.data[rowIndex]) {
+              const cellKey = `${dataEv.ch}-${rowIndex}-${cellIndex}`;
+              if (cellChanged.value[cellKey] === undefined) {
+                cellChanged.value[cellKey] = false;
+              } else if (data.value[rowIndex][cellIndex] !== dataEv.data[rowIndex][cellIndex]) {
+                cellChanged.value[cellKey] = true;
+                setTimeout(() => {
+                  cellChanged.value[cellKey] = false;
+                }, 1000);
+              }
+
+              // Update the data
+              data.value[rowIndex][cellIndex] = dataEv.data[rowIndex][cellIndex];
+            }
+          }
+
+          if (dataEv.data.length < 1) {
+            data.value = [];
+          }
+        };
+        return connection;
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    const connection = createWebSocket();
+
+    onUnmounted(() => {
+      if (connection) {
+        connection.close();
+      }
+    });
+
+    return { connection, data, loading };
+  },
   data() {
     return {
       modalActive: false,
@@ -116,9 +203,9 @@ export default {
           index: 0,
         },
       ],
-      data: [],
+
       paging: {},
-      loading: true,
+
       paging: { pages: 0, total: 0, page: 0, page_size: 350 },
       columns: [
         {
@@ -159,17 +246,10 @@ export default {
       connection: null,
     };
   },
-  mounted() {
-    this.getGexIndex();
-  },
+  mounted() {},
   beforeUnmount() {},
 
   methods: {
-    async getGexIndex() {
-      const { data } = await this.$api.get(`/options/gex1/screener`);
-      this.data = data;
-      this.loading = false;
-    },
     toggleModal() {
       this.modalActive = !this.modalActive;
     },
