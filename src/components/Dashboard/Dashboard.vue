@@ -28,7 +28,7 @@
         </div>
         <div class="overflow-y-auto custom-scrollbar h-full">
           <table class="mx-auto max-w-full w-full" :class="{ 'h-full': loading }">
-            <thead class="bg-[#E7E7E7] dark:bg-[#2A2D33] leading-6 text-gray-700 font-thin sticky top-0">
+            <thead class="bg-[#E7E7E7] dark:bg-[#2A2D33] z-10 leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
                 <th v-for="cl of component.columns" :key="cl.value" class="px-4 py-1 font-normal">{{ cl.label }}</th>
               </tr>
@@ -40,7 +40,7 @@
               <tr
                 v-else
                 class="text-center text-black z-0"
-                v-for="(row, rowIdx) in filteredData[component.value]"
+                v-for="(row, rowIdx) in data[component.value]"
                 :key="`row-${rowIdx}`"
               >
                 <td v-for="(cl, cellIdx) in component.columns" :key="cl.value" class="px-4 py-1">
@@ -94,7 +94,7 @@ export default {
           { label: "AVAT", value: "", index: undefined },
         ],
         filter: [
-          { label: "Liquidez Mínima", value: "liqmin", index: 0 },
+          { label: "Liquidez Mínima", value: "liqmin", index: 8 },
           { label: "Intervalo Mínimo", value: "minInterval", index: 1 },
           { label: "AVAT Min", value: "avatMin", index: 5 },
         ],
@@ -142,7 +142,7 @@ export default {
           { label: "Amp.", index: 3, format: { type: "float", color: true } },
         ],
         filter: [
-          { label: "Liquidez", value: "liq", colIndex: 3 },
+          { label: "Liquidez", value: "liq", index: 8 },
           { label: "Amplitude", value: "amp" },
         ],
       },
@@ -188,7 +188,7 @@ export default {
     const createStruct = () => {
       for (var cp of components) {
         data.value[cp.value] = [];
-        filters.value[cp.value] = { query: "", sortIdx: 0, order: "", limit: 10 };
+        filters.value[cp.value] = { query: "", sortIdx: 0, order: "", limit: 15 };
       }
     };
 
@@ -196,12 +196,12 @@ export default {
       const queryOpts = [];
       for (var key of Object.keys(filters.value)) {
         queryOpts.push(
-          `C=S;I=${key};Q=${btoa(filters.value[key].query)};S=${filters.value[key].sortIdx};O=${
-            filters.value[key].order
-          };L=${filters.value[key].limit}`
+          `C=S;I=${key};Q=${encodeURIComponent(btoa(JSON.stringify(filters.value[key].query)))};S=${
+            filters.value[key].sortIdx
+          };O=${filters.value[key].order};L=${filters.value[key].limit}`
         );
       }
-      console.log("aaaa", queryOpts);
+      console.log("opa", queryOpts);
       return queryOpts.join("\r\n");
     };
 
@@ -213,7 +213,8 @@ export default {
       try {
         const connection = new WebSocket(webSocketUrl.value);
         connection.onopen = (event) => {
-          connection.send(`C=S;I=iceberg;O=3212\r\nC=S;I=amplitude;O=3212\r\nC=S;I=players;O=2134`);
+          connection.send(getMessage());
+          //connection.send(`C=S;I=iceberg;O=3212\r\nC=S;I=amplitude;O=3212\r\nC=S;I=players;O=2134`);
           // this.$notify({
           //   type: "success",
           //   title: `Conexão com o servidor realizada com sucesso`,
@@ -266,6 +267,11 @@ export default {
               data.value[dataEv.ch][rowIndex][cellIndex] = dataEv.data[rowIndex][cellIndex];
             }
           }
+          console.log("sdsdsdsdsd", dataEv.data.length);
+          if (dataEv.data.length < 1) {
+            console.log("sdsdsdsdsd1", dataEv.ch);
+            data.value[dataEv.ch] = [];
+          }
         };
         return connection;
       } catch (error) {
@@ -287,24 +293,26 @@ export default {
 
       filters.value[selComponent.value].query = selectedFilters;
 
-      console.log("teste", getMessage());
+      if (connection) {
+        connection.send(getMessage());
+      }
     };
 
-    const filteredData = computed(() => {
-      const result = {};
-      for (const key in data.value) {
-        if (filters.value[key]) {
-          result[key] = data.value[key].filter((row) =>
-            filters.value[key].every((filter) => filter.condition(row[filter.colIndex]))
-          );
-        } else {
-          result[key] = data.value[key];
-        }
-      }
-      return result;
-    });
+    // const filteredData = computed(() => {
+    //   const result = {};
+    //   for (const key in data.value) {
+    //     if (filters.value[key]) {
+    //       result[key] = data.value[key].filter((row) =>
+    //         filters.value[key].every((filter) => filter.condition(row[filter.colIndex]))
+    //       );
+    //     } else {
+    //       result[key] = data.value[key];
+    //     }
+    //   }
+    //   return result;
+    // });
 
-    return { cellChanged, connection, components, data, loading, applyFilters, toggleSelCp, filteredData };
+    return { cellChanged, connection, components, data, loading, applyFilters, toggleSelCp };
   },
   computed: {},
   mounted() {

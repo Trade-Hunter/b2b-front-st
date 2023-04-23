@@ -216,6 +216,7 @@ export default {
       }
       const queryOpts = [];
       for (var key of Object.keys(filters)) {
+        console.log("aoba", filters[key]);
         queryOpts.push({
           queryName: filters[key].query,
           queryIdx: filters[key].idx,
