@@ -90,13 +90,13 @@ export default {
           { label: "Ativo", value: "", index: 0 },
           { label: "Hora", value: "", index: 1 },
           { label: "Últ.", index: 2, format: { type: "float" } },
-          { label: "Var. %", value: "", index: undefined },
-          { label: "AVAT", value: "", index: undefined },
+          { label: "Var. %", value: "", index: 3, format: { type: "float" } },
+          { label: "AVAT", value: "", index: 6, format: { type: "float" } },
         ],
         filter: [
-          { label: "Liquidez Mínima", value: "liqmin", index: 8 },
-          { label: "Intervalo Mínimo", value: "minInterval", index: 1 },
-          { label: "AVAT Min", value: "avatMin", index: 5 },
+          { label: "Liquidez Mínima", value: "liqmin", index: 5 },
+          { label: "Intervalo Mínimo", value: "minInterval", index: 4 },
+          { label: "AVAT Min", value: "avatMin", index: 6 },
         ],
       },
       {
@@ -105,11 +105,11 @@ export default {
         href: "/iceberg",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 0 },
-          { label: "Últ.", value: "", index: 0 },
-          { label: "Var. %", value: "", index: 0 },
-          { label: "Ativo", value: "", index: 0 },
-          { label: "Ativo", value: "", index: 0 },
+          { label: "Type", value: "", index: 1 },
+          { label: "Size.", value: "", index: 2 },
+          // { label: "Var. %", value: "", index: 0 },
+          // { label: "Ativo", value: "", index: 0 },
+          // { label: "Ativo", value: "", index: 0 },
         ],
         filter: [{ label: "a", value: "a" }],
       },
@@ -119,10 +119,10 @@ export default {
         href: "/players",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 0 },
-          { label: "Últ.", value: "", index: 0 },
-          { label: "Var. %", value: "", index: 0 },
-          { label: "Score", value: "", index: 0 },
+          { label: "Hora", value: "", index: 1 },
+          { label: "Últ.", value: "", index: 2 },
+          { label: "Var. %", value: "", index: 3, format: { type: "float" } },
+          { label: "Score", value: "", index: 4, format: { type: "float" } },
           //{ label: "Ativo", value: "", index: 0 },
         ],
         filter: [
@@ -152,8 +152,8 @@ export default {
         href: "/distortions",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 0 },
-          { label: "Últ.", value: "", index: 0 },
+          { label: "Hora", value: "", index: 1 },
+          { label: "Últ.", value: "", index: 2 },
           { label: "Var. %", value: "", index: 0 },
           { label: "Quantidade", value: "", index: 0 },
           { label: "Financeiro", value: "", index: 0 },
@@ -169,10 +169,10 @@ export default {
         href: "/arbitragem",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 0 },
-          { label: "Últ.", value: "", index: 0 },
-          { label: "Var. %", value: "", index: 0 },
-          { label: "Proj.", value: "", index: 0 },
+          { label: "Hora", value: "", index: 1 },
+          { label: "Últ.", value: "", index: 2 },
+          { label: "Var. %", value: "", index: 3, format: { type: "float" } },
+          { label: "Proj.", value: "", index: 4, format: { type: "int" } },
           //{ label: "Ativo", value: "", index: 0 },
         ],
         filter: [
@@ -353,10 +353,12 @@ export default {
             var color = value >= 0 ? "font-bold text-green-500" : "font-bold text-red-500";
 
             var el =
-              `<span class="${color}">` + value?.toLocaleString("pt-BR", { maximumFractionDigits: 0 }) + "</span>";
+              `<span class="${color}">` +
+              Number(value)?.toLocaleString("pt-BR", { maximumFractionDigits: 0 }) +
+              "</span>";
             return el;
           }
-          return value?.toLocaleString("pt-BR", { maximumFractionDigits: 0 });
+          return Number(value)?.toLocaleString("pt-BR", { maximumFractionDigits: 0 });
         }
         case "float": {
           if (format.color) {
