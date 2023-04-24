@@ -64,7 +64,7 @@
 import HxcMenu from "@/components/Menu/Menu.vue";
 import LoadingSpinner from "@/components/LoadingSpinner.vue"; // Import the LoadingSpinner component
 import FilterModal from "@/components/Modal/FilterModal.vue"; // import the FilterModal component
-import { reactive, computed, ref, onUnmounted } from "vue";
+import { reactive, watch, computed, ref, onUnmounted } from "vue";
 import { useStore } from "vuex";
 export default {
   components: {
@@ -229,7 +229,7 @@ export default {
           //this.loading = true;
           //this.connection = null;
           if (event.code == 3000) {
-            //this.$store.dispatch("auth/refresh");
+            store.dispatch("auth/refresh");
           } else {
             const randomDelay = Math.floor(Math.random() * 5000) + 1000; // Random delay between 1 and 6 seconds
             setTimeout(() => {
@@ -286,6 +286,13 @@ export default {
       if (connection) {
         connection.close();
       }
+    });
+
+    watch(store.state.auth.token, (newUsername) => {
+      if (connection) {
+        connection.close();
+      }
+      createWebSocket();
     });
 
     const applyFilters = (selectedFilters) => {
@@ -392,14 +399,6 @@ export default {
           return value?.toFixed(2) + "%";
         }
       }
-    },
-  },
-  watch: {
-    "$store.state.auth.token"(newValue) {
-      if (this.connection) {
-        this.connection.close();
-      }
-      this.createWebSocket();
     },
   },
 };
