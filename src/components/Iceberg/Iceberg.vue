@@ -215,48 +215,51 @@ export default {
         {
           name: "Hora",
           value: "",
-          format: "",
+          format: "hora",
+          index: 1,
         },
         {
-          name: "Últ.",
+          name: "Type",
           value: "",
           format: "",
+          index: 2,
         },
         {
-          name: "Var. %",
+          name: "Size",
           value: "",
-          format: "",
+          format: "float",
+          index: 3,
         },
-        {
-          name: "Quantidade",
-          value: "",
-          format: "",
-        },
-        {
-          name: "Financeiro",
-          value: "",
-          format: "",
-        },
-        {
-          name: "Quantidade / Média",
-          value: "",
-          format: "",
-        },
-        {
-          name: "Comprador",
-          value: "",
-          format: "",
-        },
-        {
-          name: "Vendedor",
-          value: "",
-          format: "",
-        },
-        {
-          name: "Últ / MM 60",
-          value: "",
-          format: "",
-        },
+        // {
+        //   name: "Quantidade",
+        //   value: "",
+        //   format: "",
+        // },
+        // {
+        //   name: "Financeiro",
+        //   value: "",
+        //   format: "",
+        // },
+        // {
+        //   name: "Quantidade / Média",
+        //   value: "",
+        //   format: "",
+        // },
+        // {
+        //   name: "Comprador",
+        //   value: "",
+        //   format: "",
+        // },
+        // {
+        //   name: "Vendedor",
+        //   value: "",
+        //   format: "",
+        // },
+        // {
+        //   name: "Últ / MM 60",
+        //   value: "",
+        //   format: "",
+        // },
       ],
       connection: null,
     };

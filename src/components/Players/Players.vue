@@ -94,7 +94,7 @@ export default {
       try {
         const connection = new WebSocket(webSocketUrl.value);
         connection.onopen = (event) => {
-          connection.send(`C=S;I=avat;Q=;S=;L;=500`);
+          connection.send(`C=S;I=players;Q=;S=;L;=500`);
           // this.$notify({
           //   type: "success",
           //   title: `Conexão com o servidor realizada com sucesso`,
@@ -216,31 +216,31 @@ export default {
         {
           name: "Hora",
           value: "",
-          format: "",
+          format: "hora",
           index: 1,
         },
         {
           name: "Últ.",
           value: "",
-          format: "",
+          format: "float",
           index: 2,
         },
         {
           name: "Var. %",
           value: "",
-          format: "",
+          format: "float",
           index: 3,
         },
         {
           name: "Points",
           value: "",
-          format: "",
+          format: "float",
           index: 4,
         },
         {
           name: "Score",
           value: "",
-          format: "",
+          format: "float",
           index: 5,
         },
         {
