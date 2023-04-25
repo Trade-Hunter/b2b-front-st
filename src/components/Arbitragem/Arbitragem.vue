@@ -215,27 +215,27 @@ export default {
         {
           name: "Hora",
           value: "",
-          format: "",
+          format: "hora",
         },
         {
           name: "Últ.",
           value: "",
-          format: "",
+          format: "float",
         },
         {
           name: "Var. %",
           value: "",
-          format: "",
+          format: "float",
         },
         {
           name: "Projetado",
           value: "",
-          format: "",
+          format: "int",
         },
         {
           name: "Últ / MM60",
           value: "",
-          format: "",
+          format: "float",
         },
         {
           name: "Setor",

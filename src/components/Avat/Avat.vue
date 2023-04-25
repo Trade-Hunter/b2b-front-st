@@ -39,7 +39,7 @@
     </base-modal>
     <div class="flex flex-col no-scrollbar overflow-scroll min-w-full h-full pl-2 pt-1">
       <div class="flex">
-        <h2 class="mb-2 text-xl font-extrabold text-gray-900 dark:text-gray-50 font-mono">Avat</h2>
+        <h2 class="mb-2 text-xl font-extrabold text-gray-900 dark:text-gray-50 font-mono">AVAT</h2>
         <div
           class="ml-auto mr-2 cursor-pointer"
           v-tooltip:left.tooltip="'Entenda a dinâmica dessa tela.'"
@@ -229,6 +229,7 @@ export default {
           name: "Var. %",
           value: "",
           format: "float",
+          color: true,
           index: 3,
         },
         {

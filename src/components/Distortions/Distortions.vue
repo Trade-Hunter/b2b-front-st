@@ -214,37 +214,38 @@ export default {
         {
           name: "Hora",
           value: "",
-          format: "",
+          format: "hora",
           index: 11,
         },
         {
           name: "Últ.",
           value: "",
-          format: "",
+          format: "float",
           index: 2,
         },
         {
           name: "Var. %",
           value: "",
-          format: "",
+          format: "float",
           index: 3,
+          color: true,
         },
         {
           name: "Quantidade",
           value: "",
-          format: "",
+          format: "int",
           index: 4,
         },
         {
           name: "Financeiro",
           value: "",
-          format: "",
+          format: "int",
           index: 5,
         },
         {
           name: "Quantidade / Média",
           value: "",
-          format: "",
+          format: "float",
           index: 6,
         },
         {
@@ -262,7 +263,7 @@ export default {
         {
           name: "Últ / MM 60",
           value: "",
-          format: "",
+          format: "float",
           index: 12,
         },
       ],

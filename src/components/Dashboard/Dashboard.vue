@@ -84,7 +84,7 @@ export default {
     const components = [
       {
         name: "Avat",
-        value: "amplitude",
+        value: "avat",
         href: "/avat",
         columns: [
           { label: "Ativo", value: "", index: 0 },
@@ -97,6 +97,7 @@ export default {
           { label: "Liquidez Mínima", value: "liqmin", index: 5 },
           { label: "Intervalo Mínimo", value: "minInterval", index: 4 },
           { label: "AVAT Min", value: "avatMin", index: 6 },
+          //FILTRO LIQ MIN 25.000.000
         ],
       },
       {
@@ -105,13 +106,15 @@ export default {
         href: "/iceberg",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Type", value: "", index: 1 },
-          { label: "Size.", value: "", index: 2 },
+          { label: "Hora", value: "", index: 1 },
+          { label: "Type", value: "", index: 2 },
+          { label: "Size.", value: "", index: 3 },
           // { label: "Var. %", value: "", index: 0 },
           // { label: "Ativo", value: "", index: 0 },
           // { label: "Ativo", value: "", index: 0 },
         ],
         filter: [{ label: "a", value: "a" }],
+        //TOODO: filtro lite min
       },
       {
         name: "Players",
@@ -122,8 +125,10 @@ export default {
           { label: "Hora", value: "", index: 1 },
           { label: "Últ.", value: "", index: 2 },
           { label: "Var. %", value: "", index: 3, format: { type: "float", color: true } },
-          { label: "Score", value: "", index: 4, format: { type: "float" } },
+          { label: "Points", value: "", index: 4, format: { type: "int" } },
+          { label: "Score", value: "", index: 5, format: { type: "float" } },
           //{ label: "Ativo", value: "", index: 0 },
+          //TODO: ordernacao default score
         ],
         filter: [
           { label: "Player", value: "player" },
@@ -138,12 +143,13 @@ export default {
           { label: "Ativo", value: "ativo", index: 0 },
           { label: "Hora", index: 1 },
           { label: "Últ.", index: 2, format: { type: "float" } },
-          { label: "Var. %", index: 7, format: { type: "float", color: true } },
+          //{ label: "Var. %", index: 7, format: { type: "float", color: true } },
           { label: "Amp.", index: 3, format: { type: "float", color: true } },
         ],
         filter: [
           { label: "Liquidez", value: "liq", index: 8 },
           { label: "Amplitude", value: "amp" },
+          //TODO: sort default amplitude
         ],
       },
       {
@@ -168,16 +174,22 @@ export default {
         value: "arbitragem",
         href: "/arbitragem",
         columns: [
-          { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 1 },
-          { label: "Últ.", value: "", index: 2 },
-          { label: "Var. %", value: "", index: 3, format: { type: "float", color: true } },
-          { label: "Proj.", value: "", index: 4, format: { type: "int" } },
+          { label: "Setor", value: "", index: 6 },
+          // { label: "Hora", value: "", index: 1 },
+          { label: "Média %.", value: "", index: 7, format: { type: "float" } },
+          { label: "Pior", value: "", index: 8 },
+          { label: "%.", value: "", index: 9, format: { type: "float" } },
+          { label: "%", value: "", index: 11, format: { type: "float" } },
+          { label: "Melhor", value: "", index: 10 },
+          { label: "Count", value: "", index: 12 },
+          //{ label: "Proj.", value: "", index: 4, format: { type: "int" } },
           //{ label: "Ativo", value: "", index: 0 },
         ],
         filter: [
           { label: "Liquidez Mínima", value: "liqMin" },
           { label: "Setor", value: "sec" },
+          //TODO: filtro deffault liq minima 5mm
+          //TODO: sort ordem alfabetica
         ],
       },
     ];
@@ -188,8 +200,23 @@ export default {
     const createStruct = () => {
       for (var cp of components) {
         data.value[cp.value] = [];
-        filters.value[cp.value] = { query: "", sortIdx: 0, order: "", limit: 15 };
+        filters.value[cp.value] = { query: "", sortIdx: 1, order: "", limit: 15 };
+        if (cp.value == "avat")
+          filters.value[cp.value] = {
+            // query: {
+            //   queryName: "greaterThan",
+            //   queryIdx: 5,
+            //   queryType: undefined,
+            //   queryValue: 500000,
+            // },
+            sortIdx: 6,
+            order: "dsc",
+            limit: 15,
+          };
       }
+
+      console.log("dash", store.state.theme.DASH_OPTS);
+      if (store.state.theme.DASH_OPTS) filters.value = store.state.theme.DASH_OPTS;
     };
 
     const getMessage = () => {
@@ -303,6 +330,8 @@ export default {
       if (connection) {
         connection.send(getMessage());
       }
+
+      store.commit("theme/SET_DASH_OPTS", filters.value);
     };
 
     // const filteredData = computed(() => {

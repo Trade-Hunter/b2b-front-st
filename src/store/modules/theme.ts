@@ -9,10 +9,7 @@ export default {
     paddingLeft: "290px",
     side_display: "flex",
     sidebar_display: false,
-    SCR_OPTS: {
-      liqMin: 25000000,
-      liqMax: 10000000000,
-    },
+    DASH_OPTS: null,
     accessWarning: false,
   },
   mutations: {
@@ -30,6 +27,9 @@ export default {
 
       state.theme = theme;
       localStorage.theme = theme;
+    },
+    SET_DASH_OPTS(state: any, theme: any) {
+      state.DASH_OPTS = theme;
     },
     SET_SCR_OPTS(state: any, theme: any) {
       state.SCR_OPTS = theme;
