@@ -76,7 +76,10 @@
             >
               <div class="flex justify-center select-none text-gray-700 font-normal">
                 {{ column.name }}
-                <div v-if="currentSort == column.value" class="inline-flex transform text-gray-700 hover:scale-110">
+                <div
+                  v-if="column.index !== undefined ? currentSort == column.index : currentSort == column.value"
+                  class="inline-flex transform text-gray-700 hover:scale-110"
+                >
                   <svg
                     v-if="currentSortDir == -1"
                     aria-hidden="true"
@@ -531,16 +534,19 @@ export default {
       this.isShowModal = false;
     },
     sort(column_index) {
-      if (
-        this.currentSort == (this.columns[column_index].index !== undefined)
-          ? this.columns[column_index].index
-          : this.columns[column_index].value
-      )
-        this.currentSortDir = this.currentSortDir === 1 ? -1 : 1;
-      this.currentSort =
-        this.columns[column_index].index !== undefinded
+      const prevCurr =
+        this.columns[column_index].index !== undefined
           ? this.columns[column_index].index
           : this.columns[column_index].value;
+
+      if (this.currentSort == prevCurr) this.currentSortDir = this.currentSortDir === 1 ? -1 : 1;
+
+      this.currentSort =
+        this.columns[column_index].index !== undefined
+          ? this.columns[column_index].index
+          : this.columns[column_index].value;
+
+      console.log("currSort", this.currentSort);
     },
 
     toggleSorting(column) {

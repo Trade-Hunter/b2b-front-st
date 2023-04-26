@@ -6,8 +6,34 @@
       :all-columns="selectedComponent.filter"
       @filter-by-column-values="applyFilters"
     />
+    <Modal @close="toggleInfo" :submit="submitInfo" scrollable title="Informações Úteis" ref="modalInfo">
+      <div v-for="topic in infoKeys" :key="topic" class="font-mono w-full">
+        <div class="subheader text-blue-500 font-semibold">
+          {{ topic.title }}
+        </div>
+        <div class="spacer"></div>
+        <div class="subheader divide-y text-sm ml-1 text-black dark:text-white">
+          {{ topic.description }}
+        </div>
+        <hr class="mt-2 mb-2 border-gray-200 dark:border-gray-400" />
+        <div class="grid grid-flow-dense grid-cols-3 gap-y-1">
+          <div v-for="subtopic in topic.subtopics" :key="subtopic" class="text-input rounded-l-md pl-2 mb-1">
+            <div class="subheader text-blue-500 text-sm font-semibold">• {{ subtopic.title }}</div>
+            <div class="spacer"></div>
+            <p class="ml-4 my-auto text-xs text-black dark:text-white">
+              {{ subtopic.description }}
+            </p>
+          </div>
+        </div>
+        <hr class="mt-1 mb-4" />
+      </div>
+    </Modal>
     <div class="grid grid-cols-3 h-full p-4 gap-8">
-      <div v-for="component in components" :key="component.name" class="qdrinho bg-white overflow-hidden">
+      <div
+        v-for="(component, componentIdx) in components"
+        :key="component.name"
+        class="qdrinho bg-white overflow-hidden"
+      >
         <div class="p-3 flex">
           <router-link class="text-qdrinho text-black uppercase" :to="component.href">{{ component.name }}</router-link>
           <svg
@@ -25,6 +51,7 @@
               d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
             />
           </svg>
+          <InformationCircle class="ml-2" @click="showInfo(componentIdx)" />
         </div>
         <div class="overflow-y-auto custom-scrollbar h-full">
           <table class="mx-auto max-w-full w-full" :class="{ 'h-full': loading }">
@@ -71,6 +98,8 @@
 import HxcMenu from "@/components/Menu/Menu.vue";
 import LoadingSpinner from "@/components/LoadingSpinner.vue"; // Import the LoadingSpinner component
 import FilterModal from "@/components/Modal/FilterModal.vue"; // import the FilterModal component
+import Modal from "@/components/Modal/Modal.vue";
+import { InformationCircle } from "@/assets/icons/heroicons";
 import { reactive, watch, computed, ref, onUnmounted } from "vue";
 import { useStore } from "vuex";
 export default {
@@ -78,9 +107,11 @@ export default {
     HxcMenu,
     LoadingSpinner,
     FilterModal,
+    InformationCircle,
+    Modal,
   },
   data() {
-    return { selectedComponent: { filter: undefined } };
+    return { selectedComponent: { filter: undefined }, infoKeys: [] };
   },
   setup() {
     const store = useStore();
@@ -119,6 +150,27 @@ export default {
           sortIdx: 6,
           order: "dsc",
         },
+        info: [
+          {
+            title: "Métricas da Tabela",
+            description: "Veja o que significa cada métrica da tabela",
+            subtopics: [
+              {
+                title: "Points Ima",
+                description: "Points Imã",
+              },
+              {
+                title: "Points Barreira",
+                description: "Points Barreira",
+              },
+
+              {
+                title: "Strike",
+                description: "Preço de Exercício",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Iceberg",
@@ -146,7 +198,7 @@ export default {
         columns: [
           { label: "Ativo", value: "", index: 0 },
           { label: "Hora", value: "", index: 1, format: { type: "hora" } },
-          { label: "Últ.", value: "", index: 2 },
+          { label: "Últ.", value: "", index: 2, format: { type: "float" } },
           { label: "Var. %", value: "", index: 3, format: { type: "float", color: true } },
           { label: "Points", value: "", index: 4, format: { type: "int" } },
           { label: "Score", value: "", index: 5, format: { type: "float" } },
@@ -382,7 +434,16 @@ export default {
     //   return result;
     // });
 
-    return { cellChanged, connection, components, data, loading, applyFilters, toggleSelCp, changeSort };
+    return {
+      cellChanged,
+      connection,
+      components,
+      data,
+      loading,
+      applyFilters,
+      toggleSelCp,
+      changeSort,
+    };
   },
   computed: {},
   mounted() {
@@ -395,6 +456,10 @@ export default {
     }
   },
   methods: {
+    showInfo(idx) {
+      this.infoKeys = this.components[idx].info;
+      this.$refs.modalInfo.open();
+    },
     openFilterModal(component) {
       // Call the open method on the FilterModal component and pass the component as a parameter
       console.log(this.$refs);
