@@ -1,6 +1,6 @@
 <template>
   <HxcMenu>
-    <base-modal v-if="modalActive" @close="toggleModal" :submit="SubmitFilter" scrollable title="Filtrar dados">
+    <Modal :submit="SubmitFilter" scrollable title="Filtrar dados" ref="modalFilter">
       <div class="grid gap-x-2 grid-cols-1 lg:grid-cols-4 w-full">
         <div>
           <hxc-label text="Pontuação Mínima"></hxc-label>
@@ -14,8 +14,8 @@
           <hxc-btn @click="SubmitFilter" text="Confirmar"> </hxc-btn>
         </span>
       </template>
-    </base-modal>
-    <base-modal v-if="infoActive" @close="toggleInfo" :submit="submitInfo" scrollable title="Informações Úteis">
+    </Modal>
+    <Modal :submit="submitInfo" scrollable title="Informações Úteis" ref="modalInfo">
       <div v-for="topic in infoTopics" :key="topic" class="font-mono w-full">
         <div class="subheader text-blue-500 font-semibold">
           {{ topic.title }}
@@ -36,7 +36,7 @@
         </div>
         <hr class="mt-1 mb-4" />
       </div>
-    </base-modal>
+    </Modal>
     <div class="flex flex-col no-scrollbar overflow-scroll min-w-full h-full pl-2 pt-1">
       <div class="flex">
         <h2 class="mb-2 text-xl font-extrabold text-gray-900 dark:text-gray-50 font-mono">Distortions</h2>
@@ -45,7 +45,7 @@
           v-tooltip:left.tooltip="'Entenda a dinâmica dessa tela.'"
           @click="toggleInfo"
         >
-          <InformationCircle class="hover:scale-125" />
+          <InformationCircle class="hover:scale-125" @click="showInfo" />
         </div>
       </div>
 
@@ -81,6 +81,7 @@ export default {
     HxcMenu,
     Modal,
     HxcTable,
+    InformationCircle,
   },
   setup() {
     const store = useStore();
@@ -226,27 +227,27 @@ export default {
         {
           name: "Var. %",
           value: "",
-          format: "float",
-          index: 3,
+          format: "percent",
+          index: 6,
           color: true,
         },
         {
           name: "Quantidade",
           value: "",
           format: "int",
-          index: 4,
+          index: 3,
         },
         {
           name: "Financeiro",
           value: "",
           format: "int",
-          index: 5,
+          index: 4,
         },
         {
           name: "Quantidade / Média",
           value: "",
           format: "float",
-          index: 6,
+          index: 17,
         },
         {
           name: "Comprador",
@@ -274,8 +275,11 @@ export default {
   beforeUnmount() {},
 
   methods: {
+    showInfo() {
+      this.$refs.modalInfo.open();
+    },
     toggleModal() {
-      this.modalActive = !this.modalActive;
+      this.$refs.modalFilter.open();
     },
     SubmitFilter() {
       this.modalActive = false;
