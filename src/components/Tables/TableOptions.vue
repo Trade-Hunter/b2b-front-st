@@ -531,9 +531,16 @@ export default {
       this.isShowModal = false;
     },
     sort(column_index) {
-      if (this.currentSort == this.columns[column_index].value)
+      if (
+        this.currentSort == (this.columns[column_index].index !== undefined)
+          ? this.columns[column_index].index
+          : this.columns[column_index].value
+      )
         this.currentSortDir = this.currentSortDir === 1 ? -1 : 1;
-      this.currentSort = this.columns[column_index].value;
+      this.currentSort =
+        this.columns[column_index].index !== undefinded
+          ? this.columns[column_index].index
+          : this.columns[column_index].value;
     },
 
     toggleSorting(column) {

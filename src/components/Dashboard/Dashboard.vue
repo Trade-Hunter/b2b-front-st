@@ -31,10 +31,10 @@
             <thead class="bg-[#E7E7E7] dark:bg-[#2A2D33] z-10 leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
                 <th
-                  v-for="(cl, clIdx) of component.columns"
+                  v-for="cl of component.columns"
                   :key="cl.value"
                   class="px-2 py-1 font-normal"
-                  @click="changeSort(component.value, clIdx)"
+                  @click="changeSort(component.value, cl.index)"
                 >
                   {{ cl.label }}
                 </th>
@@ -128,7 +128,7 @@ export default {
           { label: "Ativo", value: "", index: 0 },
           { label: "Hora", value: "", index: 1, format: { type: "hora" } },
           { label: "Type", value: "", index: 2 },
-          { label: "Size.", value: "", index: 3 },
+          { label: "Size.", value: "", index: 3, format: { type: "int" } },
           // { label: "Var. %", value: "", index: 0 },
           // { label: "Ativo", value: "", index: 0 },
           // { label: "Ativo", value: "", index: 0 },
