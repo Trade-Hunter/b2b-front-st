@@ -95,7 +95,7 @@ export default {
         href: "/avat",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 1 },
+          { label: "Hora", value: "", index: 1, format: { type: "hora" } },
           { label: "Últ.", index: 2, format: { type: "float" } },
           { label: "Var. %", value: "", index: 3, format: { type: "float", color: true } },
           { label: "AVAT", value: "", index: 6, format: { type: "float" } },
@@ -126,7 +126,7 @@ export default {
         href: "/iceberg",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 1 },
+          { label: "Hora", value: "", index: 1, format: { type: "hora" } },
           { label: "Type", value: "", index: 2 },
           { label: "Size.", value: "", index: 3 },
           // { label: "Var. %", value: "", index: 0 },
@@ -145,7 +145,7 @@ export default {
         href: "/players",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 1 },
+          { label: "Hora", value: "", index: 1, format: { type: "hora" } },
           { label: "Últ.", value: "", index: 2 },
           { label: "Var. %", value: "", index: 3, format: { type: "float", color: true } },
           { label: "Points", value: "", index: 4, format: { type: "int" } },
@@ -164,7 +164,7 @@ export default {
         href: "/amplitude",
         columns: [
           { label: "Ativo", value: "ativo", index: 0 },
-          { label: "Hora", index: 1 },
+          { label: "Hora", index: 1, format: { type: "hora" } },
           { label: "Últ.", index: 2, format: { type: "float" } },
           //{ label: "Var. %", index: 7, format: { type: "float", color: true } },
           { label: "Amp.", index: 3, format: { type: "float", color: true } },
@@ -181,7 +181,7 @@ export default {
         href: "/distortions",
         columns: [
           { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 11 },
+          { label: "Hora", value: "", index: 11, format: { type: "hora" } },
           { label: "Últ.", value: "", index: 2, format: { type: "float" } },
           { label: "Var. %", value: "", index: 6, format: { type: "float", color: true } },
           { label: "Quantidade", value: "", index: 3, format: { type: "int" } },
@@ -462,6 +462,9 @@ export default {
             return el;
           }
           return value?.toFixed(2) + "%";
+        }
+        case "hora": {
+          return value?.toString().slice(0, 2) + ":" + value.toString().slice(2);
         }
       }
     },
