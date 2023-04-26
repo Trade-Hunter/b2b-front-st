@@ -229,6 +229,7 @@ export default {
           value: "",
           format: "float",
           index: 3,
+          color: true,
         },
         {
           name: "Mín",

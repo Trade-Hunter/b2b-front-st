@@ -1,10 +1,8 @@
 <template>
   <div :class="{ dark: isDarkMode }" class="h-full">
     <!-- <router-view :key="$route.name"> </router-view> -->
-    <router-view v-slot="{ Component, route }">
-      <transition :name="route.meta.transition">
-        <component :is="Component" />
-      </transition>
+    <router-view v-slot="{ Component }">
+      <component :is="Component" />
     </router-view>
 
     <notifications position="bottom right" :duration="5000" />
@@ -26,7 +24,7 @@ export default defineComponent({
     return { scroll, handleClickScrollToTop };
   },
   computed: {
-    ...mapGetters("theme", ["isDarkMode"]),
+    ...mapGetters({ isDarkMode: "theme/isDarkMode", theme: "theme/getTheme" }),
   },
 });
 </script>

@@ -30,7 +30,14 @@
           <table class="mx-auto max-w-full w-full" :class="{ 'h-full': loading }">
             <thead class="bg-[#E7E7E7] dark:bg-[#2A2D33] z-10 leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
-                <th v-for="cl of component.columns" :key="cl.value" class="px-4 py-1 font-normal">{{ cl.label }}</th>
+                <th
+                  v-for="(cl, clIdx) of component.columns"
+                  :key="cl.value"
+                  class="px-2 py-1 font-normal"
+                  @click="changeSort(component.value, clIdx)"
+                >
+                  {{ cl.label }}
+                </th>
               </tr>
             </thead>
             <tbody class="z-0 h-full overflow-y-auto relative">
@@ -43,7 +50,7 @@
                 v-for="(row, rowIdx) in data[component.value]"
                 :key="`row-${rowIdx}`"
               >
-                <td v-for="(cl, cellIdx) in component.columns" :key="cl.value" class="px-4 py-1">
+                <td v-for="(cl, cellIdx) in component.columns" :key="cl.value" class="px-1 py-1">
                   <span
                     v-html="format(cl.format, row[cl.index])"
                     :class="{
@@ -99,6 +106,19 @@ export default {
           { label: "AVAT Min", value: "avatMin", index: 6 },
           //FILTRO LIQ MIN 25.000.000
         ],
+        default: {
+          query: [
+            {
+              queryName: "greaterThan",
+              queryIdx: 5,
+              queryType: "",
+              queryValue: 25000000,
+            },
+          ],
+
+          sortIdx: 6,
+          order: "dsc",
+        },
       },
       {
         name: "Iceberg",
@@ -113,8 +133,11 @@ export default {
           // { label: "Ativo", value: "", index: 0 },
           // { label: "Ativo", value: "", index: 0 },
         ],
-        filter: [{ label: "a", value: "a" }],
-        //TOODO: filtro lite min
+        filter: [{ label: "Lote Min", value: "lotemin", index: 3 }],
+        default: {
+          sortIdx: 1,
+          order: "dsc",
+        },
       },
       {
         name: "Players",
@@ -168,6 +191,10 @@ export default {
           { label: "Player", value: "players" },
           { label: "Financeiro Mínimo", value: "financeiroMin" },
         ],
+        default: {
+          sortIdx: 1,
+          order: "dsc",
+        },
       },
       {
         name: "Arbitragem",
@@ -176,7 +203,7 @@ export default {
         columns: [
           { label: "Setor", value: "", index: 6 },
           // { label: "Hora", value: "", index: 1 },
-          { label: "Média %.", value: "", index: 7, format: { type: "float" } },
+          { label: "Méd %", value: "", index: 7, format: { type: "float" } },
           { label: "Pior", value: "", index: 8 },
           { label: "%.", value: "", index: 9, format: { type: "float" } },
           { label: "%", value: "", index: 11, format: { type: "float" } },
@@ -191,6 +218,11 @@ export default {
           //TODO: filtro deffault liq minima 5mm
           //TODO: sort ordem alfabetica
         ],
+
+        // default: {
+        //   sortIdx: 3,
+        //   order: "dsc",
+        // },
       },
     ];
 
@@ -200,22 +232,16 @@ export default {
     const createStruct = () => {
       for (var cp of components) {
         data.value[cp.value] = [];
-        filters.value[cp.value] = { query: "", sortIdx: 1, order: "", limit: 15 };
-        if (cp.value == "avat")
-          filters.value[cp.value] = {
-            // query: {
-            //   queryName: "greaterThan",
-            //   queryIdx: 5,
-            //   queryType: undefined,
-            //   queryValue: 500000,
-            // },
-            sortIdx: 6,
-            order: "dsc",
-            limit: 15,
-          };
+
+        filters.value[cp.value] = {
+          query: cp.default?.query || "",
+          sortIdx: cp.default?.sortIdx,
+          order: cp.default?.order,
+          limit: 15,
+        };
       }
 
-      console.log("dash", store.state.theme.DASH_OPTS);
+      //console.log("dash", store.state.theme.DASH_OPTS);
       if (store.state.theme.DASH_OPTS) filters.value = store.state.theme.DASH_OPTS;
     };
 
@@ -294,15 +320,23 @@ export default {
               data.value[dataEv.ch][rowIndex][cellIndex] = dataEv.data[rowIndex][cellIndex];
             }
           }
-          console.log("sdsdsdsdsd", dataEv.data.length);
+          //console.log("sdsdsdsdsd", dataEv.data.length);
           if (dataEv.data.length < 1) {
-            console.log("sdsdsdsdsd1", dataEv.ch);
+            //console.log("sdsdsdsdsd1", dataEv.ch);
             data.value[dataEv.ch] = [];
           }
         };
         return connection;
       } catch (error) {
         console.log("error", error);
+      }
+    };
+
+    const changeSort = (cp, index) => {
+      filters.value[cp].sortIdx = index;
+      filters.value[cp].order = filters.value[cp].order == "dsc" ? "asc" : "dsc";
+      if (connection) {
+        connection.send(getMessage());
       }
     };
 
@@ -348,7 +382,7 @@ export default {
     //   return result;
     // });
 
-    return { cellChanged, connection, components, data, loading, applyFilters, toggleSelCp };
+    return { cellChanged, connection, components, data, loading, applyFilters, toggleSelCp, changeSort };
   },
   computed: {},
   mounted() {

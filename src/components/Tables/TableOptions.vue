@@ -62,7 +62,7 @@
       </div>
       <table class="table w-full h-full table-auto">
         <thead class="z-10 text-gray-50 sticky tracking-tighter text-xs table-header-group">
-          <tr class="bg-blue-500 w-full sticky top-0">
+          <tr class="bg-gray-200 dark:bg-[#2A2D33] w-full sticky top-0">
             <th
               v-for="(column, index) in columns"
               :key="column.name"
@@ -72,14 +72,11 @@
               }"
               v-tooltip:bottom.tooltip="column.desc"
               @click="sort(index)"
-              class="table-cell py-1"
+              class="table-cell py-3"
             >
-              <div class="flex justify-center select-none font-normal">
+              <div class="flex justify-center select-none text-gray-700 font-normal">
                 {{ column.name }}
-                <div
-                  v-if="currentSort == column.value"
-                  class="inline-flex transform hover:text-white text-white hover:scale-110"
-                >
+                <div v-if="currentSort == column.value" class="inline-flex transform text-gray-700 hover:scale-110">
                   <svg
                     v-if="currentSortDir == -1"
                     aria-hidden="true"
@@ -124,7 +121,7 @@
             :key="item"
             class="p-2 text-center text-black dark:text-white border-collapse"
             :class="{
-              'bg-gray-200 dark:bg-dark-2': rowIndex % 2 == 0,
+              'bg-gray-200 dark:bg-dark-2': rowIndex % 2 !== 0,
             }"
           >
             <td
@@ -134,8 +131,8 @@
                 'left-0': colIndex == 0,
                 sticky: colIndex == 0,
                 'bg-white ': colIndex == 0,
-                'bg-gray-200 dark:bg-dark-2': colIndex == 0 && rowIndex % 2 == 0,
-                'dark:bg-dark-1': colIndex == 0 && rowIndex % 2 !== 0,
+                'bg-gray-200 dark:bg-dark-2': colIndex == 0 && rowIndex % 2 !== 0,
+                'dark:bg-dark-1': colIndex == 0 && rowIndex % 2 == 0,
               }"
               class="py-1 px-2"
               v-html="format(item[column.index !== undefined ? column.index : column.value], colIndex, rowIndex)"
@@ -147,7 +144,7 @@
           v-if="paging.pages > 1 || footer"
           class="text-white tracking-tighter text-xs table-footer-group rounded-b"
         >
-          <tr class="text-center bg-blue-500 w-full sticky bottom-0">
+          <tr class="text-center bg-[#E7E7E7] dark:bg-[#2A2D33] w-full sticky bottom-0">
             <td
               v-for="(column, index) in columns"
               :key="column.name"
@@ -166,7 +163,7 @@
   </div>
   <div
     v-if="tableLength / pageSize > 1"
-    class="bg-blue-500 rounded-b-lg flex flex-row xs:flex-row items-end justify-end xs:justify-between drop-shadow-xl"
+    class="bg-[#E7E7E7] dark:bg-[#2A2D33] rounded-b-lg flex flex-row xs:flex-row items-end justify-end xs:justify-between drop-shadow-xl"
   >
     <div class="inline-flex xs:mt-0 mb-0.5">
       <button v-if="currentPage !== 1" class="text-xs text-white bg-transparent dark:text-white" @click="currentPage--">
@@ -392,21 +389,23 @@ export default {
 
         case "int": {
           if (columnObj.color) {
-            var color = value >= 0 ? "font-bold text-green-500" : "font-bold text-red-500";
-            if (inFooter) color = "font-bold text-white";
+            var color = value >= 0 ? "text-green-500" : "text-red-500";
+            if (inFooter) color = "text-white";
             var el =
-              `<span class="${color}">` + value?.toLocaleString("pt-BR", { maximumFractionDigits: 0 }) + "</span>";
+              `<span class="${color}">` +
+              Number(value)?.toLocaleString("pt-BR", { maximumFractionDigits: 0 }) +
+              "</span>";
             return el;
           }
-          return value?.toLocaleString("pt-BR", { maximumFractionDigits: 0 });
+          return Number(value)?.toLocaleString("pt-BR", { maximumFractionDigits: 0 });
         }
         case "float": {
           if (columnObj.color) {
-            var color = value >= 0 ? "font-bold text-green-500" : "font-bold text-red-500";
-            if (inFooter) color = "font-bold text-white";
+            var color = value >= 0 ? "text-green-500" : "text-red-500";
+            if (inFooter) color = "text-white";
             var el =
               `<span class="${color}">` +
-              value?.toLocaleString("pt-BR", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) +
+              Number(value)?.toLocaleString("pt-BR", { maximumFractionDigits: 2, minimumFractionDigits: 2 }) +
               "</span>";
             return el;
           }
@@ -417,9 +416,9 @@ export default {
         }
         case "percent": {
           if (columnObj.color) {
-            var color = value >= 0 ? "font-bold text-green-500" : "font-bold text-red-500";
-            if (inFooter) color = "font-bold text-white";
-            var el = `<span class="${color}">` + (value * 100)?.toFixed(2) + "%" + "</span>";
+            var color = value >= 0 ? "text-green-500" : "text-red-500";
+            if (inFooter) color = "text-white";
+            var el = `<span class="${color}">` + (Number(value) * 100)?.toFixed(2) + "%" + "</span>";
             return el;
           }
           return (value * 100)?.toFixed(2) + "%";
@@ -428,7 +427,7 @@ export default {
         case "percentM": {
           if (columnObj.color) {
             var color = value >= 0 ? " text-green-500" : " text-red-500";
-            if (inFooter) color = "font-bold text-white";
+            if (inFooter) color = "text-white";
             var el = `<span class="${color}">` + value?.toFixed(2) + "%" + "</span>";
             return el;
           }

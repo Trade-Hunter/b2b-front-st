@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     isDarkMode: false,
-    theme: "",
+    theme: "light",
     collapsed: false,
     isOnMobile: false,
     hideMenu: false,
@@ -27,6 +27,12 @@ export default {
 
       state.theme = theme;
       localStorage.theme = theme;
+
+      if (state.theme == "light") {
+        state.isDarkMode = false;
+      } else {
+        state.isDarkMode = true;
+      }
     },
     SET_DASH_OPTS(state: any, theme: any) {
       state.DASH_OPTS = theme;
@@ -62,10 +68,12 @@ export default {
         document.documentElement.classList.add("dark");
         localStorage.setItem("darkMode", "true");
         state.theme = "dark";
+        state.isDarkMode = true;
       } else {
         document.documentElement.classList.remove("dark");
         localStorage.setItem("darkMode", "false");
         state.theme = "light";
+        state.isDarkMode = false;
       }
     },
   },

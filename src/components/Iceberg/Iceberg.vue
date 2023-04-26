@@ -211,6 +211,7 @@ export default {
         {
           name: "Ativo",
           value: "cod",
+          index: 0,
         },
         {
           name: "Hora",
