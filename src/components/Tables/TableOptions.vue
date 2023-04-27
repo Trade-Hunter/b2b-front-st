@@ -66,16 +66,17 @@
             <th
               v-for="(column, index) in columns"
               :key="column.name"
-              :class="{
-                sticky: index == 0,
-                'left-0': index == 0,
-              }"
               v-tooltip:bottom.tooltip="column.desc"
               @click="sort(index)"
               class="table-cell py-3"
+              :class="{
+                sticky: index == 0,
+                'left-0': index == 0,
+                [column.ident]: 1,
+              }"
             >
-              <div class="flex justify-center select-none text-gray-700 font-normal">
-                {{ column.name }}
+              <div class="inline-flex px-2 select-none text-gray-700 font-normal" :class="{ [column.ident]: 1 }">
+                <span class="inline-block" :class="{ [column.ident]: 1 }">{{ column.name }}</span>
                 <div
                   v-if="column.index !== undefined ? currentSort == column.index : currentSort == column.value"
                   class="inline-flex transform text-gray-700 hover:scale-110"
@@ -136,6 +137,7 @@
                 'bg-white ': colIndex == 0,
                 'bg-gray-200 dark:bg-dark-2': colIndex == 0 && rowIndex % 2 !== 0,
                 'dark:bg-dark-1': colIndex == 0 && rowIndex % 2 == 0,
+                [column.ident]: 1,
               }"
               class="py-1 px-2"
               v-html="format(item[column.index !== undefined ? column.index : column.value], colIndex, rowIndex)"

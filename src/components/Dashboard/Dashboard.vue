@@ -60,8 +60,9 @@
                 <th
                   v-for="cl of component.columns"
                   :key="cl.value"
-                  class="px-2 py-1 font-normal"
+                  class="px-2 whitespace-nowrap py-1 font-normal"
                   @click="changeSort(component.value, cl.index)"
+                  :class="cl.ident"
                 >
                   {{ cl.label }}
                 </th>
@@ -77,7 +78,7 @@
                 v-for="(row, rowIdx) in data[component.value]"
                 :key="`row-${rowIdx}`"
               >
-                <td v-for="(cl, cellIdx) in component.columns" :key="cl.value" class="px-1 py-1">
+                <td v-for="(cl, cellIdx) in component.columns" :key="cl.value" class="px-2 py-1" :class="cl.ident">
                   <span
                     v-html="format(cl.format, row[cl.index])"
                     :class="{
@@ -125,11 +126,11 @@ export default {
         value: "avat",
         href: "/avat",
         columns: [
-          { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 1, format: { type: "hora" } },
-          { label: "Últ.", index: 2, format: { type: "float" } },
-          { label: "Var. %", value: "", index: 3, format: { type: "float", color: true } },
-          { label: "AVAT", value: "", index: 6, format: { type: "float" } },
+          { label: "Ativo", value: "", index: 0, ident: "text-left" },
+          { label: "Hora", value: "", index: 1, format: { type: "hora" }, ident: "text-right" },
+          { label: "Últ.", index: 2, format: { type: "float" }, ident: "text-right" },
+          { label: "Var. %", value: "", index: 3, format: { type: "float", color: true }, ident: "text-right" },
+          { label: "AVAT", value: "", index: 6, format: { type: "float" }, ident: "text-right" },
         ],
         filter: [
           { label: "Liquidez Mínima", value: "liqmin", index: 5 },
@@ -177,10 +178,10 @@ export default {
         value: "iceberg",
         href: "/iceberg",
         columns: [
-          { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 1, format: { type: "hora" } },
-          { label: "Type", value: "", index: 2 },
-          { label: "Size.", value: "", index: 3, format: { type: "int" } },
+          { label: "Ativo", value: "", index: 0, ident: "text-left" },
+          { label: "Hora", value: "", index: 1, format: { type: "hora" }, ident: "text-right" },
+          { label: "Type", value: "", index: 2, ident: "text-left" },
+          { label: "Size.", value: "", index: 3, format: { type: "int" }, ident: "text-right" },
           // { label: "Var. %", value: "", index: 0 },
           // { label: "Ativo", value: "", index: 0 },
           // { label: "Ativo", value: "", index: 0 },
@@ -196,12 +197,12 @@ export default {
         value: "players",
         href: "/players",
         columns: [
-          { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 1, format: { type: "hora" } },
-          { label: "Últ.", value: "", index: 2, format: { type: "float" } },
-          { label: "Var. %", value: "", index: 3, format: { type: "float", color: true } },
-          { label: "Points", value: "", index: 4, format: { type: "int" } },
-          { label: "Score", value: "", index: 5, format: { type: "float" } },
+          { label: "Ativo", value: "", index: 0, ident: "text-left" },
+          { label: "Hora", value: "", index: 1, format: { type: "hora" }, ident: "text-right" },
+          { label: "Últ.", value: "", index: 2, format: { type: "float" }, ident: "text-right" },
+          { label: "Var. %", value: "", index: 3, format: { type: "float", color: true }, ident: "text-right" },
+          { label: "Points", value: "", index: 4, format: { type: "int" }, ident: "text-right" },
+          { label: "Score", value: "", index: 5, format: { type: "float" }, ident: "text-right" },
           //{ label: "Interval", value: "", index: 5, format: { type: "float" } },
           //{ label: "Price", value: "", index: 5, format: { type: "float" } },
           //{ label: "Ativo", value: "", index: 0 },
@@ -221,11 +222,11 @@ export default {
         value: "amplitude",
         href: "/amplitude",
         columns: [
-          { label: "Ativo", value: "ativo", index: 0 },
-          { label: "Hora", index: 1, format: { type: "hora" } },
-          { label: "Últ.", index: 2, format: { type: "float" } },
+          { label: "Ativo", value: "ativo", index: 0, ident: "text-left" },
+          { label: "Hora", index: 1, format: { type: "hora" }, ident: "text-right" },
+          { label: "Últ.", index: 2, format: { type: "float" }, ident: "text-right" },
           //{ label: "Var. %", index: 7, format: { type: "float", color: true } },
-          { label: "Amp.", index: 3, format: { type: "float", color: true } },
+          { label: "Amp.", index: 3, format: { type: "float", color: true }, ident: "text-right" },
         ],
         filter: [
           { label: "Liquidez", value: "liq", index: 8 },
@@ -242,12 +243,12 @@ export default {
         value: "distortions",
         href: "/distortions",
         columns: [
-          { label: "Ativo", value: "", index: 0 },
-          { label: "Hora", value: "", index: 11, format: { type: "hora" } },
-          { label: "Últ.", value: "", index: 2, format: { type: "float" } },
-          { label: "Var. %", value: "", index: 6, format: { type: "float", color: true } },
-          { label: "Quantidade", value: "", index: 3, format: { type: "int" } },
-          { label: "Financeiro", value: "", index: 4, format: { type: "int" } },
+          { label: "Ativo", value: "", index: 0, ident: "text-left" },
+          { label: "Hora", value: "", index: 11, format: { type: "hora" }, ident: "text-right" },
+          { label: "Últ.", value: "", index: 2, format: { type: "float" }, ident: "text-right" },
+          { label: "Var. %", value: "", index: 6, format: { type: "float", color: true }, ident: "text-right" },
+          { label: "Quantidade", value: "", index: 3, format: { type: "int" }, ident: "text-right" },
+          { label: "Financeiro", value: "", index: 4, format: { type: "int" }, ident: "text-right" },
         ],
         filter: [
           { label: "Player", value: "players" },
@@ -263,14 +264,14 @@ export default {
         value: "arbitragem",
         href: "/arbitragem",
         columns: [
-          { label: "Setor", value: "", index: 6 },
+          { label: "Setor", value: "", index: 6, ident: "text-left" },
           // { label: "Hora", value: "", index: 1 },
-          { label: "Méd %", value: "", index: 7, format: { type: "float" } },
-          { label: "Pior", value: "", index: 8 },
-          { label: "%.", value: "", index: 9, format: { type: "float" } },
-          { label: "%", value: "", index: 11, format: { type: "float" } },
-          { label: "Melhor", value: "", index: 10 },
-          { label: "Count", value: "", index: 12 },
+          { label: "Méd %", value: "", index: 7, format: { type: "float" }, ident: "text-right" },
+          { label: "Pior", value: "", index: 8, ident: "text-left" },
+          { label: "%.", value: "", index: 9, format: { type: "float" }, ident: "text-right" },
+          { label: "%", value: "", index: 11, format: { type: "float" }, ident: "text-right" },
+          { label: "Melhor", value: "", index: 10, ident: "text-left" },
+          { label: "Count", value: "", index: 12, ident: "text-right" },
           //{ label: "Proj.", value: "", index: 4, format: { type: "int" } },
           //{ label: "Ativo", value: "", index: 0 },
         ],

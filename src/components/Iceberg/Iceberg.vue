@@ -213,24 +213,28 @@ export default {
           name: "Ativo",
           value: "cod",
           index: 0,
+          ident: "text-left",
         },
         {
           name: "Hora",
           value: "",
           format: "hora",
           index: 1,
+          ident: "text-right",
         },
         {
           name: "Type",
           value: "",
           format: "",
           index: 2,
+          ident: "text-left",
         },
         {
           name: "Size",
           value: "",
           format: "float",
           index: 3,
+          ident: "text-right",
         },
         // {
         //   name: "Quantidade",
