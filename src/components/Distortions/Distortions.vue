@@ -3,8 +3,8 @@
     <Modal :submit="SubmitFilter" scrollable title="Filtrar dados" ref="modalFilter">
       <div class="grid gap-x-2 grid-cols-1 lg:grid-cols-4 w-full">
         <div>
-          <hxc-label text="Pontuação Mínima"></hxc-label>
-          <hxc-range-input v-model:value="filtroPtt" :min="0" :step="5000" :max="10000000"></hxc-range-input>
+          <hxc-label text="Financeiro Mínimo"></hxc-label>
+          <hxc-range-input v-model:value="finMin" :min="0" :step="10000" :max="100000000"></hxc-range-input>
         </div>
       </div>
 
@@ -76,18 +76,24 @@ import { InformationCircle } from "@/assets/icons/heroicons";
 import { useStore } from "vuex";
 import { ref, onUnmounted } from "vue";
 
+import HxcRangeInput from "@/components/Inputs/RangeInput.vue";
+import HxcLabel from "@/components/Labels/Label.vue";
+
 export default {
   components: {
     HxcMenu,
     Modal,
     HxcTable,
     InformationCircle,
+    HxcLabel,
+    HxcRangeInput,
   },
   setup() {
     const store = useStore();
     const cellChanged = ref({});
     const data = ref([]);
     const loading = ref(true);
+    const finMin = ref(0);
 
     const webSocketUrl = ref(`${import.meta.env.VITE_WEBSOCKET_HOST}/?token=${store.state.auth.token}`);
 
@@ -127,7 +133,9 @@ export default {
           if (dataEv.type == "E") console.log("erro websocket message");
 
           // Update the cellChanged object
-          for (let rowIndex in dataEv.data) {
+          for (let rowIndex in dataEv.data.filter((item) => {
+            return Number(item[4]) >= finMin.value;
+          })) {
             // Initialize the data structure if it doesn't exist
             if (data.value[rowIndex] === undefined) {
               data.value[rowIndex] = [];
@@ -149,6 +157,10 @@ export default {
             }
           }
 
+          data.value = data.value.filter((item) => {
+            return Number(item[4]) >= finMin.value;
+          });
+
           if (dataEv.data.length < 1) {
             data.value = [];
           }
@@ -167,7 +179,7 @@ export default {
       }
     });
 
-    return { connection, data, loading };
+    return { connection, data, loading, finMin };
   },
   data() {
     return {

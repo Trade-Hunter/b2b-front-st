@@ -3,17 +3,18 @@
     <Modal :submit="SubmitFilter" scrollable title="Filtrar dados" ref="modalFilter">
       <div class="grid gap-x-2 grid-cols-1 lg:grid-cols-4 w-full">
         <div>
-          <hxc-label text="Pontuação Mínima"></hxc-label>
-          <hxc-range-input v-model:value="filtroPtt" :min="0" :step="5000" :max="10000000"></hxc-range-input>
+          <hxc-label text="Liquized Min"></hxc-label>
+          <hxc-range-input v-model:value="finMin" :min="0" :step="50000" :max="100000000"></hxc-range-input>
+        </div>
+        <div>
+          <hxc-label text="Intervalo Min"></hxc-label>
+          <hxc-range-input v-model:value="intervaloMin" :min="0" :step="1" :max="100"></hxc-range-input>
+        </div>
+        <div>
+          <hxc-label text="AVAT Min"></hxc-label>
+          <hxc-range-input v-model:value="avatMin" :min="0" :step="0.5" :max="10"></hxc-range-input>
         </div>
       </div>
-
-      <hr class="my-4 border-gray-200" />
-      <template v-slot:footer>
-        <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
-          <hxc-btn @click="SubmitFilter" text="Confirmar"> </hxc-btn>
-        </span>
-      </template>
     </Modal>
     <Modal :submit="submitInfo" scrollable title="Informações Úteis" ref="modalInfo">
       <div v-for="topic in infoTopics" :key="topic" class="font-mono w-full">
@@ -75,19 +76,25 @@ import HxcTable from "@/components/Tables/TableOptions.vue";
 import { InformationCircle } from "@/assets/icons/heroicons";
 import { useStore } from "vuex";
 import { ref, onUnmounted } from "vue";
-
+import HxcRangeInput from "@/components/Inputs/RangeInput.vue";
+import HxcLabel from "@/components/Labels/Label.vue";
 export default {
   components: {
     HxcMenu,
     Modal,
     HxcTable,
     InformationCircle,
+    HxcLabel,
+    HxcRangeInput,
   },
   setup() {
     const store = useStore();
     const cellChanged = ref({});
     const data = ref([]);
     const loading = ref(true);
+    const finMin = ref(0);
+    const intervaloMin = ref(0);
+    const avatMin = ref(0);
 
     const webSocketUrl = ref(`${import.meta.env.VITE_WEBSOCKET_HOST}/?token=${store.state.auth.token}`);
 
@@ -125,9 +132,13 @@ export default {
 
           //console.log(data.value);
           if (dataEv.type == "E") console.log("erro websocket message");
-
+          console.log("filterMin", finMin.value);
           // Update the cellChanged object
-          for (let rowIndex in dataEv.data) {
+          for (let rowIndex in dataEv.data.filter((item) => {
+            return (
+              Number(item[5]) >= finMin.value && Number(item[4]) > intervaloMin.value && Number(item[6]) > avatMin.value
+            );
+          })) {
             // Initialize the data structure if it doesn't exist
             if (data.value[rowIndex] === undefined) {
               data.value[rowIndex] = [];
@@ -149,6 +160,14 @@ export default {
             }
           }
 
+          data.value = data.value.filter((item) => {
+            return (
+              Number(item[5]) >= finMin.value &&
+              Number(item[4]) >= intervaloMin.value &&
+              Number(item[6]) >= avatMin.value
+            );
+          });
+
           if (dataEv.data.length < 1) {
             data.value = [];
           }
@@ -161,18 +180,20 @@ export default {
 
     const connection = createWebSocket();
 
+    const SubmitFilter = () => {};
+
     onUnmounted(() => {
       if (connection) {
         connection.close();
       }
     });
 
-    return { connection, data, loading };
+    return { connection, data, loading, finMin, SubmitFilter, intervaloMin, avatMin };
   },
   data() {
     return {
       modalActive: false,
-      filtroPtt: 0,
+
       infoActive: false,
       infoTopics: [
         {
@@ -271,9 +292,7 @@ export default {
     toggleModal() {
       this.$refs.modalFilter.open();
     },
-    SubmitFilter() {
-      this.modalActive = false;
-    },
+
     toggleInfo() {
       this.infoActive = !this.infoActive;
     },

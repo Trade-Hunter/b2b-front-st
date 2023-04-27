@@ -202,6 +202,8 @@ export default {
           { label: "Var. %", value: "", index: 3, format: { type: "float", color: true } },
           { label: "Points", value: "", index: 4, format: { type: "int" } },
           { label: "Score", value: "", index: 5, format: { type: "float" } },
+          //{ label: "Interval", value: "", index: 5, format: { type: "float" } },
+          //{ label: "Price", value: "", index: 5, format: { type: "float" } },
           //{ label: "Ativo", value: "", index: 0 },
           //TODO: ordernacao default score
         ],
@@ -209,6 +211,10 @@ export default {
           { label: "Player", value: "player" },
           { label: "Liquidez Minima", value: "liqMin" },
         ],
+        default: {
+          sortIdx: 5,
+          order: "dsc",
+        },
       },
       {
         name: "Amplitude",
@@ -226,6 +232,10 @@ export default {
           { label: "Amplitude", value: "amp" },
           //TODO: sort default amplitude
         ],
+        default: {
+          sortIdx: 3,
+          order: "dsc",
+        },
       },
       {
         name: "Distortions",
