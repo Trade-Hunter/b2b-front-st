@@ -22,10 +22,10 @@
           </p>
           <div class="flex flex-col md:flex-row md:gap-y-0 w-full gap-y-2">
             <a
-              href="/register"
+              href="/login"
               class="inline-flex items-center justify-center px-5 py-3 md:mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
             >
-              Cadastre-se gratuitamente
+              Login
               <svg
                 class="w-5 h-5 ml-2 -mr-1"
                 fill="currentColor"
