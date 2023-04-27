@@ -227,7 +227,7 @@ export default {
           value: "",
           format: "",
           index: 2,
-          ident: "text-left",
+          ident: "text-right",
         },
         {
           name: "Size",
