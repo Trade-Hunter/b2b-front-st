@@ -180,7 +180,7 @@ export default {
         columns: [
           { label: "Ativo", value: "", index: 0, ident: "text-left" },
           { label: "Hora", value: "", index: 1, format: { type: "hora" }, ident: "text-right" },
-          { label: "Type", value: "", index: 2, ident: "text-left" },
+          { label: "Type", value: "", index: 2, ident: "text-right" },
           { label: "Size.", value: "", index: 3, format: { type: "int" }, ident: "text-right" },
           // { label: "Var. %", value: "", index: 0 },
           // { label: "Ativo", value: "", index: 0 },
