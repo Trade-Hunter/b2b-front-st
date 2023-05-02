@@ -191,17 +191,52 @@ export default {
           description: "Veja o que significa cada métrica da tabela",
           subtopics: [
             {
-              title: "Points Ima",
-              description: "Points Imã",
+              title: "Setor",
+              description: "Setor de classificação.",
             },
             {
-              title: "Points Barreira",
-              description: "Points Barreira",
+              title: "Hora",
+              description: "Hora de negociação.",
             },
-
+            // {
+            //   title: "Últ.",
+            //   description: "Último preço do ativo.",
+            // },
+            // {
+            //   title: "Var. %",
+            //   description: "Variação em percentual.",
+            // },
             {
-              title: "Strike",
-              description: "Preço de Exercício",
+              title: "Projetado",
+              description: "Volume projetado.",
+            },
+            {
+              title: "Últ / MM60",
+              description: "Última cotação / Média dos últimos 60 dias.",
+            },
+            {
+              title: "Avg. %",
+              description: "Oscilação média do setor.",
+            },
+            {
+              title: "Min",
+              description: "Pior desempenho do setor.",
+            },
+            {
+              title: "Min %",
+              description: "Variação em % do pior desempenho do setor.",
+            },
+            {
+              title: "Max",
+              description: "Melhor desempenho do setor.",
+            },
+            {
+              title: "Max %",
+              description: "Variação em % do melhor desempenho do setor.",
+            },
+            {
+              title: "Quant.",
+              description: "Quantidade de ações no setor",
             },
           ],
         },
@@ -233,21 +268,21 @@ export default {
           index: 1,
           ident: "text-right",
         },
-        {
-          name: "Últ.",
-          value: "",
-          format: "float",
-          index: 2,
-          ident: "text-right",
-        },
-        {
-          name: "Var. %",
-          value: "",
-          format: "float",
-          index: 3,
-          color: true,
-          ident: "text-right",
-        },
+        // {
+        //   name: "Últ.",
+        //   value: "",
+        //   format: "float",
+        //   index: 2,
+        //   ident: "text-right",
+        // },
+        // {
+        //   name: "Var. %",
+        //   value: "",
+        //   format: "float",
+        //   index: 3,
+        //   color: true,
+        //   ident: "text-right",
+        // },
         {
           name: "Projetado",
           value: "",
@@ -301,7 +336,7 @@ export default {
           ident: "text-right",
         },
         {
-          name: "Count",
+          name: "Quant.",
           value: "",
           format: "",
           index: 12,

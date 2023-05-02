@@ -60,6 +60,11 @@ const routes: any = [
     meta: { verifyAuth: true, permission: "", title: "Arbitragem" },
   },
   {
+    path: "/arbitragem/setor",
+    component: () => import("@/components/Arbitragem/ArbitragemSetor.vue"),
+    meta: { verifyAuth: true, permission: "", title: "Arbitragem" },
+  },
+  {
     path: "/user/profile",
     component: () => import("@/components/User/Profile.vue"),
     meta: { verifyAuth: true, permission: "", title: "Perfil Usuário" },

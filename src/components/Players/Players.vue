@@ -180,17 +180,45 @@ export default {
           description: "Veja o que significa cada métrica da tabela",
           subtopics: [
             {
-              title: "Points Ima",
-              description: "Points Imã",
+              title: "Ativo",
+              description: "Instrumento referente.",
             },
             {
-              title: "Points Barreira",
-              description: "Points Barreira",
+              title: "Hora",
+              description: "Hora de negociação.",
             },
-
             {
-              title: "Strike",
-              description: "Preço de Exercício",
+              title: "Últ.",
+              description: "Último preço do ativo.",
+            },
+            {
+              title: "Var. %",
+              description: "Variação em percentual.",
+            },
+            {
+              title: "Points",
+              description:
+                "Algorítmo proprietário que mede cada negócio em relação aos dois principais players acrescentando ou decrescentando pontos",
+            },
+            {
+              title: "Score",
+              description: "Points / Número de negócios",
+            },
+            {
+              title: "Top 1 Comprador",
+              description: "Maior player na compra",
+            },
+            {
+              title: "Top 2 Comprador",
+              description: "2 Maior player na compra",
+            },
+            {
+              title: "Top 1 Vendedor",
+              description: "Maior player na venda",
+            },
+            {
+              title: "Top 2 Vendedor",
+              description: "2 Maior player na venda",
             },
           ],
         },

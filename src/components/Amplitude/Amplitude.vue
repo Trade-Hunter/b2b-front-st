@@ -200,17 +200,32 @@ export default {
           description: "Veja o que significa cada métrica da tabela",
           subtopics: [
             {
-              title: "Points Ima",
-              description: "Points Imã",
+              title: "Ativo",
+              description: "Instrumento referente.",
             },
             {
-              title: "Points Barreira",
-              description: "Points Barreira",
+              title: "Hora",
+              description: "Hora de negociação.",
             },
-
             {
-              title: "Strike",
-              description: "Preço de Exercício",
+              title: "Últ.",
+              description: "Último preço do ativo.",
+            },
+            {
+              title: "Var. %",
+              description: "Variação em percentual.",
+            },
+            {
+              title: "Min",
+              description: "Mínima do intervalo.",
+            },
+            {
+              title: "Máx",
+              description: "Máxima do intervalo.",
+            },
+            {
+              title: "Amplitude",
+              description: "Amplitude de osciçação de um ativo em 2 ou 5 minutos",
             },
           ],
         },
@@ -253,7 +268,7 @@ export default {
           name: "Var. %",
           value: "",
           format: "float",
-          index: 3,
+          index: 7,
           color: true,
           ident: "text-right",
         },
@@ -275,7 +290,7 @@ export default {
           name: "Amplitude",
           value: "",
           format: "float",
-          index: 6,
+          index: 3,
           ident: "text-right",
         },
       ],

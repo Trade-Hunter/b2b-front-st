@@ -67,7 +67,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 select:focus {
   outline: none;
   box-shadow: none;

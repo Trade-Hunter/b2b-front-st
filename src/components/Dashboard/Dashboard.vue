@@ -148,26 +148,33 @@ export default {
             },
           ],
 
-          sortIdx: 6,
+          sortIdx: 1,
           order: "dsc",
         },
         info: [
           {
-            title: "Métricas da Tabela",
-            description: "Veja o que significa cada métrica da tabela",
+            title: "Métricas Disponíveis",
+            description: "Veja o que significa cada métrica.",
             subtopics: [
               {
-                title: "Points Ima",
-                description: "Points Imã",
+                title: "Ativo",
+                description: "Instrumento referente.",
               },
               {
-                title: "Points Barreira",
-                description: "Points Barreira",
+                title: "Hora",
+                description: "Hora de negociação.",
               },
-
               {
-                title: "Strike",
-                description: "Preço de Exercício",
+                title: "Últ.",
+                description: "Último preço do ativo.",
+              },
+              {
+                title: "Var. %",
+                description: "Variação em percentual.",
+              },
+              {
+                title: "Average Volume at Time (AVAT)",
+                description: "Volume projetado em relação á média diária de volume.",
               },
             ],
           },
@@ -191,6 +198,30 @@ export default {
           sortIdx: 1,
           order: "dsc",
         },
+        info: [
+          {
+            title: "Métricas Disponíveis",
+            description: "Veja o que significa cada métrica.",
+            subtopics: [
+              {
+                title: "Ativo",
+                description: "",
+              },
+              {
+                title: "Hora",
+                description: "",
+              },
+              {
+                title: "Type",
+                description: "",
+              },
+              {
+                title: "Size",
+                description: "",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Players",
@@ -216,6 +247,39 @@ export default {
           sortIdx: 5,
           order: "dsc",
         },
+        info: [
+          {
+            title: "Métricas Disponíveis",
+            description: "Veja o que significa cada métrica.",
+            subtopics: [
+              {
+                title: "Ativo",
+                description: "Instrumento referente.",
+              },
+              {
+                title: "Hora",
+                description: "Hora de negociação.",
+              },
+              {
+                title: "Últ.",
+                description: "Último preço do ativo.",
+              },
+              {
+                title: "Var. %",
+                description: "Variação em percentual.",
+              },
+              {
+                title: "Points",
+                description:
+                  "Algorítmo proprietário que mede cada negócio em relação aos dois principais players acrescentando ou decrescentando pontos",
+              },
+              {
+                title: "Score",
+                description: "Points / Número de negócios",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Amplitude",
@@ -236,7 +300,39 @@ export default {
         default: {
           sortIdx: 3,
           order: "dsc",
+          // query: [
+          //   {
+          //     queryName: "greaterThan",
+          //     queryIdx: 8,
+          //     queryType: "",
+          //     queryValue: 25000000,
+          //   },
+          // ],
         },
+        info: [
+          {
+            title: "Métricas Disponíveis",
+            description: "Veja o que significa cada métrica.",
+            subtopics: [
+              {
+                title: "Ativo",
+                description: "Instrumento referente.",
+              },
+              {
+                title: "Hora",
+                description: "Hora de negociação.",
+              },
+              {
+                title: "Últ.",
+                description: "Último preço do ativo.",
+              },
+              {
+                title: "Amp.",
+                description: "Amplitude de osciçação de um ativo em 2 ou 5 minutos",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Distortions",
@@ -258,6 +354,38 @@ export default {
           sortIdx: 1,
           order: "dsc",
         },
+        info: [
+          {
+            title: "Métricas Disponíveis",
+            description: "Veja o que significa cada métrica.",
+            subtopics: [
+              {
+                title: "Ativo",
+                description: "Instrumento referente.",
+              },
+              {
+                title: "Hora",
+                description: "Hora de negociação.",
+              },
+              {
+                title: "Últ.",
+                description: "Último preço do ativo.",
+              },
+              {
+                title: "Var. %",
+                description: "Variação em percentual.",
+              },
+              {
+                title: "Quantidade",
+                description: "Volume em quantidade de ações",
+              },
+              {
+                title: "Financeiro",
+                description: "Volume em R$ do Distortion.",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Arbitragem",
@@ -266,12 +394,12 @@ export default {
         columns: [
           { label: "Setor", value: "", index: 6, ident: "text-left" },
           // { label: "Hora", value: "", index: 1 },
-          { label: "Méd %", value: "", index: 7, format: { type: "float" }, ident: "text-right" },
+          { label: "Méd %", value: "", index: 7, format: { type: "float", color: true }, ident: "text-right" },
           { label: "Pior", value: "", index: 8, ident: "text-left" },
-          { label: "%.", value: "", index: 9, format: { type: "float" }, ident: "text-right" },
-          { label: "%", value: "", index: 11, format: { type: "float" }, ident: "text-right" },
+          { label: "%.", value: "", index: 9, format: { type: "float", color: true }, ident: "text-right" },
+          { label: "%", value: "", index: 11, format: { type: "float", color: true }, ident: "text-right" },
           { label: "Melhor", value: "", index: 10, ident: "text-left" },
-          { label: "Count", value: "", index: 12, ident: "text-right" },
+          { label: "Quant.", value: "", index: 12, ident: "text-right" },
           //{ label: "Proj.", value: "", index: 4, format: { type: "int" } },
           //{ label: "Ativo", value: "", index: 0 },
         ],
@@ -280,6 +408,42 @@ export default {
           { label: "Setor", value: "sec" },
           //TODO: filtro deffault liq minima 5mm
           //TODO: sort ordem alfabetica
+        ],
+        info: [
+          {
+            title: "Métricas Disponíveis",
+            description: "Veja o que significa cada métrica.",
+            subtopics: [
+              {
+                title: "Setor",
+                description: "Setor de classificação",
+              },
+              {
+                title: "Méd %",
+                description: "Oscilaçäo média do setor.",
+              },
+              {
+                title: "Pior",
+                description: "Pior desempenho do setor",
+              },
+              {
+                title: "Min. %",
+                description: "Variação em % do pior desempenho do setor.",
+              },
+              {
+                title: "Max. %",
+                description: "Variação em % do melhor desempenho do setor.",
+              },
+              {
+                title: "Melhor",
+                description: "Melhor desempenho do setor.",
+              },
+              {
+                title: "Quant.",
+                description: "Quantidade de ações no setor.",
+              },
+            ],
+          },
         ],
 
         // default: {

@@ -201,17 +201,36 @@ export default {
           description: "Veja o que significa cada métrica da tabela",
           subtopics: [
             {
-              title: "Points Ima",
-              description: "Points Imã",
+              title: "Ativo",
+              description: "Instrumento referente.",
             },
             {
-              title: "Points Barreira",
-              description: "Points Barreira",
+              title: "Hora",
+              description: "Hora de negociação.",
             },
-
             {
-              title: "Strike",
-              description: "Preço de Exercício",
+              title: "Últ.",
+              description: "Último preço do ativo.",
+            },
+            {
+              title: "Var. %",
+              description: "Variação em percentual.",
+            },
+            {
+              title: "Intervalo",
+              description: "Posição entre em mínima e máxima.",
+            },
+            {
+              title: "Projetado",
+              description: "Volume projetado.",
+            },
+            {
+              title: "Average Volume at Time (AVAT)",
+              description: "Volume projetado em relação á média diária de volume.",
+            },
+            {
+              title: "Últ / MM60",
+              description: "Última cotação / Média dos últimos 60 dias.",
             },
           ],
         },
