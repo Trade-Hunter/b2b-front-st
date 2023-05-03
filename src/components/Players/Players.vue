@@ -220,6 +220,26 @@ export default {
               title: "Top 2 Vendedor",
               description: "2 Maior player na venda",
             },
+            // {
+            //   title: "Top 2 Vendedor",
+            //   description: "2 Maior player na venda",
+            // },
+            // {
+            //   title: "Top 2 Vendedor",
+            //   description: "2 Maior player na venda",
+            // },
+            // {
+            //   title: "Top 2 Vendedor",
+            //   description: "2 Maior player na venda",
+            // },
+            // {
+            //   title: "Top 2 Vendedor",
+            //   description: "2 Maior player na venda",
+            // },
+            {
+              title: "Time points",
+              description: "Time points",
+            },
           ],
         },
       ],
@@ -288,10 +308,24 @@ export default {
           ident: "text-right",
         },
         {
+          name: "Min s/ comprar",
+          value: "",
+          format: "",
+          index: 14,
+          ident: "text-right",
+        },
+        {
           name: "Top 2 Comprador",
           value: "",
           format: "",
           index: 8,
+          ident: "text-right",
+        },
+        {
+          name: "Min s/ comprar",
+          value: "",
+          format: "",
+          index: 15,
           ident: "text-right",
         },
         {
@@ -302,10 +336,32 @@ export default {
           ident: "text-right",
         },
         {
+          name: "Min s/ vender",
+          value: "",
+          format: "",
+          index: 16,
+          ident: "text-right",
+        },
+        {
           name: "Top 2 Vendedor",
           value: "",
           format: "",
           index: 12,
+          ident: "text-right",
+        },
+
+        {
+          name: "Min s/ vender",
+          value: "",
+          format: "",
+          index: 17,
+          ident: "text-right",
+        },
+        {
+          name: "Time points",
+          value: "",
+          format: "",
+          index: 18,
           ident: "text-right",
         },
       ],

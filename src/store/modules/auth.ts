@@ -74,7 +74,7 @@ export const auth = {
     },
     logout2({ commit }: any) {
       commit("logout2");
-      router.push({ name: "home" });
+      //router.push({ name: "home" });
     },
     register({ commit, rootState }: any, user: any) {
       //TODO set user id
