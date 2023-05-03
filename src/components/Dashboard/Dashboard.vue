@@ -60,7 +60,7 @@
                 <th
                   v-for="cl of component.columns"
                   :key="cl.value"
-                  class="px-2 whitespace-nowrap py-1 font-normal"
+                  class="px-2 whitespace-nowrap py-1 font-normal cursor-pointer"
                   @click="changeSort(component.value, cl.index)"
                   :class="cl.ident"
                 >

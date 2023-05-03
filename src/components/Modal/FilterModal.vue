@@ -22,6 +22,7 @@
               {{ option.label }}
             </option>
           </select>
+
           <input
             v-if="
               columnFilters[column.value].query &&
@@ -68,6 +69,8 @@
               datePickerOptions
             "
           />
+
+          <ListBox />
         </div>
       </div>
     </div>
@@ -78,6 +81,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import { ChevronUpDownIcon } from "@heroicons/vue/24/solid";
 import Modal from "@/components/Modal/Modal.vue";
 import DatePicker from "@vuepic/vue-datepicker";
+import ListBox from "@/components/ListBox/ListBox.vue";
 import "@vuepic/vue-datepicker/dist/main.css";
 
 export default {
@@ -89,6 +93,7 @@ export default {
     ChevronUpDownIcon,
     Modal,
     DatePicker,
+    ListBox,
   },
   props: {
     allColumns: Array,
