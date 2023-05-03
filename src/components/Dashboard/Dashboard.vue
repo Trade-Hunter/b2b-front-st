@@ -302,7 +302,7 @@ export default {
           { label: "Últ.", index: 2, format: { type: "float" }, ident: "text-right" },
           //{ label: "Var. %", index: 7, format: { type: "float", color: true } },
           { label: "Amp. 2", index: 3, format: { type: "float", color: true }, ident: "text-right" },
-          { label: "Amp. 5", index: 6, format: { type: "float", color: true }, ident: "text-right" },
+          { label: "Amp. 5", index: 7, format: { type: "float", color: true }, ident: "text-right" },
         ],
         filter: [
           { label: "Liquidez", value: "liq", index: 8 },
