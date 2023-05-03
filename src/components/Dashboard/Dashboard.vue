@@ -347,7 +347,19 @@ export default {
           { label: "Financeiro", value: "", index: 4, format: { type: "int" }, ident: "text-right" },
         ],
         filter: [
-          { label: "Player", value: "players" },
+          {
+            label: "Player",
+            value: "players",
+            type: "basket",
+            filterOptions: {
+              title: "Corretoras",
+              description: "Gerencie seu basket aqui.",
+              fromListLabel: "Disponível",
+              toListLabel: "Selecionado",
+              initialFromList: ["XP", "CLEAR", "GOLDMAN", "ORAMA", "UBS"],
+              initialToList: [],
+            },
+          },
           { label: "Financeiro Mínimo", value: "financeiroMin" },
         ],
         default: {

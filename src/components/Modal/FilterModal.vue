@@ -70,7 +70,16 @@
             "
           />
 
-          <ListBox />
+          {{ columnFilters[column.value] }}
+          <ListBox
+            :title="columnFilters[column.value].title"
+            :description="columnFilters[column.value].description"
+            :fromListLabel="columnFilters[column.value].fromListLabel"
+            :toListLabel="columnFilters[column.value].toListLabel"
+            :initialFromList="columnFilters[column.value].initialFromList"
+            :initialToList="columnFilters[column.value].initialToList"
+            @list-changed="onListChanged(column.value, $event.target.value)"
+          />
         </div>
       </div>
     </div>
@@ -185,6 +194,11 @@ export default {
     this.setFilterColumns();
   },
   methods: {
+    onListChanged(aa, { fromList, toList }) {
+      console.log("asasasa", aa);
+      console.log("From list:", fromList);
+      console.log("To list:", toList);
+    },
     setFilterColumns() {
       this.columnFilters = this.allColumns?.reduce((filters, column) => {
         console.log("column", column);
@@ -200,6 +214,16 @@ export default {
           filters[column.value].value = "";
           filters[column.value].rangeMin = column.filter.filterOptions.range.min;
           filters[column.value].rangeMax = column.filter.filterOptions.range.max;
+        }
+
+        if (column.type === "basket" && column?.filterOptions) {
+          filters[column.value].value = [];
+          filters[column.value].title = "Corretoras";
+          filters[column.value].description = "Gerencie seu basket aqui.";
+          filters[column.value].fromListLabel = "Disponível";
+          filters[column.value].toListLabel = "Selecionado";
+          filters[column.value].initialFromList = ["XP", "CLEAR", "GOLDMAN", "ORAMA", "UBS"];
+          filters[column.value].initialToList = [];
         }
         return filters;
       }, {});
