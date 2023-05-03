@@ -32,7 +32,7 @@
       <div
         v-for="(component, componentIdx) in components"
         :key="component.name"
-        class="qdrinho bg-white overflow-hidden"
+        class="qdrinho bg-white overflow-y-auto flex flex-col h-full custom-scrollbar"
       >
         <div class="p-3 flex">
           <router-link class="text-qdrinho text-black uppercase" :to="component.href">{{ component.name }}</router-link>
@@ -53,12 +53,13 @@
           </svg>
           <InformationCircle class="ml-2" @click="showInfo(componentIdx)" />
         </div>
-        <div class="overflow-y-auto custom-scrollbar h-full">
-          <div v-if="component.value == 'iceberg'" class="flex justify-center items-center h-full">
-            <div class="text-center text-2xl tracking-widest font-bold text-black">EM BREVE</div>
+
+        <div class="flex h-full overflow-y-scroll">
+          <div v-if="component.value == 'iceberg'" class="flex justify-center mx-auto items-center h-full">
+            <div class="text-center text-4xl tracking-widest font-bold text-black">EM BREVE</div>
           </div>
 
-          <table v-else class="mx-auto max-w-full w-full" :class="{ 'h-full': loading }">
+          <table v-else class="mx-auto max-w-full h-min w-full" :class="{ 'h-full': loading }">
             <thead class="bg-[#E7E7E7] dark:bg-[#2A2D33] z-10 leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
                 <th
