@@ -1,4 +1,4 @@
-const CORRETORAS = [
+var CORRETORAS = [
   "AGORA",
   "ALFA",
   "AMARIL",

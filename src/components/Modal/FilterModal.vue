@@ -235,7 +235,7 @@ export default {
           filters[column.value].fromListLabel = "Disponível";
           filters[column.value].toListLabel = "Selecionado";
           filters[column.value].initialFromList = column.filterOptions.initialFromList;
-          filters[column.value].initialToList = [];
+          filters[column.value].initialToList = column.filterOptions.initialToList;
         }
         return filters;
       }, {});

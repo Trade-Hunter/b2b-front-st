@@ -55,11 +55,11 @@
         </div>
 
         <div class="flex h-full overflow-y-scroll">
-          <div v-if="component.value == 'iceberg'" class="flex justify-center mx-auto items-center h-full">
+          <!-- <div v-if="component.value == 'iceberg'" class="flex justify-center mx-auto items-center h-full">
             <div class="text-center text-4xl tracking-widest font-bold text-black">EM BREVE</div>
-          </div>
+          </div> -->
 
-          <table v-else class="mx-auto max-w-full h-min w-full" :class="{ 'h-full': loading }">
+          <table class="mx-auto max-w-full h-min w-full" :class="{ 'h-full': loading }">
             <thead class="bg-[#E7E7E7] dark:bg-[#2A2D33] z-10 leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
                 <th
@@ -364,7 +364,7 @@ export default {
               description: "Gerencie seu basket aqui.",
               fromListLabel: "Disponível",
               toListLabel: "Selecionado",
-              initialFromList: CORRETORAS,
+              initialFromList: [...CORRETORAS],
               initialToList: [],
             },
           },
@@ -378,7 +378,7 @@ export default {
               description: "Gerencie seu basket aqui.",
               fromListLabel: "Disponível",
               toListLabel: "Selecionado",
-              initialFromList: CORRETORAS,
+              initialFromList: [...CORRETORAS],
               initialToList: [],
             },
           },

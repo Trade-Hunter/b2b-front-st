@@ -60,6 +60,9 @@ export default {
       selectedTo: "",
     };
   },
+  mounted() {
+    this.fromList = this.initialFromList;
+  },
   methods: {
     moveItem(fromList, selectedItem, toList) {
       const index = fromList.indexOf(selectedItem);
