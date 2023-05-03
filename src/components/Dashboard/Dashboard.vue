@@ -54,7 +54,11 @@
           <InformationCircle class="ml-2" @click="showInfo(componentIdx)" />
         </div>
         <div class="overflow-y-auto custom-scrollbar h-full">
-          <table class="mx-auto max-w-full w-full" :class="{ 'h-full': loading }">
+          <div v-if="component.value == 'iceberg'" class="flex justify-center items-center h-full">
+            <div class="text-center text-2xl tracking-widest font-bold text-black">EM BREVE</div>
+          </div>
+
+          <table v-else class="mx-auto max-w-full w-full" :class="{ 'h-full': loading }">
             <thead class="bg-[#E7E7E7] dark:bg-[#2A2D33] z-10 leading-6 text-gray-700 font-thin sticky top-0">
               <tr class="text-center">
                 <th
@@ -103,6 +107,8 @@ import Modal from "@/components/Modal/Modal.vue";
 import { InformationCircle } from "@/assets/icons/heroicons";
 import { reactive, watch, computed, ref, onUnmounted } from "vue";
 import { useStore } from "vuex";
+
+import { CORRETORAS } from "@/constants/corretoras";
 export default {
   components: {
     HxcMenu,
@@ -300,14 +306,14 @@ export default {
         default: {
           sortIdx: 3,
           order: "dsc",
-          // query: [
-          //   {
-          //     queryName: "greaterThan",
-          //     queryIdx: 8,
-          //     queryType: "",
-          //     queryValue: 25000000,
-          //   },
-          // ],
+          query: [
+            {
+              queryName: "greaterThan",
+              queryIdx: 9,
+              queryType: "",
+              queryValue: 25000000,
+            },
+          ],
         },
         info: [
           {
@@ -348,19 +354,34 @@ export default {
         ],
         filter: [
           {
-            label: "Player",
-            value: "players",
+            label: "Compradores",
+            value: "compradores",
             type: "basket",
+            index: 7,
             filterOptions: {
               title: "Corretoras",
               description: "Gerencie seu basket aqui.",
               fromListLabel: "Disponível",
               toListLabel: "Selecionado",
-              initialFromList: ["XP", "CLEAR", "GOLDMAN", "ORAMA", "UBS"],
+              initialFromList: CORRETORAS,
               initialToList: [],
             },
           },
-          { label: "Financeiro Mínimo", value: "financeiroMin" },
+          {
+            label: "Vendedores",
+            value: "Vendedores",
+            type: "basket",
+            index: 8,
+            filterOptions: {
+              title: "Corretoras",
+              description: "Gerencie seu basket aqui.",
+              fromListLabel: "Disponível",
+              toListLabel: "Selecionado",
+              initialFromList: CORRETORAS,
+              initialToList: [],
+            },
+          },
+          { label: "Financeiro Mínimo", value: "financeiroMin", index: 4 },
         ],
         default: {
           sortIdx: 1,
@@ -474,8 +495,8 @@ export default {
 
         filters.value[cp.value] = {
           query: cp.default?.query || "",
-          sortIdx: cp.default?.sortIdx,
-          order: cp.default?.order,
+          sortIdx: cp.default?.sortIdx || 1,
+          order: cp.default?.order || "dsc",
           limit: 15,
         };
       }

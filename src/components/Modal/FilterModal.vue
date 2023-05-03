@@ -11,7 +11,14 @@
     <div class="grid gap-3 grid-cols-1 text-black lg:grid-cols-2 w-full">
       <div v-for="column in allColumns" :key="column.value" class="flex flex-col gap-y-2">
         <label :for="column">{{ column.label }}</label>
-        <div class="flex gap-x-2">
+        <div
+          class="flex gap-x-2"
+          :class="
+            columnFilters[column.value].query && ['basket'].includes(columnFilters[column.value].query)
+              ? 'flex-col'
+              : ''
+          "
+        >
           <select
             :id="column"
             v-model="columnFilters[column.value].query"
@@ -70,16 +77,19 @@
             "
           />
 
-          {{ columnFilters[column.value] }}
-          <ListBox
-            :title="columnFilters[column.value].title"
-            :description="columnFilters[column.value].description"
-            :fromListLabel="columnFilters[column.value].fromListLabel"
-            :toListLabel="columnFilters[column.value].toListLabel"
-            :initialFromList="columnFilters[column.value].initialFromList"
-            :initialToList="columnFilters[column.value].initialToList"
-            @list-changed="onListChanged(column.value, $event.target.value)"
-          />
+          <div class="">
+            <ListBox
+              v-if="columnFilters[column.value].query && ['basket'].includes(columnFilters[column.value].query)"
+              :column="[column.value]"
+              :title="columnFilters[column.value].title"
+              :description="columnFilters[column.value].description"
+              :fromListLabel="columnFilters[column.value].fromListLabel"
+              :toListLabel="columnFilters[column.value].toListLabel"
+              :initialFromList="columnFilters[column.value].initialFromList"
+              :initialToList="columnFilters[column.value].initialToList"
+              @list-changed="onListChanged"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -127,7 +137,7 @@ export default {
         { value: "regex", label: "Expressão regular" },
         { value: "greaterThan", label: "Maior que" },
         { value: "lessThan", label: "Menor que" },
-        { value: "basket", label: "basket" },
+        { value: "basket", label: "Basket" },
         //{ value: "range", label: "Faixa de valores" },
         // {
         //   value: "dateSelect",
@@ -194,8 +204,9 @@ export default {
     this.setFilterColumns();
   },
   methods: {
-    onListChanged(aa, { fromList, toList }) {
-      console.log("asasasa", aa);
+    onListChanged(column, { fromList, toList }) {
+      this.columnFilters[column[0]].value = toList.join(",");
+      console.log("Column:", column);
       console.log("From list:", fromList);
       console.log("To list:", toList);
     },
@@ -217,12 +228,13 @@ export default {
         }
 
         if (column.type === "basket" && column?.filterOptions) {
-          filters[column.value].value = [];
+          filters[column.value].type = "includes";
+          filters[column.value].value = "";
           filters[column.value].title = "Corretoras";
           filters[column.value].description = "Gerencie seu basket aqui.";
           filters[column.value].fromListLabel = "Disponível";
           filters[column.value].toListLabel = "Selecionado";
-          filters[column.value].initialFromList = ["XP", "CLEAR", "GOLDMAN", "ORAMA", "UBS"];
+          filters[column.value].initialFromList = column.filterOptions.initialFromList;
           filters[column.value].initialToList = [];
         }
         return filters;
