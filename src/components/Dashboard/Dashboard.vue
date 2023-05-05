@@ -316,7 +316,7 @@ export default {
           query: [
             {
               queryName: "greaterThan",
-              queryIdx: 9,
+              queryIdx: 13,
               queryType: "",
               queryValue: 25000000,
             },
