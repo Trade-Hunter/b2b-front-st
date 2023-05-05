@@ -144,9 +144,8 @@ export default {
         ],
         filter: [
           { label: "Liquidez Mínima", value: "liqmin", index: 5 },
-          { label: "Intervalo Mínimo", value: "minInterval", index: 4 },
+          //{ label: "Intervalo Mínimo", value: "minInterval", index: 4 },
           { label: "AVAT Min", value: "avatMin", index: 6 },
-          //FILTRO LIQ MIN 25.000.000
         ],
         default: {
           query: [
@@ -158,7 +157,7 @@ export default {
             },
           ],
 
-          sortIdx: 1,
+          sortIdx: 6,
           order: "dsc",
         },
         info: [
@@ -251,8 +250,8 @@ export default {
           //TODO: ordernacao default score
         ],
         filter: [
-          { label: "Player", value: "player" },
-          { label: "Liquidez Minima", value: "liqMin" },
+          //{ label: "Player", value: "player" },
+          { label: "Liquidez Minima", value: "liqMin", index: 19 },
         ],
         default: {
           sortIdx: 5,
@@ -305,8 +304,10 @@ export default {
           { label: "Amp. 5", index: 7, format: { type: "float", color: true }, ident: "text-right" },
         ],
         filter: [
-          { label: "Liquidez", value: "liq", index: 8 },
-          { label: "Amplitude", value: "amp" },
+          { label: "Liquidez", value: "liq", index: 13 },
+          { label: "Preço Mín.", value: "preco", index: 2 },
+          { label: "Amplitude 2", value: "amp2", index: 3 },
+          { label: "Amplitude 5", value: "amp5", index: 7 },
           //TODO: sort default amplitude
         ],
         default: {
@@ -390,7 +391,7 @@ export default {
           { label: "Financeiro Mínimo", value: "financeiroMin", index: 4 },
         ],
         default: {
-          sortIdx: 1,
+          sortIdx: 11,
           order: "dsc",
         },
         info: [
@@ -443,8 +444,9 @@ export default {
           //{ label: "Ativo", value: "", index: 0 },
         ],
         filter: [
-          { label: "Liquidez Mínima", value: "liqMin" },
-          { label: "Setor", value: "sec" },
+          //{ label: "Liquidez Mínima", value: "liqMin", index: 4 },
+          { label: "Setor", value: "sec", index: 6 },
+          { label: "Quant.", value: "quant", index: 12 },
           //TODO: filtro deffault liq minima 5mm
           //TODO: sort ordem alfabetica
         ],

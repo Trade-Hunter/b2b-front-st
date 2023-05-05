@@ -100,7 +100,16 @@ export default {
       try {
         const connection = new WebSocket(webSocketUrl.value);
         connection.onopen = (event) => {
-          connection.send(`C=S;I=arbitragem;Q=;S=;L;=500`);
+          const query = [
+            {
+              queryName: "equals",
+              queryIdx: 6,
+              queryType: "",
+              queryValue: "",
+            },
+          ];
+
+          connection.send(`C=S;I=arbitragem_setor;Q=${encodeURIComponent(btoa(JSON.stringify(query)))};S=;L;=500`);
           // this.$notify({
           //   type: "success",
           //   title: `Conexão com o servidor realizada com sucesso`,
@@ -185,7 +194,7 @@ export default {
       modalActive: false,
       filtroPtt: 0,
       infoActive: false,
-      sector: "Materiais Básicos",
+      //sector: "Materiais Básicos",
       infoTopics: [
         {
           title: "Métricas da Tabela",
@@ -270,6 +279,11 @@ export default {
   mounted() {},
   beforeUnmount() {},
 
+  computed: {
+    sector() {
+      return this.$route.params.id;
+    },
+  },
   methods: {
     showInfo() {
       this.$refs.modalInfo.open();
