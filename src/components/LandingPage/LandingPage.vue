@@ -58,66 +58,10 @@
     </div>
   </section>
 
-  <section class="bg-gray-50 dark:bg-gray-800">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-      <div class="max-w-screen-md mb-8 lg:mb-16">
-        <h2 class="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">
-          Uma solução projetada para os melhores investidores com grandes necessidades
-        </h2>
-        <p class="text-gray-500 sm:text-xl dark:text-gray-400">
-          Tudo que você precisa na palma da sua mão. Realize suas operações analisando dados estatísticos, assim como os
-          investidores institucionais.
-        </p>
-      </div>
-      <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
-        <div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Leitura de todo o mercado</h3>
-          <p class="text-gray-500 dark:text-gray-400">
-            Acompanhe o fluxo de todas as Ações e Corretoras em realtime, tenha acesso às movimentações que cada player
-            no mercado.
-          </p>
-        </div>
-        <div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Você sempre informado</h3>
-          <p class="text-gray-500 dark:text-gray-400">
-            Fique por dentro das <span class="font-bold">últimas notícias</span>: do Brasil e no mundo. Veja os
-            <span class="font-bold">fatos relevantes e eventos coorporativos</span> publicados na CVM.
-          </p>
-        </div>
-        <div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Monitoramos diversas estratégias</h3>
-          <p class="text-gray-500 dark:text-gray-400">
-            Temos o Screener mais completo. São dezenas de indicadores e setups monitorados em tempo real.
-          </p>
-        </div>
-        <div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Posições em aberto</h3>
-          <p class="text-gray-500 dark:text-gray-400">
-            Analise os dados de aluguel de ações, operações a termo e posições em opções dos grandes investidores
-          </p>
-        </div>
-        <div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Mercado de Opções</h3>
-          <p class="text-gray-500 dark:text-gray-400">
-            Veja todas as opções negociadas no dia, um completo screener parametrizável e o PCR das opções.
-          </p>
-        </div>
-        <div>
-          <h3 class="mb-2 text-xl font-bold dark:text-white">Interface e Tecnologia</h3>
-          <p class="text-gray-500 dark:text-gray-400">
-            Projetado para funcionar nos mais diversos dispositivos. Tecnologia avançada para sempre estarmos à frente.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section id="pricing" class="fade-in bg-white dark:bg-gray-900">
-    <div class="flex flex-col py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="flex flex-col py-8 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-6">
       <div class="max-w-screen-md mb-8">
-        <h2 class="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">
-          Conheça nossos planos. <a class="text-sm align-base" href="#comparativo">Ver Comparação</a>
-        </h2>
+        <h2 class="mb-4 text-4xl font-extrabold text-gray-900 dark:text-white">Obtenha acesso a plataforma</h2>
         <p class="text-gray-500 sm:text-xl dark:text-gray-400">
           Não importa se você é só um curioso no mercado financeiro ou um investidor de alto nível. Nós temos um plano
           para você.
@@ -130,29 +74,113 @@
           </a> -->
       </div>
 
-      <div class="flex px-5 pb-3 flex-row items-center w-full justify-center text-xl">
-        <label for="toggle" class="text-gray-700">Mensal</label>
-        <div class="relative inline-block w-10 ml-2 mr-2 align-middle select-none transition duration-200 ease-in">
-          <input
-            type="checkbox"
-            name="toggle"
-            id="toggle"
-            @click="toggleBillingCycle"
-            :class="{ 'right-0 border-green-400': billingCycle == 0 }"
-            :style="{ 'border-color: #68D391; background-color: #68D391;': billingCycle == 0 }"
-            class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-          />
-          <label
-            for="toggle"
-            :class="{ ' bg-green-400': billingCycle == 0 }"
-            class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
-          ></label>
-        </div>
-        <label for="toggle" class="text-gray-700"
-          >Anual <label class="text-sm text-red-600 font-bold animate-pulse">(ATÉ 40% OFF)</label></label
-        >
+      <div class="flex px-5 pb-4 flex-row items-center w-full justify-center text-xl">
+        <ul class="flex justify-center gap-x-10">
+          <li class="w-40">
+            <input
+              v-model="billing_cycle"
+              type="radio"
+              id="mensal"
+              name="hosting"
+              class="hidden peer"
+              :value="'mensal'"
+            />
+            <label
+              for="mensal"
+              class="inline-flex items-center justify-between w-40 py-3 px-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <div class="block">
+                <div class="w-full text-lg font-semibold">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                    />
+                  </svg>
+                </div>
+                <div class="w-full">Mensal</div>
+              </div>
+            </label>
+          </li>
+          <li class="w-40">
+            <input
+              v-model="billing_cycle"
+              type="radio"
+              id="semestral"
+              name="hosting"
+              class="hidden peer"
+              :value="'semestral'"
+            />
+            <label
+              for="semestral"
+              class="inline-flex items-center justify-between w-40 py-3 px-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <div class="block">
+                <div class="w-full text-lg font-semibold">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                    />
+                  </svg>
+                </div>
+                <div class="w-full">Semestral</div>
+              </div>
+            </label>
+          </li>
+          <li class="w-40">
+            <input
+              v-model="billing_cycle"
+              type="radio"
+              id="anual"
+              name="hosting"
+              class="hidden peer"
+              :value="'anual'"
+            />
+            <label
+              for="anual"
+              class="inline-flex items-center justify-between w-40 py-3 px-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+            >
+              <div class="block">
+                <div class="w-full text-lg font-semibold">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                    />
+                  </svg>
+                </div>
+                <div class="w-full">Anual</div>
+              </div>
+            </label>
+          </li>
+        </ul>
       </div>
-      <div class="flex gap-x-8 justify-start md:justify-center pb-4 overflow-x-scroll md:overflow-auto flex-row">
+      <div class="flex gap-x-8 justify-start md:justify-center overflow-x-scroll md:overflow-auto flex-row">
         <div v-for="plan in items" :key="plan" class="flex w-72 flex-col rounded-lg bg-white shadow-lg">
           <div class="flex flex-col items-center bg-sky-500 py-5 px-12">
             <span class="font-semibold text-gray-100 text-xl md:text-2xl">{{ plan.DisplayName }}</span>
@@ -220,57 +248,8 @@
     </div>
   </section>
 
-  <section class="fade-in bg-white dark:bg-gray-900 dark:bg-gray-800">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-      <div class="max-w-screen-lg text-gray-500 sm:text-lg dark:text-gray-400">
-        <h2 class="mb-4 text-4xl font-bold text-gray-900 dark:text-white">Comunidade e relatórios</h2>
-        <p class="mb-4 font-light">
-          Faça parte da nossa comunidade e se relacione com diversos players e operadores de mercado financeiro. Fique
-          por dentro de tudo que acontece durante o pregão através de nossos robôs.
-        </p>
-        <p class="mb-4 font-light">
-          Receba alertas de leilões, relatórios sobre o saldo das corretoras no dia, ações com distorção de volume e
-          diversas outras estratégias
-        </p>
-        <a
-          href="#pricing"
-          class="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700"
-        >
-          Escolha um plano
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="fade-in bg-gray-50 dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
-      <div
-        class="lg:flex-grow lg:pr-24 md:pr-16 max-w-screen-lg flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center"
-      >
-        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-          Ainda Têm alguma dúvida? <br class="hidden lg:inline-block" />
-        </h1>
-
-        <p class="mb-8 leading-relaxed">
-          Para que nossos assinantes tenham a melhor experiência possível, criamos uma sessão educacional ensinando como
-          fazer a utilização da plataforma. Através dela é possível aprender do incício ao fim como utilizar tudo que o
-          Hunter pode oferecer.
-        </p>
-        <div class="flex justify-center">
-          <a
-            href="https://wa.me/5511973428892"
-            target="_blank"
-            class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900"
-          >
-            Falar com especialista
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="fade-in bg-white dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-8 lg:px-6">
       <div class="mx-auto max-w-screen-sm text-center">
         <h2 class="mb-4 text-4xl font-extrabold leading-tight text-gray-900 dark:text-white">
           Inicie seu teste grátis hoje
@@ -315,65 +294,38 @@ export default {
       items: [
         {
           _id: "62d8695f86a8b1456cbeb815",
-          DisplayName: "Plano 1",
-          Description: "Alta Performance",
+          DisplayName: "PRO",
+          Description: "Acesso completo a plataforma",
           SelectLabel: "Assine Aqui",
           SelectDescription: "Trial de 7 dias",
           BillingCycles: [
             { Interval: "year", Price: 119880 },
             { Interval: "month", Price: 15990 },
+            { Interval: "semestral", Price: 15990 },
           ],
           Features: [
             {
-              Name: "Dashboard",
+              Name: "Avat",
               Available: true,
             },
             {
-              Name: "Watchlist + AVAT",
+              Name: "Iceberg",
               Available: true,
             },
             {
-              Name: "Módulo de Opções",
+              Name: "Players",
               Available: true,
             },
             {
-              Name: "Tape Reading",
+              Name: "Amplitude",
               Available: true,
             },
             {
-              Name: "Hunter Distortions",
+              Name: "Distortions",
               Available: true,
             },
             {
-              Name: "Módulo de Alertas",
-              Available: true,
-            },
-            {
-              Name: "Hunter Screener",
-              Available: true,
-            },
-            {
-              Name: "Intraday Setups + Candlestick",
-              Available: true,
-            },
-            {
-              Name: "Open Interest",
-              Available: true,
-            },
-            {
-              Name: "Long & Short",
-              Available: true,
-            },
-            {
-              Name: "Notícias + Informe CVM",
-              Available: true,
-            },
-            {
-              Name: "Cotações Realtime",
-              Available: true,
-            },
-            {
-              Name: "Mercado Internacional",
+              Name: "Arbitragem",
               Available: true,
             },
           ],

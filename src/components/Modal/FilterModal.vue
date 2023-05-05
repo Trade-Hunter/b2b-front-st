@@ -215,21 +215,22 @@ export default {
         console.log("column", column);
         filters[column.value] = {
           idx: column.index,
-          value: "",
+          value: column.queryValue || "",
           text: "",
           number: null,
           regex: "",
           date: null,
+          query: column.queryName,
         };
         if (column.type === "number" && column.filter?.filterOptions?.range) {
-          filters[column.value].value = "";
+          //filters[column.value].value = "";
           filters[column.value].rangeMin = column.filter.filterOptions.range.min;
           filters[column.value].rangeMax = column.filter.filterOptions.range.max;
         }
 
         if (column.type === "basket" && column?.filterOptions) {
           filters[column.value].type = "includes";
-          filters[column.value].value = "";
+          //filters[column.value].value = "";
           filters[column.value].title = "Corretoras";
           filters[column.value].description = "Gerencie seu basket aqui.";
           filters[column.value].fromListLabel = "Disponível";

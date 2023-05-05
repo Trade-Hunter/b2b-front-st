@@ -54,7 +54,7 @@
           <InformationCircle class="ml-2" @click="showInfo(componentIdx)" />
         </div>
 
-        <div class="flex h-full overflow-y-scroll">
+        <div class="flex h-full overflow-y-scroll custom-scrollbar">
           <!-- <div v-if="component.value == 'iceberg'" class="flex justify-center mx-auto items-center h-full">
             <div class="text-center text-4xl tracking-widest font-bold text-black">EM BREVE</div>
           </div> -->
@@ -510,7 +510,22 @@ export default {
       }
 
       //console.log("dash", store.state.theme.DASH_OPTS);
-      if (store.state.theme.DASH_OPTS) filters.value = store.state.theme.DASH_OPTS;
+      if (store.state.theme.DASH_OPTS) {
+        filters.value = store.state.theme.DASH_OPTS;
+        for (var key of Object.keys(filters.value)) {
+          for (var query of filters.value[key].query) {
+            const cpIdx = components.findIndex((item) => item.value == key);
+            if (cpIdx !== -1) {
+              const findIdx = components[cpIdx].filter.findIndex((item) => item.index == query.queryIdx);
+              if (findIdx !== -1) {
+                console.log("findIdx");
+                components[cpIdx].filter[findIdx].queryName = query.queryName;
+                components[cpIdx].filter[findIdx].queryValue = query.queryValue;
+              }
+            }
+          }
+        }
+      }
     };
 
     const getMessage = () => {
@@ -627,6 +642,20 @@ export default {
     const applyFilters = (selectedFilters) => {
       console.log("[applyFilters]", selComponent.value, selectedFilters);
 
+      const cpIdx = components.findIndex((item) => item.value == selComponent.value);
+      if (cpIdx !== -1) {
+        //components[cpIdx].filter
+        console.log("aaa", components[cpIdx]);
+        for (var key of selectedFilters) {
+          console.log("keytyy", key);
+          const filterIdx = components[cpIdx].filter.findIndex((item) => item.index == key.queryIdx);
+          if (filterIdx !== -1) {
+            console.log("achei", components[cpIdx].filter[filterIdx], key);
+            components[cpIdx].filter[filterIdx].queryName = key.queryName;
+            components[cpIdx].filter[filterIdx].queryValue = key.queryValue;
+          }
+        }
+      }
       filters.value[selComponent.value].query = selectedFilters;
 
       if (connection) {
