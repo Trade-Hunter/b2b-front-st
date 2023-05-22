@@ -219,7 +219,7 @@ export default {
           name: "C/V",
           value: "",
           format: "hora",
-          index: 2,
+          index: 1,
           ident: "text-right",
         },
         {
@@ -233,21 +233,21 @@ export default {
           name: "Preço",
           value: "",
           format: "float",
-          index: 4,
+          index: 2,
           ident: "text-right",
         },
         {
           name: "Broker",
           value: "",
           format: "float",
-          index: 5,
+          index: 4,
           ident: "text-right",
         },
         {
           name: "Repet",
           value: "",
           format: "float",
-          index: 6,
+          index: 5,
           ident: "text-right",
         },
         // {
