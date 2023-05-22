@@ -218,7 +218,7 @@ export default {
         {
           name: "C/V",
           value: "",
-          format: "hora",
+          format: "",
           index: 1,
           ident: "text-right",
         },
