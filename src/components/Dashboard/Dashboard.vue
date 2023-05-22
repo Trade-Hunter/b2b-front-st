@@ -439,7 +439,7 @@ export default {
             ident: "text-left",
             format: {
               custom_format: (value) => {
-                return `<a color="text-blue-500" href="/arbitragem/setor/${value}">${value}</a>`;
+                return `<a class="text-blue-500" href="/arbitragem/setor/${value}">${value}</a>`;
               },
             },
           },
