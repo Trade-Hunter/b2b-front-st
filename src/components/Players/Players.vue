@@ -360,14 +360,14 @@ export default {
         {
           name: "Neg %",
           value: "",
-          format: "",
+          format: "float",
           index: 20,
           ident: "text-right",
         },
         {
           name: "Qtt %",
           value: "",
-          format: "",
+          format: "float",
           index: 21,
           ident: "text-right",
         },

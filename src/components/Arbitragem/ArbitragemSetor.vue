@@ -73,11 +73,11 @@ import Modal from "@/components/Modal/Modal.vue";
 import HxcTable from "@/components/Tables/TableOptions.vue";
 import { InformationCircle } from "@/assets/icons/heroicons";
 import { useStore } from "vuex";
-import { ref, onUnmounted } from "vue";
+import { ref, onUnmounted, onMounted } from "vue";
 
 import HxcRangeInput from "@/components/Inputs/RangeInput.vue";
 import HxcLabel from "@/components/Labels/Label.vue";
-
+import { useRoute } from "vue-router";
 export default {
   components: {
     HxcMenu,
@@ -95,17 +95,20 @@ export default {
     const finMin = ref(0);
 
     const webSocketUrl = ref(`${import.meta.env.VITE_WEBSOCKET_HOST}/?token=${store.state.auth.token}`);
+    const route = useRoute();
 
     const createWebSocket = () => {
       try {
         const connection = new WebSocket(webSocketUrl.value);
+        const id = route.params.id;
+
         connection.onopen = (event) => {
           const query = [
             {
               queryName: "equals",
               queryIdx: 6,
               queryType: "",
-              queryValue: "",
+              queryValue: id,
             },
           ];
 
@@ -179,14 +182,15 @@ export default {
       }
     };
 
-    const connection = createWebSocket();
-
+    let connection;
+    onMounted(() => {
+      connection = createWebSocket();
+    });
     onUnmounted(() => {
       if (connection) {
         connection.close();
       }
     });
-
     return { connection, data, loading, finMin };
   },
   data() {
@@ -269,7 +273,7 @@ export default {
           name: "Últ / MM60",
           value: "",
           index: 5,
-          format: "float",
+          format: "percent",
           ident: "text-right",
         },
       ],

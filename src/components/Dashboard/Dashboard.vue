@@ -432,7 +432,17 @@ export default {
         value: "arbitragem",
         href: "/arbitragem",
         columns: [
-          { label: "Setor", value: "", index: 6, ident: "text-left" },
+          {
+            label: "Setor",
+            value: "",
+            index: 6,
+            ident: "text-left",
+            format: {
+              custom_format: (value) => {
+                return `<a color="text-blue-500" href="/arbitragem/setor/${value}">${value}</a>`;
+              },
+            },
+          },
           // { label: "Hora", value: "", index: 1 },
           { label: "Méd %", value: "", index: 7, format: { type: "float", color: true }, ident: "text-right" },
           { label: "Pior", value: "", index: 8, ident: "text-left" },
@@ -719,7 +729,7 @@ export default {
       if (!value) return "";
       if (!format) return value;
 
-      if (format.custom_format) return columnObj.custom_format(value);
+      if (format.custom_format) return format.custom_format(value);
       switch (format.type) {
         case "int": {
           if (format.color) {
