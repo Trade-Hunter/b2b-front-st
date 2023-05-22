@@ -195,9 +195,9 @@ export default {
         href: "/iceberg",
         columns: [
           { label: "Ativo", value: "", index: 0, ident: "text-left" },
-          { label: "C/V", value: "", index: 1, format: { type: "hora" }, ident: "text-right" },
+          { label: "C/V", value: "", index: 1, ident: "text-right" },
           { label: "Quant", value: "", index: 3, ident: "text-right" },
-          { label: "Preço", value: "", index: 2, format: { type: "int" }, ident: "text-right" },
+          { label: "Preço", value: "", index: 2, format: { type: "float" }, ident: "text-right" },
           { label: "Broker", value: "", index: 4 },
           { label: "Repet", value: "", index: 5 },
           // { label: "Ativo", value: "", index: 0 },
