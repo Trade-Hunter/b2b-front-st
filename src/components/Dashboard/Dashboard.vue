@@ -202,7 +202,10 @@ export default {
           { label: "Repet", value: "", index: 5 },
           // { label: "Ativo", value: "", index: 0 },
         ],
-        filter: [{ label: "Lote Min", value: "lotemin", index: 3 }],
+        filter: [
+          { label: "Lote Min", value: "lotemin", index: 3 },
+          { label: "Repet Min", value: "repetmin", index: 5 },
+        ],
         default: {
           sortIdx: 1,
           order: "dsc",
