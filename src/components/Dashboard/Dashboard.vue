@@ -241,7 +241,7 @@ export default {
           { label: "Hora", value: "", index: 1, format: { type: "hora" }, ident: "text-right" },
           { label: "Últ.", value: "", index: 2, format: { type: "float" }, ident: "text-right" },
           { label: "Point", value: "", index: 4, format: { type: "float", color: true }, ident: "text-right" },
-          { label: "Score", value: "", index: 5, format: { type: "int" }, ident: "text-right" },
+          { label: "Score", value: "", index: 5, format: { type: "float" }, ident: "text-right" },
           { label: "% Qtt", value: "", index: 21, format: { type: "float" }, ident: "text-right" },
           { label: "Var5Min", value: "", index: 22, format: { type: "float" }, ident: "text-right" },
           //{ label: "Interval", value: "", index: 5, format: { type: "float" } },
