@@ -263,7 +263,7 @@ export default {
           name: "Últ.",
           value: "",
           format: "float",
-          index: 2,
+          index: 5,
           ident: "text-right",
         },
         {
