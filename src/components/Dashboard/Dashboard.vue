@@ -357,7 +357,7 @@ export default {
         columns: [
           { label: "Ativo", value: "", index: 0, ident: "text-left" },
           { label: "Hora", value: "", index: 11, format: { type: "hora" }, ident: "text-right" },
-          { label: "Últ.", value: "", index: 2, format: { type: "float" }, ident: "text-right" },
+          { label: "Últ.", value: "", index: 5, format: { type: "float" }, ident: "text-right" },
           { label: "Var. %", value: "", index: 6, format: { type: "float", color: true }, ident: "text-right" },
           { label: "Quantidade", value: "", index: 3, format: { type: "int" }, ident: "text-right" },
           { label: "Financeiro", value: "", index: 4, format: { type: "int" }, ident: "text-right" },
